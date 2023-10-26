@@ -1,10 +1,12 @@
+import {SignOutButton} from "@/components/auth/buttons";
 
 const Home = () => {
-  return (
-    <main className="">
-
-    </main>
-  )
+    return (
+        <main className="">
+            <SignOutButton />
+        </main>
+    )
 }
+
 
 export default Home
