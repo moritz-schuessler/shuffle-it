@@ -2,6 +2,7 @@ import type {Metadata} from 'next'
 import {Inter} from 'next/font/google'
 import './globals.css'
 import AuthProvider from "@/app/AuthProvider";
+import Navbar from '@/components/nav/Navbar';
 
 const inter = Inter({subsets: ['latin']})
 
@@ -14,7 +15,12 @@ const RootLayout = ({children}: { children: React.ReactNode }) => {
     return (
         <AuthProvider>
             <html lang="en">
-                <body className={inter.className}>{children}</body>
+                <body className={`${inter.className} flex flex-col h-screen overflow-hidden`}>
+                    <Navbar />
+                    <main className='overflow-scroll px-[2rem]'>
+                        {children}
+                    </main>
+                </body>
             </html>
         </AuthProvider>
     )
