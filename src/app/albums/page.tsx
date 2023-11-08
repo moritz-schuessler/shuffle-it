@@ -1,6 +1,6 @@
 'use client'
 
-import Album from "@/components/album";
+import Album from "@/components/Album";
 import { getAlbums } from "@/lib/spotifyApi";
 import { useQuery } from "@tanstack/react-query";
 import { useSession } from "next-auth/react";
@@ -24,7 +24,7 @@ const Albums = () => {
             <div className='flex flex-row flex-wrap justify-between gap-[2rem] h-full'>
                 {
                     albums.map(({album}) => {
-                        return <Album key={album.id} album={album}/>
+                        return <Album key={album.id} album={album} access_token={session?.access_token!}/>
                     })
                 }
             </div>
