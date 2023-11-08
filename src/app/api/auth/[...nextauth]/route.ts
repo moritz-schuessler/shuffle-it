@@ -7,6 +7,7 @@ const scope: string = [
     'user-read-private',
     'user-read-email',
     'user-library-read',
+    'user-modify-playback-state',
 ].join(' ')
 
 declare module "next-auth/jwt" {
