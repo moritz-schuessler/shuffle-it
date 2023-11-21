@@ -15,12 +15,14 @@ const Navbar = () => {
                     Shuffle-it
                 </Link>
             </h1>
-            <nav className='flex gap-[1rem]'>
-                <Link className={`link ${pathname === '/albums' ? 'underline' : ''}`} href="/albums">
-                    Albums
-                </Link>
-                <SignOutButton />
-            </nav>
+            {!(pathname === '/signin')&&
+                <nav className='flex gap-[1rem]'>
+                    <Link className={`link ${pathname === '/albums' ? 'underline' : ''}`} href="/albums">
+                        Albums
+                    </Link>
+                    <SignOutButton />
+                </nav>
+            }
         </header>
     )
 }
