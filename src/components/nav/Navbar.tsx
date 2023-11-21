@@ -15,14 +15,8 @@ const Navbar = () => {
                 </Link>
             </h1>
             <nav className='flex gap-[1rem]'>
-                <Link className={`link ${pathname === '/tracks' ? 'underline' : ''}`} href="/tracks">
-                    Tracks
-                </Link>
                 <Link className={`link ${pathname === '/albums' ? 'underline' : ''}`} href="/albums">
                     Albums
-                </Link>
-                <Link className={`link ${pathname === '/artists' ? 'underline' : ''}`} href="/artists">
-                    Artists
                 </Link>
             </nav>
         </header>
