@@ -1,6 +1,17 @@
 import {QueryKey} from "@tanstack/query-core";
 
-const getAlbums = async ({ queryKey, pageParam  }:{queryKey:QueryKey, pageParam: string}) => {
+const getAlbum = async (access_token: string, offset: number) => {
+    const response = await fetch(`https://api.spotify.com/v1/me/albums?offset=${offset}&limit=1&locale=*`, {
+        method: 'GET',
+        headers: {
+            Authorization: `Bearer ${access_token}`
+        },
+    })
+    const data:Albums = await response.json()
+    return data
+}
+
+const getAlbums = async ({ queryKey, pageParam  }:{ queryKey:QueryKey, pageParam: string }) => {
     const [_key, access_token ] = queryKey
 
     const data = await fetch(pageParam, {
@@ -12,7 +23,7 @@ const getAlbums = async ({ queryKey, pageParam  }:{queryKey:QueryKey, pageParam:
     return await data.json() as Albums
 }
 
-const putPlayback = ({access_token, uri}:{access_token:string, uri:string}) => {
+const putPlayback = (access_token:string, uri:string) => {
     return fetch('https://api.spotify.com/v1/me/player/play', {
         method: 'PUT',
         headers: {
@@ -24,5 +35,5 @@ const putPlayback = ({access_token, uri}:{access_token:string, uri:string}) => {
     })
 }
 
-export { getAlbums, putPlayback }
+export { getAlbum, getAlbums, putPlayback }
 

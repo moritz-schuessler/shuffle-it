@@ -9,13 +9,15 @@ interface Props {
 
 const Album = ({album, access_token}:Props) => {
     const mutation = useMutation({
-        mutationFn: putPlayback
+        mutationFn: ({access_token, uri}:{access_token:string, uri:string}) => {
+            return putPlayback(access_token, uri)
+        }
     })
     
     const {name, uri, artists, images} = album
     
     return (
-        <button onClick={() => mutation.mutate({access_token, uri})} className='flex flex-col grow gap-[1rem] p-[1rem] bg-[#0a0a0a]'>
+        <button onClick={() => mutation.mutate({ access_token, uri})} className='flex flex-col grow gap-[1rem] p-[1rem] bg-[#0a0a0a]'>
             <div className='flex grow'>
                 <Image
                     src={images[0].url}
@@ -36,7 +38,7 @@ const Album = ({album, access_token}:Props) => {
             </div>
         </button>
 
-    )
+        )
 }
 
 export default Album
