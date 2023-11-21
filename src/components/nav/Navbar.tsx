@@ -2,6 +2,7 @@
 
 import { usePathname } from 'next/navigation'
 import Link from "next/link";
+import { SignOutButton } from '@/components/auth/buttons';
 
 
 const Navbar = () => {
@@ -18,6 +19,7 @@ const Navbar = () => {
                 <Link className={`link ${pathname === '/albums' ? 'underline' : ''}`} href="/albums">
                     Albums
                 </Link>
+                <SignOutButton />
             </nav>
         </header>
     )
