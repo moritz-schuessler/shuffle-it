@@ -1,5 +1,5 @@
 # Shuffle-It
-> A alternative Spotify-UI that adds functionality to shuffle saved albums
+> Alternative Spotify-UI that adds functionality to shuffle saved albums
 
 After switching from Apple Music to Spotify I really missed a functionality to shuffle through all my saved Albums. This project solves this problem!
 
