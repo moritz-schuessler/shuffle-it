@@ -3,7 +3,7 @@
 import {signIn, signOut, ClientSafeProvider} from 'next-auth/react';
 
 const SignInButton = ({ provider }: { provider:  ClientSafeProvider }) => {
-    return <button onClick={() => signIn(provider.id)}>Sign in with {provider.name}</button>
+    return <button className='p-[2rem] bg-[#1DB954] rounded-[2rem]' onClick={() => signIn(provider.id)}>Sign in with {provider.name}</button>
 
 }
 
