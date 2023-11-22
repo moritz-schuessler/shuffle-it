@@ -19,8 +19,8 @@ const SignIn = async () => {
             {
                 Object.values(providers!).map((provider) => {
                     return (
-                        <main className='flex justify-center items-center h-full overflow-scroll'>
-                            <SignInButton key={provider.id} provider={provider}/>
+                        <main key={provider.id} className='flex justify-center items-center h-full overflow-scroll'>
+                            <SignInButton provider={provider}/>
                         </main>
                         )
 
