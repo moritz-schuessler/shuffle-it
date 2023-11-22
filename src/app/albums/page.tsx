@@ -41,7 +41,7 @@ const Albums = () => {
     const albums = data?.pages.flatMap((page) => page.items)
 
     return (
-        <main>
+        <main className='overflow-scroll'>
             <Shuffle ressource={"album"} amountOfRessource={data.pages[0].total}/>
             <div className='grid col-start-auto grid-cols-5 grid-auto gap-[2rem] h-full' ref={rootRef.current}>
                 {

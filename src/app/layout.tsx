@@ -14,12 +14,10 @@ const metadata: Metadata = {
 const RootLayout = ({children}: { children: React.ReactNode }) => {
     return (
         <Providers>
-            <html lang="en">
-                <body className={`${inter.className} flex flex-col h-screen overflow-hidden`}>
+            <html lang="en" className=''>
+                <body className={`${inter.className} flex flex-col h-screen overscroll-none`}>
                     <Navbar />
-                    <main className='overflow-scroll px-[2rem]'>
-                        {children}
-                    </main>
+                    {children}
                 </body>
             </html>
         </Providers>

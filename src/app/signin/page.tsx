@@ -3,6 +3,7 @@ import {getServerSession} from "next-auth";
 import {authOptions} from "@/app/api/auth/[...nextauth]/route";
 import {getProviders} from "next-auth/react";
 import {redirect} from "next/navigation";
+import {Fragment} from "react";
 
 const SignIn = async () => {
     const session = await getServerSession(authOptions)
@@ -17,7 +18,12 @@ const SignIn = async () => {
         <>
             {
                 Object.values(providers!).map((provider) => {
-                    return <SignInButton key={provider.id} provider={provider}/>
+                    return (
+                        <main className='overflow-scroll'>
+                            <SignInButton key={provider.id} provider={provider}/>
+                        </main>
+                        )
+
                 })
             }
         </>
