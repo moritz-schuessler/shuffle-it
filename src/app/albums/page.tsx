@@ -47,7 +47,7 @@ const Albums = () => {
     return (
         <main className='overflow-scroll'>
             <Shuffle ressource={"album"} amountOfRessource={data.pages[0].total}/>
-            <div className='grid col-start-auto grid-cols-5 grid-auto gap-[2rem] h-full' ref={rootRef.current}>
+            <div className='grid grid-cols-auto gap-[2rem] h-full' ref={rootRef.current}>
                 {
                     albums.map((album, i) => {
                         if (albums?.length === i + 1  && hasNextPage) {
