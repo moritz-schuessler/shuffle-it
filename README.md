@@ -3,7 +3,7 @@
 
 After switching from Apple Music to Spotify I really missed a functionality to shuffle through all my saved Albums. This project solves this problem!
 
-## Getting Started
+## How to use
 This project is hosted at [shuffle-it.moritzschuessler.de](https://shuffle-it.moritzschuessler.de/)
 
 ### Environment Variables
@@ -36,7 +36,7 @@ npm run start
 
 - HTML
 - CSS/Tailwindcss
-- JavaScript
+- JavaScript/TypeScript
 - React/Next.js
 - Auth.js
 - React Query
