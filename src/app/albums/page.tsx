@@ -35,7 +35,11 @@ const Albums = () => {
     }, [fetchNextPage, inView])
 
     if (status !== 'success') {
-        return 'Loading...'
+        return (
+            <main className='overflow-scroll'>
+                Loading...
+            </main>
+        )
     }
 
     const albums = data?.pages.flatMap((page) => page.items)
