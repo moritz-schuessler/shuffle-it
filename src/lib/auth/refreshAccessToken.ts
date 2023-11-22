@@ -1,5 +1,7 @@
+import { NextAuthOptions } from "next-auth";
 import {JWT} from "next-auth/jwt";
 import {URLSearchParams} from "url"
+import SpotifyProvider from "next-auth/providers/spotify";
 
 const refreshAccessToken = async (token: JWT) => {
     try {
