@@ -1,12 +1,14 @@
 'use client'
 
-import { usePathname } from 'next/navigation'
 import Link from "next/link";
-import { SignOutButton } from '@/components/auth/buttons';
+import {usePathname} from 'next/navigation'
+import {useSession} from "next-auth/react";
 
+import {SignOutButton} from '@/components/auth/buttons';
 
 const Navbar = () => {
     const pathname = usePathname()
+    const {status} = useSession()
     
     return (
         <header className='flex justify-between p-[2rem]'>
@@ -15,14 +17,18 @@ const Navbar = () => {
                     Shuffle-it
                 </Link>
             </h1>
-            {!(pathname === '/signin')&&
-                <nav className='flex gap-[1rem]'>
-                    <Link className={`link ${pathname === '/albums' ? 'underline' : ''}`} href="/albums">
-                        Albums
-                    </Link>
-                    <SignOutButton />
-                </nav>
-            }
+            <nav className='flex gap-[1rem]'>
+                {
+                    (status !== 'unauthenticated') && (
+                        <>
+                            <Link className={`link ${pathname === '/albums' ? 'underline' : ''}`} href={"/albums"}>
+                                Albums
+                            </Link>
+                            <SignOutButton/>
+                        </>
+                    )
+                }
+            </nav>
         </header>
     )
 }
