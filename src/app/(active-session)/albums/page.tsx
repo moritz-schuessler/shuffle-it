@@ -36,7 +36,7 @@ const Albums = () => {
 
     if (status !== 'success') {
         return (
-            <main className='overflow-scroll'>
+            <main className='overflow-scroll h-full'>
                 Loading...
             </main>
         )
