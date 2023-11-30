@@ -26,8 +26,9 @@ body {
     rgb(var(--background-start-rgb));
 }
 
-header, main {
-  padding: 0 2rem
+header,
+main {
+  padding: 0 2rem;
 }
 
 button {

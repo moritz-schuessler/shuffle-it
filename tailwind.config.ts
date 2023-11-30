@@ -1,4 +1,4 @@
-import type { Config } from 'tailwindcss'
+import type { Config } from 'tailwindcss';
 
 const config: Config = {
   content: [
@@ -15,10 +15,10 @@ const config: Config = {
       },
       gridTemplateColumns: {
         // Simple 16 column grid
-        'auto': 'repeat(auto-fill, minmax(300px, 1fr))',
-      }
+        auto: 'repeat(auto-fill, minmax(300px, 1fr))',
+      },
     },
   },
   plugins: [],
-}
-export default config
+};
+export default config;
