@@ -20,7 +20,10 @@ const metadata: Metadata = {
 const RootLayout = ({ children }: Props) => {
   return (
     <Providers>
-      <html lang='en' className=''>
+      <html
+        lang='en'
+        className='bg-light text-dark dark:bg-dark dark:text-light'
+      >
         <body
           className={`${inter.className} flex h-screen flex-col justify-between overscroll-none`}
         >
