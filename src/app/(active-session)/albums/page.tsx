@@ -37,7 +37,7 @@ const Albums = () => {
   }, [fetchNextPage, inView]);
 
   if (status !== 'success') {
-    return <main className='overflow-scroll h-full'>Loading...</main>;
+    return <main className='h-full overflow-scroll'>Loading...</main>;
   }
 
   const albums = data?.pages.flatMap((page) => page.items);
@@ -46,7 +46,7 @@ const Albums = () => {
     <main className='overflow-scroll'>
       <Shuffle ressource={'album'} amountOfRessource={data.pages[0].total} />
       <div
-        className='grid grid-cols-auto gap-[2rem] h-full'
+        className='grid h-full grid-cols-auto gap-[2rem]'
         ref={rootRef.current}
       >
         {albums.map((album, i) => {
