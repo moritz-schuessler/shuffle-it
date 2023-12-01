@@ -21,7 +21,9 @@ const RootLayout = ({ children }: Props) => {
   return (
     <Providers>
       <html lang='en' className=''>
-        <body className={`${inter.className}`}>
+        <body
+          className={`${inter.className} flex h-screen flex-col justify-between overscroll-none`}
+        >
           <Navbar />
           {children}
         </body>
