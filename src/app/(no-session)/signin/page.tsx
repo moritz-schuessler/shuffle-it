@@ -20,7 +20,7 @@ const SignIn = async () => {
         return (
           <main
             key={provider.id}
-            className='flex justify-center items-center h-full overflow-scroll'
+            className='flex h-full items-center justify-center overflow-scroll'
           >
             <SignInButton provider={provider} />
           </main>

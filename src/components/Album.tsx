@@ -25,7 +25,7 @@ const Album = ({ album, access_token }: Props) => {
   return (
     <button
       onClick={() => mutation.mutate({ access_token, uri })}
-      className='flex flex-col grow gap-[1rem] p-[1rem] bg-[#0a0a0a]'
+      className='flex grow flex-col gap-[1rem] bg-[#0a0a0a] p-[1rem]'
     >
       <div className='flex grow'>
         <Image
@@ -34,7 +34,7 @@ const Album = ({ album, access_token }: Props) => {
           width={300}
           height={300}
           unoptimized
-          className='grow aspect-square'
+          className='aspect-square grow'
         />
       </div>
       <div className='flex flex-col gap-[.5rem]'>
