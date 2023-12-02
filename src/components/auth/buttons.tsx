@@ -1,14 +1,30 @@
-'use client'
+'use client';
 
-import {signIn, signOut, ClientSafeProvider} from 'next-auth/react';
+import { signIn, signOut, ClientSafeProvider } from 'next-auth/react';
+import Image from 'next/image';
 
-const SignInButton = ({ provider }: { provider:  ClientSafeProvider }) => {
-    return <button className='p-[2rem] bg-[#1DB954] rounded-[2rem]' onClick={() => signIn(provider.id)}>Sign in with {provider.name}</button>
+import spotify_black from '@/assets/spotify_black.png';
 
-}
+const SignInButton = ({ provider }: { provider: ClientSafeProvider }) => {
+  return (
+    <button
+      className='flex flex-row gap-[.5rem]'
+      onClick={() => signIn(provider.id)}
+    >
+      <Image
+        width='200'
+        height='200'
+        src={spotify_black}
+        alt='Logo of Spotify'
+        className='aspect-square w-[1.5rem]'
+      />
+      <div>{provider.name}</div>
+    </button>
+  );
+};
 
 const SignOutButton = () => {
-    return <button onClick={() => signOut()}>Sign out</button>;
-}
+  return <button onClick={() => signOut()}>Sign out</button>;
+};
 
-export { SignInButton, SignOutButton }
+export { SignInButton, SignOutButton };

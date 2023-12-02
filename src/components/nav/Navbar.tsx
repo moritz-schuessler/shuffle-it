@@ -1,30 +1,47 @@
-'use client'
+'use client';
 
-import { usePathname } from 'next/navigation'
-import Link from "next/link";
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
+import { useSession } from 'next-auth/react';
+
+import Button from '@/components/Button';
 import { SignOutButton } from '@/components/auth/buttons';
 
-
 const Navbar = () => {
-    const pathname = usePathname()
-    
-    return (
-        <header className='flex justify-between p-[2rem]'>
-            <h1>
-                <Link className={`link ${pathname === '/' ? 'active' : ''}`} href="/">
-                    Shuffle-it
-                </Link>
-            </h1>
-            {!(pathname === '/signin')&&
-                <nav className='flex gap-[1rem]'>
-                    <Link className={`link ${pathname === '/albums' ? 'underline' : ''}`} href="/albums">
-                        Albums
-                    </Link>
-                    <SignOutButton />
-                </nav>
-            }
-        </header>
-    )
-}
+  const pathname = usePathname();
+  const { status } = useSession();
 
-export default Navbar
+  return (
+    <header className='flex justify-between px-[2rem] py-[1em]'>
+      <h1>
+        <Button>
+          <Link
+            className={`link ${pathname === '/' ? 'underline' : ''}`}
+            href='/'
+          >
+            Shuffle-it
+          </Link>
+        </Button>
+      </h1>
+      <nav className='flex gap-[1rem]'>
+        {status !== 'unauthenticated' && (
+          <>
+            <Button>
+              <Link
+                className={`link ${pathname === '/albums' ? 'underline' : ''}`}
+                href={'/albums'}
+              >
+                Albums
+              </Link>
+            </Button>
+            <Button style='solid'>
+              <SignOutButton />
+            </Button>
+          </>
+        )}
+      </nav>
+    </header>
+  );
+};
+
+export default Navbar;
