@@ -25,7 +25,7 @@ const Album = ({ album, access_token }: Props) => {
   return (
     <button
       onClick={() => mutation.mutate({ access_token, uri })}
-      className='flex grow flex-col gap-[1rem] rounded-md bg-neutral-900 p-[1rem]'
+      className='flex grow flex-col gap-[1rem] rounded-md bg-neutral-900 p-[1rem] transition hover:bg-neutral-800'
     >
       <div className='flex grow'>
         <Image
