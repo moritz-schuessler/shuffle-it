@@ -20,7 +20,7 @@ const SignIn = async () => {
         <div className='flex flex-col items-center justify-center gap-2'>
           <h2 className='text-xl'>Sign in with Spotify</h2>
           <p className='text-stone-400'>
-            To use this app it's required to be signed in with Spotify
+            To use this app it&#39;s required to be signed in with Spotify
           </p>
         </div>
         {Object.values(providers!).map((provider) => {
