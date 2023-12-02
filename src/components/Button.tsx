@@ -10,8 +10,8 @@ const Button = ({ style, width, children }: Props) => {
   const buttonStyle = `
     ${
       style === 'solid'
-        ? 'bg-light text-dark hover:bg-stone-300'
-        : 'hover:bg-stone-800'
+        ? 'bg-light text-dark hover:bg-neutral-300'
+        : 'hover:bg-neutral-800'
     }`;
 
   const buttonWidth = `

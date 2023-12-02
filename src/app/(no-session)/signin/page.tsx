@@ -19,7 +19,7 @@ const SignIn = async () => {
       <div className='flex w-1/2 max-w-[30rem] flex-col gap-6'>
         <div className='flex flex-col items-center justify-center gap-2'>
           <h2 className='text-xl'>Sign in with Spotify</h2>
-          <p className='text-stone-400'>
+          <p className='text-neutral-400'>
             To use this app it&#39;s required to be signed in with Spotify
           </p>
         </div>

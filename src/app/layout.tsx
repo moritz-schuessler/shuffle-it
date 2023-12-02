@@ -25,7 +25,7 @@ const RootLayout = ({ children }: Props) => {
         className='bg-light text-dark dark:bg-dark dark:text-light'
       >
         <body
-          className={`${inter.className} flex h-screen flex-col justify-between divide-y divide-stone-700 overscroll-none`}
+          className={`${inter.className} flex h-screen flex-col justify-between divide-y divide-neutral-800 overscroll-none`}
         >
           <Navbar />
           {children}
