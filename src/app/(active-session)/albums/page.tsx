@@ -8,6 +8,7 @@ import { useInfiniteQuery } from '@tanstack/react-query';
 import Album from '@/components/Album';
 import Shuffle from '@/components/Shuffle';
 import { getAlbums } from '@/lib/spotifyApi';
+import Button from '@/components/Button';
 
 const Albums = () => {
   const { data: session } = useSession();
@@ -44,11 +45,17 @@ const Albums = () => {
 
   return (
     <main className='overflow-scroll'>
-      <Shuffle ressource={'album'} amountOfRessource={data.pages[0].total} />
       <div
         className='grid h-full grid-cols-auto gap-[2rem]'
         ref={rootRef.current}
       >
+        <Button style='neutral-800' width='full' height='full'>
+          <Shuffle
+            ressource={'album'}
+            amountOfRessource={data.pages[0].total}
+          />
+        </Button>
+
         {albums.map((album, i) => {
           if (albums?.length === i + 1 && hasNextPage) {
             return (

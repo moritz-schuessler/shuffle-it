@@ -36,7 +36,11 @@ const Shuffle = ({ ressource, amountOfRessource }: Props) => {
     mutation.mutate({ access_token: session.access_token!, uri });
   };
 
-  return <button onClick={handleClick}>Shuffle</button>;
+  return (
+    <button className='flex' onClick={handleClick}>
+      Shuffle
+    </button>
+  );
 };
 
 export default Shuffle;
