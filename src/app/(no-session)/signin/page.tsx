@@ -3,7 +3,7 @@ import { getServerSession } from 'next-auth';
 import authOptions from '@/lib/auth/authOptions';
 import { getProviders } from 'next-auth/react';
 import { redirect } from 'next/navigation';
-import { Fragment } from 'react';
+import Button from '@/components/Button';
 
 const SignIn = async () => {
   const session = await getServerSession(authOptions);
@@ -15,18 +15,23 @@ const SignIn = async () => {
   const providers = await getProviders();
 
   return (
-    <>
-      {Object.values(providers!).map((provider) => {
-        return (
-          <main
-            key={provider.id}
-            className='flex h-full items-center justify-center overflow-scroll'
-          >
-            <SignInButton provider={provider} />
-          </main>
-        );
-      })}
-    </>
+    <main className='flex h-full items-center justify-center overflow-scroll'>
+      <div className='flex w-1/2 max-w-[30rem] flex-col gap-6'>
+        <div className='flex flex-col items-center justify-center gap-2'>
+          <h2 className='text-xl'>Sign in with Spotify</h2>
+          <p className='text-stone-400'>
+            To use this app it's required to be signed in with Spotify
+          </p>
+        </div>
+        {Object.values(providers!).map((provider) => {
+          return (
+            <Button key={provider.id} style={'solid'} width='full'>
+              <SignInButton provider={provider} />
+            </Button>
+          );
+        })}
+      </div>
+    </main>
   );
 };
 
