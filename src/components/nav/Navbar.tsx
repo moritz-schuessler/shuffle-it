@@ -12,7 +12,7 @@ const Navbar = () => {
   const { status } = useSession();
 
   return (
-    <header className='flex justify-between py-[1rem]'>
+    <header className='flex justify-between px-[2rem] py-[1em]'>
       <h1>
         <Button>
           <Link
