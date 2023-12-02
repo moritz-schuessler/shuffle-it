@@ -46,27 +46,3 @@ const Album = ({ album, access_token }: Props) => {
 };
 
 export default Album;
-
-/*
-        <div className='flex flex-col grow gap-[.5rem] p-[1rem] bg-white bg-opacity-10'>
-            <button onClick={() => mutation.mutate({access_token, uri})} className='flex grow'>
-                <Image
-                    src={images[0].url}
-                    alt={`Album Cover of ${name}`}
-                    width={300}
-                    height={300}
-                    unoptimized
-                    className='grow aspect-square'
-                />   
-            </button>
-            <div className='flex flex-col gap-[.25rem]'>
-                <div>
-                    {name}
-                </div>
-                <div>
-                    {artists.map((artist) => artist.name).join(', ')}
-                </div>
-            </div>
-        </div>
-
-*/
