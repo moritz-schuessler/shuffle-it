@@ -25,7 +25,7 @@ const Album = ({ album, access_token }: Props) => {
   return (
     <button
       onClick={() => mutation.mutate({ access_token, uri })}
-      className='flex grow flex-col gap-[1rem] bg-[#0a0a0a] p-[1rem]'
+      className='flex grow flex-col gap-[1rem] rounded-md bg-neutral-800 bg-opacity-50 p-[1rem]'
     >
       <div className='flex grow'>
         <Image
@@ -34,12 +34,14 @@ const Album = ({ album, access_token }: Props) => {
           width={300}
           height={300}
           unoptimized
-          className='aspect-square grow'
+          className='aspect-square grow rounded'
         />
       </div>
-      <div className='flex flex-col gap-[.5rem]'>
+      <div className='flex flex-col  children:truncate'>
         <a>{name}</a>
-        <div>{artists.map((artist) => artist.name).join(', ')}</div>
+        <div className='text-neutral-400'>
+          {artists.map((artist) => artist.name).join(', ')}
+        </div>
       </div>
     </button>
   );
