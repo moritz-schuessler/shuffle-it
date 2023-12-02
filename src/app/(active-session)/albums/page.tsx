@@ -44,39 +44,33 @@ const Albums = () => {
   const albums = data?.pages.flatMap((page) => page.items);
 
   return (
-    <main className='overflow-scroll'>
-      <div
-        className='grid h-full grid-cols-auto gap-[2rem]'
-        ref={rootRef.current}
-      >
-        <Button style='neutral-900' width='full' height='full'>
-          <Shuffle
-            ressource={'album'}
-            amountOfRessource={data.pages[0].total}
-          />
-        </Button>
-
-        {albums.map((album, i) => {
-          if (albums?.length === i + 1 && hasNextPage) {
-            return (
-              <div key={album.album.id} className='flex' ref={ref}>
-                <Album
-                  album={album.album}
-                  access_token={session!.access_token!}
-                />
-              </div>
-            );
-          }
+    <main
+      className='grid h-full grid-cols-auto gap-[2rem] overflow-scroll p-[2rem]'
+      ref={rootRef.current}
+    >
+      <Button style='neutral-900' width='full' height='full'>
+        <Shuffle ressource={'album'} amountOfRessource={data.pages[0].total} />
+      </Button>
+      {albums.map((album, i) => {
+        if (albums?.length === i + 1 && hasNextPage) {
           return (
-            <Album
-              key={album.album.id}
-              album={album.album}
-              access_token={session!.access_token!}
-            />
+            <div key={album.album.id} className='flex' ref={ref}>
+              <Album
+                album={album.album}
+                access_token={session!.access_token!}
+              />
+            </div>
           );
-        })}
-        {hasNextPage || isFetchingNextPage ? <div>Loading...</div> : null}
-      </div>
+        }
+        return (
+          <Album
+            key={album.album.id}
+            album={album.album}
+            access_token={session!.access_token!}
+          />
+        );
+      })}
+      {hasNextPage || isFetchingNextPage ? <div>Loading...</div> : null}
     </main>
   );
 };
