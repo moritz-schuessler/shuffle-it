@@ -49,7 +49,7 @@ const Albums = () => {
         className='grid h-full grid-cols-auto gap-[2rem]'
         ref={rootRef.current}
       >
-        <Button style='neutral-800' width='full' height='full'>
+        <Button style='neutral-900' width='full' height='full'>
           <Shuffle
             ressource={'album'}
             amountOfRessource={data.pages[0].total}

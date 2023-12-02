@@ -1,7 +1,7 @@
 import { ReactNode } from 'react';
 
 interface Props {
-  style?: 'solid' | 'neutral-800';
+  style?: 'solid' | 'neutral-900';
   width?: 'full';
   height?: 'full';
   children: ReactNode;
@@ -12,8 +12,8 @@ const Button = ({ style, width, height, children }: Props) => {
     if (style === 'solid') {
       return 'bg-light text-dark hover:bg-neutral-300';
     }
-    if (style === 'neutral-800') {
-      return 'bg-neutral-800';
+    if (style === 'neutral-900') {
+      return 'bg-neutral-900';
     }
     return 'hover:bg-neutral-800';
   };
