@@ -23,12 +23,17 @@ const Albums = () => {
 
   const { data, status, fetchNextPage, hasNextPage, isFetchingNextPage } =
     useInfiniteQuery({
-      queryKey: ['albums', session?.access_token],
-      queryFn: getAlbums,
+      queryKey: ['albums'],
+      queryFn: ({ pageParam }) =>
+        getAlbums(session?.access_token!, { pageParam }),
       enabled: !!session?.access_token,
-      initialPageParam:
-        'https://api.spotify.com/v1/me/albums?offset=0&limit=25&locale=*',
-      getNextPageParam: (lastPage) => lastPage.next,
+      initialPageParam: { offset: 0, limit: 20 },
+      getNextPageParam: (lastPage) => {
+        return {
+          offset: lastPage.offset + lastPage.limit,
+          limit: lastPage.limit,
+        };
+      },
     });
 
   useEffect(() => {
