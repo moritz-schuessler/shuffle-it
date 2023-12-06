@@ -9,7 +9,7 @@ declare module 'next-auth/jwt' {
   }
 
   interface JWT {
-    error: string;
+    error: 'RefreshAccessTokenError';
   }
 }
 
@@ -21,5 +21,9 @@ declare module 'next-auth' {
     access_token: string | null;
     refresh_token: string;
     expires_at: number;
+  }
+
+  interface Session {
+    error: 'RefreshAccessTokenError';
   }
 }
