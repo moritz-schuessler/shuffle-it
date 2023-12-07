@@ -32,21 +32,22 @@ const authOptions: NextAuthOptions = {
         token.refresh_token = account.refresh_token!;
         token.expires_at = account.expires_at! * 1000;
       }
+
       if (Date.now() >= token.expires_at!) {
-        console.log('refresh');
         token = await refreshAccessToken(token);
       }
+
       return token;
     },
     async session({ session, token }: { session: Session; token: JWT }) {
-      if (!session) {
-        console.log('unreachable');
-      }
-
       session.user!.sub = token.sub;
       session.access_token = token.access_token;
       session.refresh_token = token.refresh_token;
       session.expires_at = token.expires_at;
+
+      if (token.error) {
+        session.error = token.error;
+      }
 
       return session;
     },

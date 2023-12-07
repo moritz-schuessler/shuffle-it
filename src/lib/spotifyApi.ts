@@ -1,5 +1,3 @@
-import { QueryKey } from '@tanstack/query-core';
-
 const getAlbum = async (access_token: string, offset: number) => {
   const response = await fetch(
     `https://api.spotify.com/v1/me/albums?offset=${offset}&limit=1&locale=*`,
@@ -14,21 +12,29 @@ const getAlbum = async (access_token: string, offset: number) => {
   return data;
 };
 
-const getAlbums = async ({
-  queryKey,
-  pageParam,
-}: {
-  queryKey: QueryKey;
-  pageParam: string;
-}) => {
-  const [_key, access_token] = queryKey;
+const getAlbums = async (
+  access_token: string,
+  expires_at: number,
+  { pageParam }: { pageParam: { offset: number; limit: number } },
+) => {
+  if (Date.now() >= expires_at) {
+    throw new Error('Access Token is invalid');
+  }
 
-  const data = await fetch(pageParam, {
-    method: 'GET',
-    headers: {
-      Authorization: `Bearer ${access_token}`,
+  const data = await fetch(
+    `https://api.spotify.com/v1/me/albums?offset=${pageParam.offset}&limit=${pageParam.limit}&locale=*`,
+    {
+      method: 'GET',
+      headers: {
+        Authorization: `Bearer ${access_token}`,
+      },
     },
-  });
+  );
+
+  if (!data) {
+    throw new Error();
+  }
+
   return (await data.json()) as Albums;
 };
 
