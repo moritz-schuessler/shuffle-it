@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useRef } from 'react';
-import { useSession } from 'next-auth/react';
+import { signIn, useSession } from 'next-auth/react';
 import { useInView } from 'react-intersection-observer';
 import { useInfiniteQuery } from '@tanstack/react-query';
 
@@ -21,20 +21,26 @@ const Albums = () => {
     triggerOnce: false,
   });
 
-  const { data, status, fetchNextPage, hasNextPage, isFetchingNextPage } =
-    useInfiniteQuery({
-      queryKey: ['albums'],
-      queryFn: ({ pageParam }) =>
-        getAlbums(session?.access_token!, { pageParam }),
-      enabled: !!session?.access_token,
-      initialPageParam: { offset: 0, limit: 20 },
-      getNextPageParam: (lastPage) => {
-        return {
-          offset: lastPage.offset + lastPage.limit,
-          limit: lastPage.limit,
-        };
-      },
-    });
+  const {
+    data,
+    error,
+    status,
+    fetchNextPage,
+    hasNextPage,
+    isFetchingNextPage,
+  } = useInfiniteQuery({
+    queryKey: ['albums'],
+    queryFn: ({ pageParam }) =>
+      getAlbums(session?.access_token!, session?.expires_at!, { pageParam }),
+    enabled: !!session?.access_token,
+    initialPageParam: { offset: 0, limit: 20 },
+    getNextPageParam: (lastPage) => {
+      return {
+        offset: lastPage.offset + lastPage.limit,
+        limit: lastPage.limit,
+      };
+    },
+  });
 
   useEffect(() => {
     if (inView) {
@@ -42,8 +48,13 @@ const Albums = () => {
     }
   }, [fetchNextPage, inView]);
 
-  if (status !== 'success') {
+  if (status === 'pending') {
     return <main className='h-full overflow-scroll'>Loading...</main>;
+  }
+
+  if (status === 'error') {
+    signIn('spotify');
+    return <main className='h-full overflow-scroll'>{error.message}</main>;
   }
 
   const albums = data?.pages.flatMap((page) => page.items);

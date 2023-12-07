@@ -14,8 +14,13 @@ const getAlbum = async (access_token: string, offset: number) => {
 
 const getAlbums = async (
   access_token: string,
+  expires_at: number,
   { pageParam }: { pageParam: { offset: number; limit: number } },
 ) => {
+  if (Date.now() >= expires_at) {
+    throw new Error('Access Token is invalid');
+  }
+
   const data = await fetch(
     `https://api.spotify.com/v1/me/albums?offset=${pageParam.offset}&limit=${pageParam.limit}&locale=*`,
     {
@@ -25,6 +30,10 @@ const getAlbums = async (
       },
     },
   );
+
+  if (!data) {
+    throw new Error();
+  }
 
   return (await data.json()) as Albums;
 };
