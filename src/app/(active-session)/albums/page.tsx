@@ -29,7 +29,7 @@ const Albums = () => {
     hasNextPage,
     isFetchingNextPage,
   } = useInfiniteQuery({
-    queryKey: ['albums'],
+    queryKey: ['albums', session?.access_token, session?.expires_at],
     queryFn: ({ pageParam }) =>
       getAlbums(session?.access_token!, session?.expires_at!, { pageParam }),
     enabled: !!session?.access_token,
