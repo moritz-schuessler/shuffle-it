@@ -65,7 +65,7 @@ const Albums = () => {
       ref={rootRef.current}
     >
       <Button style='neutral-900' width='full' height='full'>
-        <Shuffle ressource={'album'} amountOfRessource={data.pages[0].total} />
+        <Shuffle resource={'album'} amountOfResource={data.pages[0].total} />
       </Button>
       {albums.map((album, i) => {
         if (albums?.length === i + 1 && hasNextPage) {
