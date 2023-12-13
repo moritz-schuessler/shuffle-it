@@ -1,25 +1,20 @@
 'use client';
 
 import { useEffect, useRef } from 'react';
+import { redirect } from 'next/navigation';
 import { signIn, useSession } from 'next-auth/react';
 import { useInView } from 'react-intersection-observer';
-import { useInfiniteQuery } from '@tanstack/react-query';
 
+import useAlbums from '@/hooks/useAlbums';
 import Album from '@/components/Album';
 import Shuffle from '@/components/Shuffle';
-import { getAlbums } from '@/lib/spotifyApi';
 import Button from '@/components/Button';
 
 const Albums = () => {
   const { data: session } = useSession();
-
-  const rootRef = useRef(null);
-  const { ref, inView } = useInView({
-    threshold: 0,
-    rootMargin: '100%',
-    root: rootRef.current,
-    triggerOnce: false,
-  });
+  if (!session) {
+    redirect('/signin');
+  }
 
   const {
     data,
@@ -28,20 +23,15 @@ const Albums = () => {
     fetchNextPage,
     hasNextPage,
     isFetchingNextPage,
-  } = useInfiniteQuery({
-    queryKey: ['albums', session?.access_token, session?.expires_at],
-    queryFn: ({ pageParam }) =>
-      getAlbums(session?.access_token!, session?.expires_at!, { pageParam }),
-    enabled: !!session?.access_token,
-    initialPageParam: { offset: 0, limit: 20 },
-    getNextPageParam: (lastPage) => {
-      return {
-        offset: lastPage.offset + lastPage.limit,
-        limit: lastPage.limit,
-      };
-    },
-  });
+  } = useAlbums(session?.access_token, session?.expires_at);
 
+  const rootRef = useRef(null);
+  const { ref, inView } = useInView({
+    threshold: 0,
+    rootMargin: '100%',
+    root: rootRef.current,
+    triggerOnce: false,
+  });
   useEffect(() => {
     if (inView) {
       fetchNextPage();
