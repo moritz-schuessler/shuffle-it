@@ -12,16 +12,4 @@ const getAlbum = async (access_token: string, offset: number) => {
   return data;
 };
 
-const putPlayback = (access_token: string, uri: string) => {
-  return fetch('https://api.spotify.com/v1/me/player/play', {
-    method: 'PUT',
-    headers: {
-      Authorization: `Bearer ${access_token}`,
-    },
-    body: JSON.stringify({
-      context_uri: uri,
-    }),
-  });
-};
-
-export { getAlbum, putPlayback };
+export { getAlbum };
