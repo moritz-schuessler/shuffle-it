@@ -18,7 +18,7 @@ declare module 'next-auth' {
     user: {
       sub: string | undefined;
     };
-    access_token: string | null;
+    access_token: string;
     refresh_token: string;
     expires_at: number;
   }
