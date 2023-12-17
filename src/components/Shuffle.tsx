@@ -1,34 +1,26 @@
-import { getAlbum, putPlayback } from '@/lib/spotifyApi';
-import { useMutation } from '@tanstack/react-query';
 import { useSession } from 'next-auth/react';
+import { redirect } from 'next/navigation';
+
+import usePlayback from '@/hooks/usePlayback';
+import { getAlbum } from '@/lib/spotifyApi';
 
 interface Props {
-  ressource: 'album';
-  amountOfRessource: number;
+  resource: 'album';
+  amountOfResource: number;
 }
 
-const Shuffle = ({ ressource, amountOfRessource }: Props) => {
+const Shuffle = ({ resource, amountOfResource }: Props) => {
   const { data: session } = useSession();
-  const mutation = useMutation({
-    mutationFn: ({
-      access_token,
-      uri,
-    }: {
-      access_token: string;
-      uri: string;
-    }) => {
-      return putPlayback(access_token, uri);
-    },
-  });
-
   if (!session) {
-    return;
+    redirect('/signin');
   }
+
+  const mutation = usePlayback();
 
   const handleClick = async () => {
     let uri = '';
-    const offset = Math.floor(Math.random() * amountOfRessource) - 1;
-    if (ressource === 'album') {
+    const offset = Math.floor(Math.random() * amountOfResource) - 1;
+    if (resource === 'album') {
       const response = await getAlbum(session.access_token!, offset);
       const album = response.items[0].album;
       uri = album.uri;

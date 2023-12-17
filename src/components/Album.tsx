@@ -1,6 +1,6 @@
 import Image from 'next/image';
-import { useMutation } from '@tanstack/react-query';
-import { putPlayback } from '@/lib/spotifyApi';
+
+import usePlayback from '@/hooks/usePlayback';
 
 interface Props {
   album: Album;
@@ -8,17 +8,7 @@ interface Props {
 }
 
 const Album = ({ album, access_token }: Props) => {
-  const mutation = useMutation({
-    mutationFn: ({
-      access_token,
-      uri,
-    }: {
-      access_token: string;
-      uri: string;
-    }) => {
-      return putPlayback(access_token, uri);
-    },
-  });
+  const mutation = usePlayback();
 
   const { name, uri, artists, images } = album;
 

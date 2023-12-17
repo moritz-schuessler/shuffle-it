@@ -1,17 +1,29 @@
 'use client';
 
 import { useEffect, useRef } from 'react';
-import { useSession } from 'next-auth/react';
+import { redirect } from 'next/navigation';
+import { signIn, useSession } from 'next-auth/react';
 import { useInView } from 'react-intersection-observer';
-import { useInfiniteQuery } from '@tanstack/react-query';
 
+import useAlbums from '@/hooks/useAlbums';
 import Album from '@/components/Album';
 import Shuffle from '@/components/Shuffle';
-import { getAlbums } from '@/lib/spotifyApi';
 import Button from '@/components/Button';
 
 const Albums = () => {
   const { data: session } = useSession();
+  if (!session) {
+    redirect('/signin');
+  }
+
+  const {
+    data,
+    error,
+    status,
+    fetchNextPage,
+    hasNextPage,
+    isFetchingNextPage,
+  } = useAlbums(session?.access_token, session?.expires_at);
 
   const rootRef = useRef(null);
   const { ref, inView } = useInView({
@@ -20,25 +32,19 @@ const Albums = () => {
     root: rootRef.current,
     triggerOnce: false,
   });
-
-  const { data, status, fetchNextPage, hasNextPage, isFetchingNextPage } =
-    useInfiniteQuery({
-      queryKey: ['albums', session?.access_token],
-      queryFn: getAlbums,
-      enabled: !!session?.access_token,
-      initialPageParam:
-        'https://api.spotify.com/v1/me/albums?offset=0&limit=25&locale=*',
-      getNextPageParam: (lastPage) => lastPage.next,
-    });
-
   useEffect(() => {
     if (inView) {
       fetchNextPage();
     }
   }, [fetchNextPage, inView]);
 
-  if (status !== 'success') {
+  if (status === 'pending') {
     return <main className='h-full overflow-scroll'>Loading...</main>;
+  }
+
+  if (status === 'error') {
+    signIn('spotify');
+    return <main className='h-full overflow-scroll'>{error.message}</main>;
   }
 
   const albums = data?.pages.flatMap((page) => page.items);
@@ -49,7 +55,7 @@ const Albums = () => {
       ref={rootRef.current}
     >
       <Button style='neutral-900' width='full' height='full'>
-        <Shuffle ressource={'album'} amountOfRessource={data.pages[0].total} />
+        <Shuffle resource={'album'} amountOfResource={data.pages[0].total} />
       </Button>
       {albums.map((album, i) => {
         if (albums?.length === i + 1 && hasNextPage) {
