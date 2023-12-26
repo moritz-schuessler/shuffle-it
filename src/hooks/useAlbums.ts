@@ -1,4 +1,5 @@
 import { useInfiniteQuery } from '@tanstack/react-query';
+import { useSession } from 'next-auth/react';
 
 const getAlbums = async (
   access_token: string,
@@ -26,12 +27,14 @@ const getAlbums = async (
   return (await data.json()) as Albums;
 };
 
-const useAlbums = (access_token: string, expires_at: number) => {
+const useAlbums = () => {
+  const { data: session } = useSession();
+
   return useInfiniteQuery({
-    queryKey: ['albums', access_token, expires_at],
+    queryKey: ['albums', session?.access_token!, session?.expires_at!],
     queryFn: ({ pageParam }) =>
-      getAlbums(access_token, expires_at, { pageParam }),
-    enabled: !!access_token,
+      getAlbums(session?.access_token!, session?.expires_at!, { pageParam }),
+    enabled: !!session?.access_token,
     initialPageParam: { offset: 0, limit: 20 },
     getNextPageParam: (lastPage) => {
       return {

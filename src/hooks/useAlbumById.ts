@@ -1,4 +1,5 @@
 import { useQuery } from '@tanstack/react-query';
+import { useSession } from 'next-auth/react';
 
 const getAlbumById = async (
   access_token: string,
@@ -23,11 +24,14 @@ const getAlbumById = async (
   return (await data.json()) as Album;
 };
 
-const useAlbumById = (access_token: string, expires_at: number, id: string) => {
+const useAlbumById = (id: string) => {
+  const { data: session } = useSession();
+
   return useQuery({
-    queryKey: ['album', access_token, expires_at, id],
-    queryFn: () => getAlbumById(access_token, expires_at, id),
-    enabled: !!access_token,
+    queryKey: ['album', session?.access_token!, session?.expires_at!, id],
+    queryFn: () =>
+      getAlbumById(session?.access_token!, session?.expires_at!, id),
+    enabled: !!session?.access_token,
   });
 };
 

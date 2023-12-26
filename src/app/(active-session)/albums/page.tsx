@@ -1,7 +1,6 @@
 'use client';
 
 import { useEffect, useRef } from 'react';
-import { redirect } from 'next/navigation';
 import { signIn, useSession } from 'next-auth/react';
 import { useInView } from 'react-intersection-observer';
 
@@ -12,9 +11,6 @@ import Button from '@/components/Button';
 
 const Albums = () => {
   const { data: session } = useSession();
-  if (!session) {
-    redirect('/signin');
-  }
 
   const {
     data,
@@ -23,7 +19,7 @@ const Albums = () => {
     fetchNextPage,
     hasNextPage,
     isFetchingNextPage,
-  } = useAlbums(session?.access_token, session?.expires_at);
+  } = useAlbums();
 
   const rootRef = useRef(null);
   const { ref, inView } = useInView({

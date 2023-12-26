@@ -1,6 +1,6 @@
 'use client';
 
-import { signIn, useSession } from 'next-auth/react';
+import { signIn } from 'next-auth/react';
 
 import { useAlbumById } from '@/hooks/useAlbumById';
 
@@ -11,13 +11,7 @@ interface Props {
 }
 
 const Album = ({ params }: Props) => {
-  const { data: session } = useSession();
-
-  const { data, status, error } = useAlbumById(
-    session?.access_token!,
-    session?.expires_at!,
-    params.id,
-  );
+  const { data, status, error } = useAlbumById(params.id);
 
   if (status === 'pending') {
     return <main className='h-full overflow-scroll'>Loading...</main>;
