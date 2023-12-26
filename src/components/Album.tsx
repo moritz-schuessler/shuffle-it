@@ -30,7 +30,7 @@ const Album = ({ album, access_token }: Props) => {
           />
         </div>
         <div className='flex flex-col children:truncate'>
-          <a>{name}</a>
+          <div>{name}</div>
           <div className='text-neutral-400'>
             {artists.map((artist) => artist.name).join(', ')}
           </div>
