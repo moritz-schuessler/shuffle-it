@@ -39,7 +39,7 @@ const Album = ({ params }: Props) => {
           </div>
           <Image
             src={data?.images[0].url}
-            alt={'Cover of ' + data?.name}
+            alt={'Album Cover of ' + data?.name}
             width={150}
             height={150}
             unoptimized
