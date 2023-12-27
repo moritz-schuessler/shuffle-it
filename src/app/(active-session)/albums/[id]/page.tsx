@@ -8,6 +8,7 @@ import usePlayAlbum from '@/hooks/usePlayAlbum';
 import usePlayTrack from '@/hooks/usePlayTrack';
 import Link from 'next/link';
 import Button from '@/components/Button';
+import { PlayIcon } from '@heroicons/react/16/solid';
 
 interface Props {
   params: {
@@ -55,7 +56,8 @@ const Album = ({ params }: Props) => {
             className='aspect-square rounded-md'
           />
         </div>
-        <button
+        <Button
+          variant='secondary'
           onClick={() =>
             albumMutation.mutate({
               access_token: session?.access_token!,
@@ -64,8 +66,8 @@ const Album = ({ params }: Props) => {
           }
           className='rounded-b-md p-4 hover:bg-neutral-800'
         >
-          Play
-        </button>
+          <PlayIcon className='h-5 w-5' />
+        </Button>
       </div>
       <div className='flex flex-col gap-4'>
         {data?.tracks.items.map((track) => (
@@ -91,7 +93,7 @@ const Album = ({ params }: Props) => {
                 })
               }
             >
-              Play
+              <PlayIcon className='h-5 w-5' />
             </Button>
           </div>
         ))}
