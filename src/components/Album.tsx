@@ -1,6 +1,6 @@
 import Image from 'next/image';
 
-import usePlayback from '@/hooks/usePlayback';
+import usePlayAlbum from '@/hooks/usePlayAlbum';
 import Link from 'next/link';
 
 interface Props {
@@ -9,7 +9,7 @@ interface Props {
 }
 
 const Album = ({ album, access_token }: Props) => {
-  const mutation = usePlayback();
+  const mutation = usePlayAlbum();
 
   const { name, uri, artists, images } = album;
 

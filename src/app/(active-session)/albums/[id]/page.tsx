@@ -4,7 +4,8 @@ import Image from 'next/image';
 import { signIn, useSession } from 'next-auth/react';
 
 import { useAlbumById } from '@/hooks/useAlbumById';
-import usePlayback from '@/hooks/usePlayback';
+import usePlayAlbum from '@/hooks/usePlayAlbum';
+import usePlayTrack from '@/hooks/usePlayTrack';
 
 interface Props {
   params: {
@@ -16,7 +17,8 @@ const Album = ({ params }: Props) => {
   const { data: session } = useSession();
   const { data, status, error } = useAlbumById(params.id);
 
-  const mutation = usePlayback();
+  const albumMutation = usePlayAlbum();
+  const trackMutation = usePlayTrack();
 
   if (status === 'pending') {
     return <main className='h-full overflow-scroll'>Loading...</main>;
@@ -48,7 +50,7 @@ const Album = ({ params }: Props) => {
         </div>
         <button
           onClick={() =>
-            mutation.mutate({
+            albumMutation.mutate({
               access_token: session?.access_token!,
               uri: data?.uri,
             })
@@ -67,6 +69,16 @@ const Album = ({ params }: Props) => {
                 {track.artists.map((artist) => artist.name).join(', ')}
               </div>
             </div>
+            <button
+              onClick={() =>
+                trackMutation.mutate({
+                  access_token: session?.access_token!,
+                  uri: track?.uri,
+                })
+              }
+            >
+              Play
+            </button>
           </div>
         ))}
       </div>
