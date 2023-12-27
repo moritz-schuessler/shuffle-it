@@ -32,9 +32,10 @@ const Album = ({ album, access_token }: Props) => {
         <div className='flex flex-col children:truncate'>
           <div>{name}</div>
           <div className='text-neutral-400'>
-            {artists.map((artist) => (
+            {artists.map((artist, i) => (
               <Link key={artist.id} href={`/artists/${artist.id}`}>
                 {artist.name}
+                {artists.length - 1 !== i && ', '}
               </Link>
             ))}
           </div>

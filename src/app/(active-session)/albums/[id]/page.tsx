@@ -37,9 +37,10 @@ const Album = ({ params }: Props) => {
           <div className='flex gap-2 overflow-hidden truncate text-2xl'>
             <h2>{data?.name}</h2>
             <div className='truncate text-neutral-400'>
-              {data.artists.map((artist) => (
+              {data.artists.map((artist, i) => (
                 <Link key={artist.id} href={`/artists/${artist.id}`}>
                   {artist.name}
+                  {data.artists.length - 1 !== i && ', '}
                 </Link>
               ))}
             </div>
@@ -71,9 +72,10 @@ const Album = ({ params }: Props) => {
             <div className='flex gap-2'>
               <h3>{track.name}</h3>
               <div className='text-neutral-400'>
-                {track.artists.map((artist) => (
+                {track.artists.map((artist, i) => (
                   <Link key={artist.id} href={`/artists/${artist.id}`}>
                     {artist.name}
+                    {track.artists.length - 1 !== i && ', '}
                   </Link>
                 ))}
               </div>
