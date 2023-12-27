@@ -14,7 +14,7 @@ const Navbar = () => {
   return (
     <header className='flex justify-between px-[2rem] py-[1em]'>
       <h1>
-        <Button>
+        <Button variant='ghost' asChild>
           <Link
             className={`link ${pathname === '/' ? 'underline' : ''}`}
             href='/'
@@ -26,7 +26,7 @@ const Navbar = () => {
       <nav className='flex gap-[1rem]'>
         {status !== 'unauthenticated' && (
           <>
-            <Button>
+            <Button variant='ghost' asChild>
               <Link
                 className={`link ${pathname === '/albums' ? 'underline' : ''}`}
                 href={'/albums'}
@@ -34,9 +34,7 @@ const Navbar = () => {
                 Albums
               </Link>
             </Button>
-            <Button style='solid'>
-              <SignOutButton />
-            </Button>
+            <SignOutButton />
           </>
         )}
       </nav>

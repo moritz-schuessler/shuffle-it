@@ -1,9 +1,9 @@
-import { SignInButton } from '@/components/auth/buttons';
-import { getServerSession } from 'next-auth';
-import authOptions from '@/lib/auth/authOptions';
-import { getProviders } from 'next-auth/react';
 import { redirect } from 'next/navigation';
-import Button from '@/components/Button';
+import { getServerSession } from 'next-auth';
+import { getProviders } from 'next-auth/react';
+
+import { SignInButton } from '@/components/auth/buttons';
+import authOptions from '@/lib/auth/authOptions';
 
 const SignIn = async () => {
   const session = await getServerSession(authOptions);
@@ -24,11 +24,7 @@ const SignIn = async () => {
           </p>
         </div>
         {Object.values(providers!).map((provider) => {
-          return (
-            <Button key={provider.id} style={'solid'} width='full'>
-              <SignInButton provider={provider} />
-            </Button>
-          );
+          return <SignInButton key={provider.id} provider={provider} />;
         })}
       </div>
     </main>

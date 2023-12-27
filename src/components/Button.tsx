@@ -1,44 +1,46 @@
-import { ReactNode } from 'react';
+import { ButtonHTMLAttributes } from 'react';
+import { Slot } from '@radix-ui/react-slot';
+import { cva, VariantProps } from 'class-variance-authority';
 
-interface Props {
-  style?: 'solid' | 'neutral-900';
-  width?: 'full';
-  height?: 'full';
-  children: ReactNode;
+const buttonVariants = cva(
+  [
+    'flex items-center justify-center rounded-md transition duration-75 rounded-md',
+  ],
+  {
+    variants: {
+      variant: {
+        default: 'bg-light text-dark hover:bg-neutral-300',
+        secondary: 'bg-neutral-900 hover:bg-neutral-800',
+        ghost: 'hover:bg-neutral-800',
+      },
+      size: {
+        default: 'px-4 py-2',
+      },
+    },
+    defaultVariants: {
+      variant: 'default',
+      size: 'default',
+    },
+  },
+);
+
+interface Props
+  extends ButtonHTMLAttributes<HTMLButtonElement>,
+    VariantProps<typeof buttonVariants> {
+  asChild?: boolean;
 }
 
-const Button = ({ style, width, height, children }: Props) => {
-  const buttonStyle = () => {
-    if (style === 'solid') {
-      return 'bg-light text-dark hover:bg-neutral-300';
-    }
-    if (style === 'neutral-900') {
-      return 'bg-neutral-900 hover:bg-neutral-800';
-    }
-    return 'hover:bg-neutral-800';
-  };
-
-  const buttonWidth = () => {
-    if (width === 'full') {
-      return 'children:w-full';
-    }
-    return 'children:px-[1rem] children:py-[.5rem]';
-  };
-
-  const buttonHeight = () => {
-    if (height === 'full') {
-      return 'children:h-full';
-    }
-    return 'children:py-[.5rem]';
-  };
+const Button = ({
+  className,
+  variant,
+  size,
+  asChild = false,
+  ...props
+}: Props) => {
+  const Comp = asChild ? Slot : 'button';
 
   return (
-    <div
-      className={`${buttonStyle()} ${buttonWidth()} ${buttonHeight()} 
-        flex items-center justify-center rounded-md transition duration-75 children:flex children:items-center children:justify-center`}
-    >
-      {children}
-    </div>
+    <Comp className={buttonVariants({ variant, size, className })} {...props} />
   );
 };
 
