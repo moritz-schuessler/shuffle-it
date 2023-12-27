@@ -7,6 +7,7 @@ import { useAlbumById } from '@/hooks/useAlbumById';
 import usePlayAlbum from '@/hooks/usePlayAlbum';
 import usePlayTrack from '@/hooks/usePlayTrack';
 import Link from 'next/link';
+import Button from '@/components/Button';
 
 interface Props {
   params: {
@@ -80,7 +81,9 @@ const Album = ({ params }: Props) => {
                 ))}
               </div>
             </div>
-            <button
+            <Button
+              variant='ghost'
+              size='slim'
               onClick={() =>
                 trackMutation.mutate({
                   access_token: session?.access_token!,
@@ -89,7 +92,7 @@ const Album = ({ params }: Props) => {
               }
             >
               Play
-            </button>
+            </Button>
           </div>
         ))}
       </div>
