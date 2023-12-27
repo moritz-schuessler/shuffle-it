@@ -6,6 +6,7 @@ import { signIn, useSession } from 'next-auth/react';
 import { useAlbumById } from '@/hooks/useAlbumById';
 import usePlayAlbum from '@/hooks/usePlayAlbum';
 import usePlayTrack from '@/hooks/usePlayTrack';
+import Link from 'next/link';
 
 interface Props {
   params: {
@@ -36,7 +37,11 @@ const Album = ({ params }: Props) => {
           <div className='flex gap-2 overflow-hidden truncate text-2xl'>
             <h2>{data?.name}</h2>
             <div className='truncate text-neutral-400'>
-              {data.artists.map((artist) => artist.name).join(', ')}
+              {data.artists.map((artist) => (
+                <Link key={artist.id} href={`/artists/${artist.id}`}>
+                  {artist.name}
+                </Link>
+              ))}
             </div>
           </div>
           <Image
