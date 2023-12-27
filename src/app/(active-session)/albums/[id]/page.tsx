@@ -29,7 +29,7 @@ const Album = ({ params }: Props) => {
 
   return (
     <main className='flex h-full flex-col gap-6 overflow-scroll p-8'>
-      <div className='over flex flex-col rounded-lg bg-neutral-900'>
+      <div className=' flex flex-col rounded-lg bg-neutral-900'>
         <div className='flex items-end justify-between gap-2 rounded-t-md p-4 '>
           <div className='flex gap-2 overflow-hidden truncate text-2xl'>
             <h2>{data?.name}</h2>
