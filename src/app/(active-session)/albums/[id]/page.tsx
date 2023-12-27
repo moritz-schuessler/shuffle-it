@@ -58,6 +58,7 @@ const Album = ({ params }: Props) => {
         </div>
         <Button
           variant='secondary'
+          rounded='none'
           onClick={() =>
             albumMutation.mutate({
               access_token: session?.access_token!,
