@@ -71,7 +71,11 @@ const Album = ({ params }: Props) => {
             <div className='flex gap-2'>
               <h3>{track.name}</h3>
               <div className='text-neutral-400'>
-                {track.artists.map((artist) => artist.name).join(', ')}
+                {track.artists.map((artist) => (
+                  <Link key={artist.id} href={`/artists/${artist.id}`}>
+                    {artist.name}
+                  </Link>
+                ))}
               </div>
             </div>
             <button
