@@ -2,6 +2,8 @@ import Image from 'next/image';
 
 import usePlayAlbum from '@/hooks/usePlayAlbum';
 import Link from 'next/link';
+import { PlayIcon } from '@heroicons/react/16/solid';
+import Button from '@/components/Button';
 
 interface Props {
   album: Album;
@@ -41,12 +43,13 @@ const Album = ({ album, access_token }: Props) => {
           </div>
         </div>
       </Link>
-      <button
+      <Button
+        variant='secondary'
+        rounded='none'
         onClick={() => mutation.mutate({ access_token, uri })}
-        className='bg-neutral-900 p-[1rem] hover:bg-neutral-800'
       >
-        Play
-      </button>
+        <PlayIcon className='h-5 w-5' />
+      </Button>
     </div>
   );
 };
