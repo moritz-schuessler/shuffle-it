@@ -12,7 +12,7 @@ const Navbar = () => {
   const { status } = useSession();
 
   return (
-    <header className='flex justify-between px-[2rem] py-[1em]'>
+    <header className='flex justify-between px-8 py-4'>
       <h1>
         <Button variant='ghost' asChild>
           <Link
@@ -23,7 +23,7 @@ const Navbar = () => {
           </Link>
         </Button>
       </h1>
-      <nav className='flex gap-[1rem]'>
+      <nav className='flex gap-4'>
         {status !== 'unauthenticated' && (
           <>
             <Button variant='ghost' asChild>

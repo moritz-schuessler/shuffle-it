@@ -19,7 +19,7 @@ const Album = ({ album, access_token }: Props) => {
     <div className='flex grow flex-col overflow-clip rounded-md'>
       <Link
         href={`/albums/${album.id}`}
-        className='flex grow flex-col gap-[1rem] bg-neutral-900 p-[1rem] transition hover:bg-neutral-800'
+        className='flex grow flex-col gap-4 bg-neutral-900 p-4 transition hover:bg-neutral-800'
       >
         <div className='flex'>
           <Image

@@ -46,7 +46,7 @@ const Albums = () => {
 
   return (
     <main
-      className='grid h-full grid-cols-auto gap-[2rem] overflow-scroll p-[2rem]'
+      className='grid h-full grid-cols-auto gap-8 overflow-scroll p-8'
       ref={rootRef.current}
     >
       <Shuffle resource={'album'} amountOfResource={data.pages[0].total} />
