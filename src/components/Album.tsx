@@ -2,6 +2,8 @@ import Image from 'next/image';
 
 import usePlayAlbum from '@/hooks/usePlayAlbum';
 import Link from 'next/link';
+import { PlayIcon } from '@heroicons/react/16/solid';
+import Button from '@/components/Button';
 
 interface Props {
   album: Album;
@@ -17,7 +19,7 @@ const Album = ({ album, access_token }: Props) => {
     <div className='flex grow flex-col overflow-clip rounded-md'>
       <Link
         href={`/albums/${album.id}`}
-        className='flex grow flex-col gap-[1rem] bg-neutral-900 p-[1rem] transition hover:bg-neutral-800'
+        className='flex grow flex-col gap-4 bg-neutral-900 p-4 transition hover:bg-neutral-800'
       >
         <div className='flex'>
           <Image
@@ -41,12 +43,13 @@ const Album = ({ album, access_token }: Props) => {
           </div>
         </div>
       </Link>
-      <button
+      <Button
+        variant='secondary'
+        rounded='none'
         onClick={() => mutation.mutate({ access_token, uri })}
-        className='bg-neutral-900 p-[1rem] hover:bg-neutral-800'
       >
-        Play
-      </button>
+        <PlayIcon className='h-5 w-5' />
+      </Button>
     </div>
   );
 };

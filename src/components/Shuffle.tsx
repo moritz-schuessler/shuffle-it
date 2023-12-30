@@ -3,6 +3,7 @@ import { redirect } from 'next/navigation';
 
 import usePlayAlbum from '@/hooks/usePlayAlbum';
 import { getAlbum } from '@/lib/spotifyApi';
+import Button from '@/components/Button';
 
 interface Props {
   resource: 'album';
@@ -29,9 +30,9 @@ const Shuffle = ({ resource, amountOfResource }: Props) => {
   };
 
   return (
-    <button className='flex' onClick={handleClick}>
+    <Button variant='secondary' onClick={handleClick}>
       Shuffle
-    </button>
+    </Button>
   );
 };
 
