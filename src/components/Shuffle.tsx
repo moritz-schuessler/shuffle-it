@@ -1,8 +1,9 @@
 import { useSession } from 'next-auth/react';
 import { redirect } from 'next/navigation';
 
-import usePlayback from '@/hooks/usePlayback';
+import usePlayAlbum from '@/hooks/usePlayAlbum';
 import { getAlbum } from '@/lib/spotifyApi';
+import Button from '@/components/Button';
 
 interface Props {
   resource: 'album';
@@ -15,7 +16,7 @@ const Shuffle = ({ resource, amountOfResource }: Props) => {
     redirect('/signin');
   }
 
-  const mutation = usePlayback();
+  const mutation = usePlayAlbum();
 
   const handleClick = async () => {
     let uri = '';
@@ -29,9 +30,9 @@ const Shuffle = ({ resource, amountOfResource }: Props) => {
   };
 
   return (
-    <button className='flex' onClick={handleClick}>
+    <Button variant='secondary' onClick={handleClick}>
       Shuffle
-    </button>
+    </Button>
   );
 };
 

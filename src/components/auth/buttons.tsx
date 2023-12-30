@@ -4,13 +4,11 @@ import { signIn, signOut, ClientSafeProvider } from 'next-auth/react';
 import Image from 'next/image';
 
 import spotify_black from '@/assets/spotify_black.png';
+import Button from '@/components/Button';
 
 const SignInButton = ({ provider }: { provider: ClientSafeProvider }) => {
   return (
-    <button
-      className='flex flex-row gap-[.5rem]'
-      onClick={() => signIn(provider.id)}
-    >
+    <Button onClick={() => signIn(provider.id)} className='flex gap-2'>
       <Image
         width='200'
         height='200'
@@ -19,12 +17,12 @@ const SignInButton = ({ provider }: { provider: ClientSafeProvider }) => {
         className='aspect-square w-[1.5rem]'
       />
       <div>{provider.name}</div>
-    </button>
+    </Button>
   );
 };
 
 const SignOutButton = () => {
-  return <button onClick={() => signOut()}>Sign out</button>;
+  return <Button onClick={() => signOut()}>Sign out</Button>;
 };
 
 export { SignInButton, SignOutButton };

@@ -1,20 +1,15 @@
 'use client';
 
 import { useEffect, useRef } from 'react';
-import { redirect } from 'next/navigation';
 import { signIn, useSession } from 'next-auth/react';
 import { useInView } from 'react-intersection-observer';
 
 import useAlbums from '@/hooks/useAlbums';
 import Album from '@/components/Album';
 import Shuffle from '@/components/Shuffle';
-import Button from '@/components/Button';
 
 const Albums = () => {
   const { data: session } = useSession();
-  if (!session) {
-    redirect('/signin');
-  }
 
   const {
     data,
@@ -23,7 +18,7 @@ const Albums = () => {
     fetchNextPage,
     hasNextPage,
     isFetchingNextPage,
-  } = useAlbums(session?.access_token, session?.expires_at);
+  } = useAlbums();
 
   const rootRef = useRef(null);
   const { ref, inView } = useInView({
@@ -51,12 +46,10 @@ const Albums = () => {
 
   return (
     <main
-      className='grid h-full grid-cols-auto gap-[2rem] overflow-scroll p-[2rem]'
+      className='grid h-full grid-cols-auto gap-8 overflow-scroll p-8'
       ref={rootRef.current}
     >
-      <Button style='neutral-900' width='full' height='full'>
-        <Shuffle resource={'album'} amountOfResource={data.pages[0].total} />
-      </Button>
+      <Shuffle resource={'album'} amountOfResource={data.pages[0].total} />
       {albums.map((album, i) => {
         if (albums?.length === i + 1 && hasNextPage) {
           return (
