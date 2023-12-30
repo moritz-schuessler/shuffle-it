@@ -12,9 +12,9 @@ const Navbar = () => {
   const { status } = useSession();
 
   return (
-    <header className='flex justify-between px-8 py-4'>
+    <header className='flex justify-between px-[2rem] py-[1em]'>
       <h1>
-        <Button variant='ghost' asChild>
+        <Button>
           <Link
             className={`link ${pathname === '/' ? 'underline' : ''}`}
             href='/'
@@ -23,10 +23,10 @@ const Navbar = () => {
           </Link>
         </Button>
       </h1>
-      <nav className='flex gap-4'>
+      <nav className='flex gap-[1rem]'>
         {status !== 'unauthenticated' && (
           <>
-            <Button variant='ghost' asChild>
+            <Button>
               <Link
                 className={`link ${pathname === '/albums' ? 'underline' : ''}`}
                 href={'/albums'}
@@ -34,7 +34,9 @@ const Navbar = () => {
                 Albums
               </Link>
             </Button>
-            <SignOutButton />
+            <Button style='solid'>
+              <SignOutButton />
+            </Button>
           </>
         )}
       </nav>
