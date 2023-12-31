@@ -8,7 +8,10 @@ import Button from '@/components/Button';
 
 const SignInButton = ({ provider }: { provider: ClientSafeProvider }) => {
   return (
-    <Button onClick={() => signIn(provider.id)} className='flex gap-2'>
+    <Button
+      onClick={() => signIn(provider.id)}
+      className='flex items-center justify-center gap-2'
+    >
       <Image
         width='200'
         height='200'

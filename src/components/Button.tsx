@@ -3,7 +3,7 @@ import { Slot } from '@radix-ui/react-slot';
 import { cva, VariantProps } from 'class-variance-authority';
 
 const buttonVariants = cva(
-  ['flex items-center justify-center transition duration-75 rounded-md'],
+  ['transition duration-75 rounded-md'],
   {
     variants: {
       variant: {
@@ -15,15 +15,15 @@ const buttonVariants = cva(
         none: 'rounded-none',
         md: 'rounded-md',
       },
-      size: {
+      padding: {
         default: 'px-4 py-2',
-        slim: 'px-1 py-1',
+        none: '',
       },
     },
     defaultVariants: {
       variant: 'default',
       rounded: 'md',
-      size: 'default',
+      padding: 'default',
     },
   },
 );
@@ -38,7 +38,7 @@ const Button = ({
   className,
   variant,
   rounded,
-  size,
+  padding,
   asChild = false,
   ...props
 }: Props) => {
@@ -46,7 +46,7 @@ const Button = ({
 
   return (
     <Comp
-      className={buttonVariants({ variant, rounded, size, className })}
+      className={buttonVariants({ variant, rounded, padding, className })}
       {...props}
     />
   );

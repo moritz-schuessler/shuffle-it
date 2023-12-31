@@ -7,12 +7,12 @@ const putPlayback = (access_token: string, uri: string) => {
       Authorization: `Bearer ${access_token}`,
     },
     body: JSON.stringify({
-      uris: [uri],
+      context_uri: uri,
     }),
   });
 };
 
-const usePlayTrack = () => {
+const usePlayback = () => {
   return useMutation({
     mutationFn: ({
       access_token,
@@ -26,4 +26,4 @@ const usePlayTrack = () => {
   });
 };
 
-export default usePlayTrack;
+export default usePlayback;

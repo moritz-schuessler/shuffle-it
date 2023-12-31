@@ -13,16 +13,14 @@ const Navbar = () => {
 
   return (
     <header className='flex justify-between px-8 py-4'>
-      <h1>
-        <Button variant='ghost' asChild>
-          <Link
-            className={`link ${pathname === '/' ? 'underline' : ''}`}
-            href='/'
-          >
-            Shuffle-it
-          </Link>
-        </Button>
-      </h1>
+      <Button variant='ghost' asChild>
+        <Link
+          className={`link ${pathname === '/' ? 'underline' : ''}`}
+          href='/'
+        >
+          <h1 className='flex'>Shuffle-it</h1>
+        </Link>
+      </Button>
       <nav className='flex gap-4'>
         {status !== 'unauthenticated' && (
           <>
