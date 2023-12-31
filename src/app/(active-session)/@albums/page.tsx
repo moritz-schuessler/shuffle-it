@@ -45,7 +45,7 @@ const Albums = () => {
   const albums = data?.pages.flatMap((page) => page.items);
 
   return (
-    <main
+    <div
       className='grid h-full grid-cols-auto gap-8 overflow-scroll p-8'
       ref={rootRef.current}
     >
@@ -70,7 +70,7 @@ const Albums = () => {
         );
       })}
       {hasNextPage || isFetchingNextPage ? <div>Loading...</div> : null}
-    </main>
+    </div>
   );
 };
 

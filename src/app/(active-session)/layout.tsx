@@ -5,9 +5,10 @@ import { signIn, useSession } from 'next-auth/react';
 
 interface Props {
   children: ReactNode;
+  albums: ReactNode;
 }
 
-const Layout = ({ children }: Props) => {
+const Layout = ({ children, albums }: Props) => {
   const { data: session } = useSession();
 
   useEffect(() => {
@@ -17,7 +18,12 @@ const Layout = ({ children }: Props) => {
     }
   }, [session]);
 
-  return <>{children}</>;
+  return (
+    <main className='flex overflow-hidden children:w-full'>
+      {children}
+      {albums}
+    </main>
+  );
 };
 
 export default Layout;
