@@ -1,6 +1,6 @@
 import Image from 'next/image';
 
-import usePlayAlbum from '@/hooks/usePlayAlbum';
+import usePlayback from '@/hooks/usePlayback';
 import Link from 'next/link';
 import { PlayIcon } from '@heroicons/react/16/solid';
 import Button from '@/components/Button';
@@ -11,46 +11,35 @@ interface Props {
 }
 
 const Album = ({ album, access_token }: Props) => {
-  const mutation = usePlayAlbum();
-
-  const { name, uri, artists, images } = album;
+  const mutation = usePlayback();
 
   return (
-    <div className='flex grow flex-col overflow-clip rounded-md'>
-      <Link
-        href={`/albums/${album.id}`}
-        className='flex grow flex-col gap-4 bg-neutral-900 p-4 transition hover:bg-neutral-800'
-      >
-        <div className='flex'>
-          <Image
-            src={images[0].url}
-            alt={`Album Cover of ${name}`}
-            width={300}
-            height={300}
-            unoptimized
-            className='aspect-square grow rounded'
-          />
+    <Button
+      variant='secondary'
+      rounded='md'
+      padding='none'
+      onClick={() => {
+        return mutation.mutate({ access_token, uri: album.uri });
+      }}
+      className='flex flex-col gap-2 p-4'
+    >
+      <div className='flex grow'>
+        <Image
+          src={album.images[0].url}
+          alt={`Album Cover of ${album.name}`}
+          width={300}
+          height={300}
+          unoptimized
+          className='aspect-square grow rounded'
+        />
+      </div>
+      <div className='flex flex-col'>
+        <div className='truncate'>{album.name}</div>
+        <div className='truncate text-neutral-400'>
+          {album.artists.map((artist) => artist.name).join(', ')}
         </div>
-        <div className='flex flex-col children:truncate'>
-          <div>{name}</div>
-          <div className='text-neutral-400'>
-            {artists.map((artist, i) => (
-              <Link key={artist.id} href={`/artists/${artist.id}`}>
-                {artist.name}
-                {artists.length - 1 !== i && ', '}
-              </Link>
-            ))}
-          </div>
-        </div>
-      </Link>
-      <Button
-        variant='secondary'
-        rounded='none'
-        onClick={() => mutation.mutate({ access_token, uri })}
-      >
-        <PlayIcon className='h-5 w-5' />
-      </Button>
-    </div>
+      </div>
+    </Button>
   );
 };
 
