@@ -1,3 +1,5 @@
+'use client';
+
 import { useSession } from 'next-auth/react';
 import { useAtomValue } from 'jotai';
 
@@ -26,6 +28,7 @@ const Shuffle = () => {
       variant='secondary'
       onClick={handleClick}
       className='flex items-center justify-center'
+      disabled={!totalSavedAlbums}
     >
       Shuffle
     </Button>

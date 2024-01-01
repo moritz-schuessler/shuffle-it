@@ -25,8 +25,8 @@ const Layout = ({ children, albums }: Props) => {
 
   return (
     <div className='flex h-full overflow-hidden children:w-full'>
-      <div className='flex h-full flex-col justify-between'>
-        <main className='h-full'>{children}</main>
+      <div className='flex h-full max-w-[90ch] flex-col justify-between'>
+        {children}
         <Footer />
       </div>
       {albums}

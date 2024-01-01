@@ -49,7 +49,6 @@ const Albums = () => {
       className='grid h-full grid-cols-auto gap-8 overflow-scroll p-8'
       ref={rootRef.current}
     >
-      <Shuffle resource={'album'} amountOfResource={data.pages[0].total} />
       {albums.map((album, i) => {
         if (albums?.length === i + 1 && hasNextPage) {
           return (
