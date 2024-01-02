@@ -1,4 +1,4 @@
-import { atom } from 'jotai/index';
+import { atom } from 'jotai';
 
 const totalSavedAlbumsAtom = atom(0);
 

@@ -1,6 +1,6 @@
 import { useInfiniteQuery } from '@tanstack/react-query';
 import { useSession } from 'next-auth/react';
-import { useAtom, useSetAtom } from 'jotai';
+import { useAtom } from 'jotai';
 
 import totalSavedAlbumsAtom from '@/lib/atoms/totalSavedAlbumsAtom';
 import { useEffect } from 'react';
