@@ -1,5 +1,9 @@
 import { useInfiniteQuery } from '@tanstack/react-query';
 import { useSession } from 'next-auth/react';
+import { useAtom } from 'jotai';
+
+import totalSavedAlbumsAtom from '@/lib/atoms/totalSavedAlbumsAtom';
+import { useEffect } from 'react';
 
 const getAlbums = async (
   access_token: string,
@@ -29,8 +33,9 @@ const getAlbums = async (
 
 const useAlbums = () => {
   const { data: session } = useSession();
+  const [totalSavedAlbums, setTotalSavedAlbums] = useAtom(totalSavedAlbumsAtom);
 
-  return useInfiniteQuery({
+  const data = useInfiniteQuery({
     queryKey: ['albums', session?.access_token!, session?.expires_at!],
     queryFn: ({ pageParam }) =>
       getAlbums(session?.access_token!, session?.expires_at!, { pageParam }),
@@ -43,6 +48,19 @@ const useAlbums = () => {
       };
     },
   });
+
+  useEffect(() => {
+    if (
+      data.status === 'success' &&
+      totalSavedAlbums !== data.data.pages[0].total
+    ) {
+      setTotalSavedAlbums(data.data.pages[0].total);
+    }
+  }, [data, setTotalSavedAlbums, totalSavedAlbums]);
+
+  return {
+    ...data,
+  };
 };
 
 export default useAlbums;

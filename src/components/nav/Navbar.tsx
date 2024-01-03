@@ -24,14 +24,6 @@ const Navbar = () => {
       <nav className='flex gap-4'>
         {status !== 'unauthenticated' && (
           <>
-            <Button variant='ghost' asChild>
-              <Link
-                className={`link ${pathname === '/albums' ? 'underline' : ''}`}
-                href={'/albums'}
-              >
-                Albums
-              </Link>
-            </Button>
             <SignOutButton />
           </>
         )}
