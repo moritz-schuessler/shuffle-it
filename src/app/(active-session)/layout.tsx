@@ -25,7 +25,7 @@ const Layout = ({ children, albums }: Props) => {
 
   return (
     <div className='flex h-full overflow-hidden children:w-full'>
-      <div className='flex h-full max-w-[90ch] flex-col justify-between'>
+      <div className='flex h-full max-w-[90ch] flex-col justify-between gap-8 p-8'>
         {children}
         <Footer />
       </div>
@@ -36,7 +36,7 @@ const Layout = ({ children, albums }: Props) => {
 
 const Footer = () => {
   return (
-    <footer className='flex items-center justify-center gap-4 p-8'>
+    <footer className='flex items-center justify-center gap-4'>
       <Button variant='ghost' asChild>
         <Link href={'/privacy'}>Privacy</Link>
       </Button>

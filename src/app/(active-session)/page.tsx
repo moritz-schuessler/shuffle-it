@@ -10,7 +10,7 @@ import {
 
 const Home = () => {
   return (
-    <main className='flex h-full w-full flex-col items-stretch justify-between p-8'>
+    <main className='flex h-full w-full flex-col items-stretch justify-between'>
       <Shuffle />
       <Accordion type='single' collapsible>
         <AccordionItem value='item-1'>
