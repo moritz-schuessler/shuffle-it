@@ -5,9 +5,14 @@ import { Inter } from 'next/font/google';
 import '@/globals.css';
 import Providers from '@/app/providers';
 import Navbar from '@/components/nav/Navbar';
+import authOptions from '@/lib/auth/authOptions';
+import { getServerSession } from 'next-auth';
+import Footer from '@/app/Footer';
 
 interface Props {
   children: ReactNode;
+  albums: ReactNode;
+  signin: ReactNode;
 }
 
 const inter = Inter({ subsets: ['latin'] });
@@ -18,7 +23,9 @@ const metadata: Metadata = {
     'Alternative Spotify-UI that adds functionality to shuffle saved albums',
 };
 
-const RootLayout = ({ children }: Props) => {
+const RootLayout = async ({ children, albums, signin }: Props) => {
+  const session = await getServerSession(authOptions);
+
   return (
     <Providers>
       <html
@@ -29,7 +36,14 @@ const RootLayout = ({ children }: Props) => {
           className={`${inter.className} flex h-screen flex-col justify-between divide-y divide-neutral-800 overscroll-none`}
         >
           <Navbar />
-          {children}
+          <div className='flex h-full overflow-hidden children:w-full'>
+            <div className='flex h-full max-w-[90ch] flex-col justify-between gap-8 p-8'>
+              {children}
+              <Footer />
+            </div>
+            {session && albums}
+            {!session && signin}
+          </div>
         </body>
       </html>
     </Providers>

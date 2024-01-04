@@ -1,6 +1,6 @@
 'use client';
 
-import { useSession } from 'next-auth/react';
+import { signIn, useSession } from 'next-auth/react';
 
 import Shuffle from '@/components/Shuffle';
 import {
@@ -9,9 +9,17 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from '@/components/Accordion';
+import { useEffect } from 'react';
 
 const Home = () => {
-  const { status } = useSession();
+  const { data: session, status } = useSession();
+
+  useEffect(() => {
+    if (session?.error === 'RefreshAccessTokenError') {
+      console.log('RefreshAccessTokenError');
+      signIn('spotify');
+    }
+  }, [session]);
 
   return (
     <main className='flex h-full w-full flex-col items-stretch justify-between'>
