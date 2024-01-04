@@ -1,8 +1,8 @@
 'use client';
 
 import { ReactNode, useEffect } from 'react';
-import { signIn, useSession } from 'next-auth/react';
 import Link from 'next/link';
+import { signIn, useSession } from 'next-auth/react';
 
 import Button from '@/components/Button';
 import GithubIcon from '@/assets/icons/GithubIcon';
@@ -11,10 +11,11 @@ import SpotifyIcon from '@/assets/icons/SpotifyIcon';
 interface Props {
   children: ReactNode;
   albums: ReactNode;
+  signin: ReactNode;
 }
 
-const Layout = ({ children, albums }: Props) => {
-  const { data: session } = useSession();
+const Layout = ({ children, albums, signin }: Props) => {
+  const { data: session, status } = useSession();
 
   useEffect(() => {
     if (session?.error === 'RefreshAccessTokenError') {
@@ -29,7 +30,8 @@ const Layout = ({ children, albums }: Props) => {
         {children}
         <Footer />
       </div>
-      {albums}
+      {status === 'authenticated' && albums}
+      {status === 'unauthenticated' && signin}
     </div>
   );
 };

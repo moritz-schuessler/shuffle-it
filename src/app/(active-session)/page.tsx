@@ -1,5 +1,7 @@
 'use client';
 
+import { useSession } from 'next-auth/react';
+
 import Shuffle from '@/components/Shuffle';
 import {
   Accordion,
@@ -9,9 +11,14 @@ import {
 } from '@/components/Accordion';
 
 const Home = () => {
+  const { status } = useSession();
+
   return (
     <main className='flex h-full w-full flex-col items-stretch justify-between'>
-      <Shuffle />
+      <div className='flex flex-col'>
+        {status === 'authenticated' && <Shuffle />}
+        {status === 'unauthenticated' && <div />}
+      </div>
       <Accordion type='single' collapsible>
         <AccordionItem value='item-1'>
           <AccordionTrigger>
