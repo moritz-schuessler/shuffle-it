@@ -6,7 +6,6 @@ import { useInView } from 'react-intersection-observer';
 
 import useAlbums from '@/hooks/useAlbums';
 import Album from '@/components/Album';
-import Shuffle from '@/components/Shuffle';
 
 const Albums = () => {
   const { data: session } = useSession();
