@@ -1,4 +1,5 @@
 import { SignInButton } from '@/components/auth/buttons';
+import SpotifyIcon from '@/assets/icons/SpotifyIcon';
 
 const SignIn = async () => {
   return (
@@ -9,7 +10,10 @@ const SignIn = async () => {
           To use this app, sign in with your Spotify account{' '}
         </p>
       </div>
-      <SignInButton className='flex w-1/2 max-w-lg items-center justify-center gap-2' />
+      <SignInButton className='flex w-1/2 max-w-lg items-center justify-center gap-2'>
+        <SpotifyIcon color='black' />
+        Spotify
+      </SignInButton>
     </div>
   );
 };

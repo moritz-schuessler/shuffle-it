@@ -1,26 +1,32 @@
 'use client';
 
+import { ButtonHTMLAttributes, ReactNode } from 'react';
 import { signIn, signOut } from 'next-auth/react';
-
-import Button from '@/components/Button';
-import SpotifyIcon from '@/assets/icons/SpotifyIcon';
 import classNames from 'classnames';
 
-const SignInButton = ({ ...props }) => {
-  console.log(props);
+import Button from '@/components/Button';
+
+interface Props extends ButtonHTMLAttributes<HTMLButtonElement> {
+  children: ReactNode;
+}
+
+const SignInButton = ({ children, ...props }: Props) => {
   return (
     <Button
       onClick={() => signIn('spotify')}
       className={classNames(props.className)}
     >
-      <SpotifyIcon color='black' />
-      Spotify
+      {children}
     </Button>
   );
 };
 
-const SignOutButton = () => {
-  return <Button onClick={() => signOut()}>Sign out</Button>;
+const SignOutButton = ({ children, ...props }: Props) => {
+  return (
+    <Button onClick={() => signOut()} className={classNames(props.className)}>
+      {children}
+    </Button>
+  );
 };
 
 export { SignInButton, SignOutButton };

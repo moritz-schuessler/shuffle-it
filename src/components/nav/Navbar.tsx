@@ -24,7 +24,7 @@ const Navbar = () => {
       <nav className='flex gap-4'>
         {status !== 'unauthenticated' && (
           <>
-            <SignOutButton />
+            <SignOutButton>Sign out</SignOutButton>
           </>
         )}
       </nav>
