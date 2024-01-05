@@ -1,17 +1,25 @@
-'use client';
-
-import Shuffle from '@/components/Shuffle';
+import Shuffle from '@/components/shuffle';
 import {
   Accordion,
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
-} from '@/components/Accordion';
+} from '@/components/ui/Accordion';
+import auth from '@/lib/auth/auth';
 
-const Home = () => {
+const Home = async () => {
+  const session = await auth();
+
+  if (session?.error === 'RefreshAccessTokenError') {
+    throw new Error('RefreshAccessTokenError');
+  }
+
   return (
     <main className='flex h-full w-full flex-col items-stretch justify-between'>
-      <Shuffle />
+      <div className='flex flex-col'>
+        {session && <Shuffle />}
+        {!session && <div />}
+      </div>
       <Accordion type='single' collapsible>
         <AccordionItem value='item-1'>
           <AccordionTrigger>

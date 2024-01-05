@@ -4,9 +4,8 @@ import { useEffect, useRef } from 'react';
 import { signIn, useSession } from 'next-auth/react';
 import { useInView } from 'react-intersection-observer';
 
-import useAlbums from '@/hooks/useAlbums';
-import Album from '@/components/Album';
-import Shuffle from '@/components/Shuffle';
+import useAlbums from '@/hooks/use-albums';
+import Album from '@/components/album';
 
 const Albums = () => {
   const { data: session } = useSession();
