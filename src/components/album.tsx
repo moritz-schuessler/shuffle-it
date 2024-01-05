@@ -1,6 +1,6 @@
 import Image from 'next/image';
 
-import usePlayback from '@/hooks/usePlayback';
+import usePlayback from '@/hooks/use-playback';
 import Button from '@/components/ui/Button';
 
 interface Props {

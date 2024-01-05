@@ -1,8 +1,8 @@
 import Link from 'next/link';
 
 import Button from '@/components/ui/Button';
-import GithubIcon from '@/assets/icons/GithubIcon';
-import SpotifyIcon from '@/assets/icons/SpotifyIcon';
+import GithubIcon from '@/assets/icons/github-icon';
+import SpotifyIcon from '@/assets/icons/spotify-icon';
 
 const Footer = () => {
   return (

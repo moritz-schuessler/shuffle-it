@@ -1,7 +1,7 @@
 import { Account, NextAuthOptions, Session } from 'next-auth';
 import { JWT } from 'next-auth/jwt';
 import SpotifyProvider from 'next-auth/providers/spotify';
-import { refreshAccessToken } from '@/lib/auth/refreshAccessToken';
+import { refreshAccessToken } from '@/lib/auth/refresh-access-token';
 
 const scope: string = [
   'user-read-private',

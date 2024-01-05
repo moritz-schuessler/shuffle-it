@@ -4,8 +4,8 @@ import { Inter } from 'next/font/google';
 
 import '@/globals.css';
 import Providers from '@/app/providers';
-import Navbar from '@/components/Navbar';
-import Footer from '@/components/Footer';
+import Navbar from '@/components/navbar';
+import Footer from '@/components/footer';
 import auth from '@/lib/auth/auth';
 
 interface Props {

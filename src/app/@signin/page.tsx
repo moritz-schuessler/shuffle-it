@@ -1,5 +1,5 @@
-import { SignInButton } from '@/components/auth/buttons';
-import SpotifyIcon from '@/assets/icons/SpotifyIcon';
+import { SignInButton } from '@/components/auth/auth-buttons';
+import SpotifyIcon from '@/assets/icons/spotify-icon';
 
 const SignIn = async () => {
   return (

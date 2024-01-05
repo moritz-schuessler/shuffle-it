@@ -1,4 +1,4 @@
-import Shuffle from '@/components/Shuffle';
+import Shuffle from '@/components/shuffle';
 import {
   Accordion,
   AccordionContent,
