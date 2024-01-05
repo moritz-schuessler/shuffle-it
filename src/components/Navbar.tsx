@@ -1,6 +1,6 @@
 import Link from 'next/link';
 
-import Button from '@/components/Button';
+import Button from '@/components/ui/Button';
 import { SignOutButton } from '@/components/auth/buttons';
 import auth from '@/lib/auth/auth';
 

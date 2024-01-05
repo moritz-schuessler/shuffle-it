@@ -1,9 +1,7 @@
 import Image from 'next/image';
 
 import usePlayback from '@/hooks/usePlayback';
-import Link from 'next/link';
-import { PlayIcon } from '@heroicons/react/16/solid';
-import Button from '@/components/Button';
+import Button from '@/components/ui/Button';
 
 interface Props {
   album: Album;

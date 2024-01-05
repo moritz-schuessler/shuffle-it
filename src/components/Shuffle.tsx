@@ -3,7 +3,7 @@
 import { useSession } from 'next-auth/react';
 import { useAtomValue } from 'jotai';
 
-import Button from '@/components/Button';
+import Button from '@/components/ui/Button';
 import usePlayback from '@/hooks/usePlayback';
 import totalSavedAlbumsAtom from '@/lib/atoms/totalSavedAlbumsAtom';
 import { getAlbum } from '@/lib/spotifyApi';

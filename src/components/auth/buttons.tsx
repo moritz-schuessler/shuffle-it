@@ -4,7 +4,7 @@ import { ButtonHTMLAttributes, ReactNode } from 'react';
 import { signIn, signOut } from 'next-auth/react';
 import classNames from 'classnames';
 
-import Button from '@/components/Button';
+import Button from '@/components/ui/Button';
 
 interface Props extends ButtonHTMLAttributes<HTMLButtonElement> {
   children: ReactNode;
