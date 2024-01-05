@@ -1,3 +1,5 @@
+'use client';
+
 import { ComponentPropsWithoutRef, ElementRef, forwardRef } from 'react';
 import * as AccordionPrimitive from '@radix-ui/react-accordion';
 import classNames from 'classnames';
@@ -64,7 +66,7 @@ const AccordionContent = forwardRef<
   <AccordionPrimitive.Content
     className={classNames(
       className,
-      'data-[state=open]:animate-slideDown data-[state=closed]:animate-slideUp overflow-hidden pb-4 leading-relaxed',
+      'overflow-hidden pb-4 leading-relaxed data-[state=closed]:animate-slideUp data-[state=open]:animate-slideDown',
     )}
     {...props}
     ref={forwardedRef}

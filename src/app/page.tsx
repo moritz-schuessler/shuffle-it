@@ -1,7 +1,6 @@
-'use client';
+import { getServerSession } from 'next-auth';
 
-import { signIn, useSession } from 'next-auth/react';
-
+import authOptions from '@/lib/auth/authOptions';
 import Shuffle from '@/components/Shuffle';
 import {
   Accordion,
@@ -9,23 +8,19 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from '@/components/Accordion';
-import { useEffect } from 'react';
 
-const Home = () => {
-  const { data: session, status } = useSession();
+const Home = async () => {
+  const session = await getServerSession(authOptions);
 
-  useEffect(() => {
-    if (session?.error === 'RefreshAccessTokenError') {
-      console.log('RefreshAccessTokenError');
-      signIn('spotify');
-    }
-  }, [session]);
+  if (session?.error === 'RefreshAccessTokenError') {
+    throw new Error('RefreshAccessTokenError');
+  }
 
   return (
     <main className='flex h-full w-full flex-col items-stretch justify-between'>
       <div className='flex flex-col'>
-        {status === 'authenticated' && <Shuffle />}
-        {status === 'unauthenticated' && <div />}
+        {session && <Shuffle />}
+        {!session && <div />}
       </div>
       <Accordion type='single' collapsible>
         <AccordionItem value='item-1'>
