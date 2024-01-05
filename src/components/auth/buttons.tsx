@@ -1,18 +1,20 @@
 'use client';
 
-import { signIn, signOut, ClientSafeProvider } from 'next-auth/react';
+import { signIn, signOut } from 'next-auth/react';
 
 import Button from '@/components/Button';
 import SpotifyIcon from '@/assets/icons/SpotifyIcon';
+import classNames from 'classnames';
 
-const SignInButton = ({ provider }: { provider: ClientSafeProvider }) => {
+const SignInButton = ({ ...props }) => {
+  console.log(props);
   return (
     <Button
-      onClick={() => signIn(provider.id)}
-      className='flex items-center justify-center gap-2'
+      onClick={() => signIn('spotify')}
+      className={classNames(props.className)}
     >
       <SpotifyIcon color='black' />
-      <div>{provider.name}</div>
+      Spotify
     </Button>
   );
 };
