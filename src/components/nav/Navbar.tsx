@@ -1,32 +1,22 @@
-'use client';
-
 import Link from 'next/link';
-import { usePathname } from 'next/navigation';
-import { useSession } from 'next-auth/react';
+import { getServerSession } from 'next-auth';
 
+import authOptions from '@/lib/auth/authOptions';
 import Button from '@/components/Button';
 import { SignOutButton } from '@/components/auth/buttons';
 
-const Navbar = () => {
-  const pathname = usePathname();
-  const { status } = useSession();
+const Navbar = async () => {
+  const session = await getServerSession(authOptions);
 
   return (
     <header className='flex justify-between px-8 py-4'>
       <Button variant='ghost' asChild>
-        <Link
-          className={`link ${pathname === '/' ? 'underline' : ''}`}
-          href='/'
-        >
-          <h1 className='flex'>Shuffle-it</h1>
+        <Link href='/'>
+          <h1>Shuffle-it</h1>
         </Link>
       </Button>
       <nav className='flex gap-4'>
-        {status !== 'unauthenticated' && (
-          <>
-            <SignOutButton>Sign out</SignOutButton>
-          </>
-        )}
+        {session && <SignOutButton>Sign out</SignOutButton>}
       </nav>
     </header>
   );
