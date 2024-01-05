@@ -5,9 +5,8 @@ import { Inter } from 'next/font/google';
 import '@/globals.css';
 import Providers from '@/app/providers';
 import Navbar from '@/components/nav/Navbar';
-import authOptions from '@/lib/auth/authOptions';
-import { getServerSession } from 'next-auth';
 import Footer from '@/app/Footer';
+import auth from '@/lib/auth/auth';
 
 interface Props {
   children: ReactNode;
@@ -24,7 +23,7 @@ const metadata: Metadata = {
 };
 
 const RootLayout = async ({ children, albums, signin }: Props) => {
-  const session = await getServerSession(authOptions);
+  const session = await auth();
 
   return (
     <Providers>

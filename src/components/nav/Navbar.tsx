@@ -1,12 +1,11 @@
 import Link from 'next/link';
-import { getServerSession } from 'next-auth';
 
-import authOptions from '@/lib/auth/authOptions';
 import Button from '@/components/Button';
 import { SignOutButton } from '@/components/auth/buttons';
+import auth from '@/lib/auth/auth';
 
 const Navbar = async () => {
-  const session = await getServerSession(authOptions);
+  const session = await auth();
 
   return (
     <header className='flex justify-between px-8 py-4'>

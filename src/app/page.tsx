@@ -1,6 +1,3 @@
-import { getServerSession } from 'next-auth';
-
-import authOptions from '@/lib/auth/authOptions';
 import Shuffle from '@/components/Shuffle';
 import {
   Accordion,
@@ -8,9 +5,10 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from '@/components/Accordion';
+import auth from '@/lib/auth/auth';
 
 const Home = async () => {
-  const session = await getServerSession(authOptions);
+  const session = await auth();
 
   if (session?.error === 'RefreshAccessTokenError') {
     throw new Error('RefreshAccessTokenError');
