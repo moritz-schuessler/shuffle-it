@@ -8,9 +8,6 @@ const Footer = () => {
   return (
     <footer className='flex items-center justify-center gap-4'>
       <Button variant='ghost' asChild>
-        <Link href={'/privacy'}>Privacy</Link>
-      </Button>
-      <Button variant='ghost' asChild>
         <Link
           href={'https://github.com/moritz-schuessler/shuffle-it'}
           target='_blank'
