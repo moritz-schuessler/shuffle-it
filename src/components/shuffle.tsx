@@ -1,5 +1,6 @@
 'use client';
 
+import { useState } from 'react';
 import { useSession } from 'next-auth/react';
 import { useAtomValue } from 'jotai';
 
@@ -8,12 +9,15 @@ import usePlayback from '@/hooks/use-playback';
 import totalSavedAlbumsAtom from '@/lib/atoms/total-saved-albums-atom';
 
 const Shuffle = () => {
+  const [isPending, setIsPending] = useState(false);
   const { data: session } = useSession();
   const totalSavedAlbums = useAtomValue(totalSavedAlbumsAtom);
 
   const mutation = usePlayback();
 
   const handleClick = async () => {
+    setIsPending(true);
+
     const offset = Math.floor(Math.random() * totalSavedAlbums) - 1;
 
     const response = await fetch(
@@ -30,6 +34,7 @@ const Shuffle = () => {
     const album = data.items[0].album;
 
     mutation.mutate({ access_token: session!.access_token!, uri: album.uri });
+    setIsPending(false);
   };
 
   return (
@@ -37,9 +42,9 @@ const Shuffle = () => {
       variant='secondary'
       onClick={handleClick}
       className='flex items-center justify-center'
-      disabled={!totalSavedAlbums}
+      disabled={!totalSavedAlbums || isPending}
     >
-      Shuffle
+      {!isPending ? 'Shuffle' : 'Shuffling...'}
     </Button>
   );
 };
