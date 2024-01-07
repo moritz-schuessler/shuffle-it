@@ -19,6 +19,7 @@ const Album = ({ album, access_token }: Props) => {
       onClick={() => {
         return mutation.mutate({ access_token, uri: album.uri });
       }}
+      disabled={mutation.status === 'pending'}
       className='flex flex-col gap-2 p-4'
     >
       <div className='flex grow'>
