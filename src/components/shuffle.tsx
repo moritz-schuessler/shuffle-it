@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { useSession } from 'next-auth/react';
 import { useAtomValue } from 'jotai';
 
-import Button from '@/components/ui/Button';
+import Button from '@/components/ui/button';
 import usePlayback from '@/hooks/use-playback';
 import totalSavedAlbumsAtom from '@/lib/atoms/total-saved-albums-atom';
 
