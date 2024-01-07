@@ -18,7 +18,7 @@ const Shuffle = () => {
   const handleClick = async () => {
     setIsPending(true);
 
-    const offset = Math.floor(Math.random() * totalSavedAlbums) - 1;
+    const offset = Math.floor(Math.random() * totalSavedAlbums);
 
     const response = await fetch(
       `https://api.spotify.com/v1/me/albums?offset=${offset}&limit=1&locale=*`,
