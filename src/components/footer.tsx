@@ -1,6 +1,6 @@
 import Link from 'next/link';
 
-import Button from '@/components/ui/Button';
+import Button from '@/components/ui/button';
 import GithubIcon from '@/assets/icons/github-icon';
 import SpotifyIcon from '@/assets/icons/spotify-icon';
 

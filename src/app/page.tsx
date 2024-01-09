@@ -4,7 +4,7 @@ import {
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
-} from '@/components/ui/Accordion';
+} from '@/components/ui/accordion';
 import auth from '@/lib/auth/auth';
 
 const Home = async () => {

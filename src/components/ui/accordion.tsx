@@ -9,11 +9,7 @@ const Accordion = forwardRef<
   ElementRef<typeof AccordionPrimitive.Root>,
   ComponentPropsWithoutRef<typeof AccordionPrimitive.Root>
 >(({ children, className, ...props }, forwardedRef) => (
-  <AccordionPrimitive.Root
-    className={classNames(className, 'flex flex-col')}
-    ref={forwardedRef}
-    {...props}
-  >
+  <AccordionPrimitive.Root className={className} ref={forwardedRef} {...props}>
     {children}
   </AccordionPrimitive.Root>
 ));
@@ -66,12 +62,12 @@ const AccordionContent = forwardRef<
   <AccordionPrimitive.Content
     className={classNames(
       className,
-      'overflow-hidden pb-4 leading-relaxed data-[state=closed]:animate-slideUp data-[state=open]:animate-slideDown',
+      'overflow-hidden data-[state=closed]:animate-slideUp data-[state=open]:animate-slideDown',
     )}
     {...props}
     ref={forwardedRef}
   >
-    {children}
+    <div className='pb-4'>{children}</div>
   </AccordionPrimitive.Content>
 ));
 AccordionContent.displayName = 'AccordionContent';

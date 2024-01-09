@@ -1,7 +1,7 @@
 import Image from 'next/image';
 
 import usePlayback from '@/hooks/use-playback';
-import Button from '@/components/ui/Button';
+import Button from '@/components/ui/button';
 
 interface Props {
   album: Album;
