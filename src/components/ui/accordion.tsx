@@ -9,11 +9,7 @@ const Accordion = forwardRef<
   ElementRef<typeof AccordionPrimitive.Root>,
   ComponentPropsWithoutRef<typeof AccordionPrimitive.Root>
 >(({ children, className, ...props }, forwardedRef) => (
-  <AccordionPrimitive.Root
-    className={classNames(className, 'flex flex-col')}
-    ref={forwardedRef}
-    {...props}
-  >
+  <AccordionPrimitive.Root className={className} ref={forwardedRef} {...props}>
     {children}
   </AccordionPrimitive.Root>
 ));
