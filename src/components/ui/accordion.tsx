@@ -66,12 +66,12 @@ const AccordionContent = forwardRef<
   <AccordionPrimitive.Content
     className={classNames(
       className,
-      'overflow-hidden pb-4 leading-relaxed data-[state=closed]:animate-slideUp data-[state=open]:animate-slideDown',
+      'overflow-hidden data-[state=closed]:animate-slideUp data-[state=open]:animate-slideDown',
     )}
     {...props}
     ref={forwardedRef}
   >
-    {children}
+    <div className='pb-4'>{children}</div>
   </AccordionPrimitive.Content>
 ));
 AccordionContent.displayName = 'AccordionContent';
