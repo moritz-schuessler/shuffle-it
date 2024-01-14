@@ -45,13 +45,13 @@ const Albums = () => {
 
   return (
     <div
-      className='grid h-full grid-cols-auto gap-8 overflow-scroll p-8'
+      className='grid grid-cols-auto gap-8 overflow-scroll p-8'
       ref={rootRef.current}
     >
       {albums.map((album, i) => {
         if (albums?.length === i + 1 && hasNextPage) {
           return (
-            <div key={album.album.id} className='flex' ref={ref}>
+            <div key={album.album.id} className='flex flex-col' ref={ref}>
               <Album
                 album={album.album}
                 access_token={session!.access_token!}

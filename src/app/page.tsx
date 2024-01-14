@@ -15,11 +15,8 @@ const Home = async () => {
   }
 
   return (
-    <main className='flex h-full w-full flex-col items-stretch justify-between'>
-      <div className='flex flex-col'>
-        {session && <Shuffle />}
-        {!session && <div />}
-      </div>
+    <main className='flex h-full flex-col justify-between gap-8'>
+      <div className='hidden xl:flex xl:flex-col'>{session && <Shuffle />}</div>
       <Accordion type='single' collapsible>
         <AccordionItem value='item-1'>
           <AccordionTrigger>

@@ -20,9 +20,9 @@ const Album = ({ album, access_token }: Props) => {
         return mutation.mutate({ access_token, uri: album.uri });
       }}
       disabled={mutation.status === 'pending'}
-      className='flex flex-col gap-2 p-4'
+      className='flex flex-row gap-4 p-2 sm:flex-col sm:p-4'
     >
-      <div className='flex grow'>
+      <div className='flex aspect-square w-12 shrink-0 sm:w-full sm:grow'>
         <Image
           src={album.images[0].url}
           alt={`Album Cover of ${album.name}`}
@@ -32,7 +32,7 @@ const Album = ({ album, access_token }: Props) => {
           className='aspect-square grow rounded'
         />
       </div>
-      <div className='flex flex-col'>
+      <div className='flex flex-col overflow-hidden'>
         <div className='truncate'>{album.name}</div>
         <div className='truncate text-neutral-400'>
           {album.artists.map((artist) => artist.name).join(', ')}
