@@ -27,16 +27,13 @@ const RootLayout = async ({ children, albums, signin }: Props) => {
 
   return (
     <Providers>
-      <html
-        lang='en'
-        className='bg-light text-dark dark:bg-dark dark:text-light'
-      >
+      <html lang='en' className='bg-dark text-light'>
         <body
-          className={`${inter.className} flex h-screen flex-col justify-between divide-y divide-neutral-800 overscroll-none`}
+          className={`${inter.className} flex h-dvh flex-col justify-between divide-y divide-neutral-800 overflow-hidden overscroll-none`}
         >
           <Navbar />
-          <div className='flex h-full overflow-hidden children:w-full'>
-            <div className='flex h-full max-w-[90ch] flex-col justify-between gap-8 p-8'>
+          <div className='flex h-full flex-col-reverse overflow-hidden *:w-full xl:flex-row'>
+            <div className='flex flex-col justify-between gap-8 p-8 xl:max-w-[90ch]'>
               {children}
               <Footer />
             </div>
