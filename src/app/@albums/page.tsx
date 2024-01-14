@@ -51,7 +51,7 @@ const Albums = () => {
       {albums.map((album, i) => {
         if (albums?.length === i + 1 && hasNextPage) {
           return (
-            <div key={album.album.id} className='flex' ref={ref}>
+            <div key={album.album.id} className='flex flex-col' ref={ref}>
               <Album
                 album={album.album}
                 access_token={session!.access_token!}
