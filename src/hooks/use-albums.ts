@@ -42,10 +42,12 @@ const useAlbums = () => {
     enabled: !!session?.access_token,
     initialPageParam: { offset: 0, limit: 20 },
     getNextPageParam: (lastPage) => {
-      return {
-        offset: lastPage.offset + lastPage.limit,
-        limit: lastPage.limit,
-      };
+      if (lastPage.next) {
+        return {
+          offset: lastPage.offset + lastPage.limit,
+          limit: lastPage.limit,
+        };
+      }
     },
   });
 
