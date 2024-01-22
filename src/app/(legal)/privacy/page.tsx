@@ -1,6 +1,6 @@
 const PrivacyPage = () => {
   return (
-    <main className='flex max-w-[80ch] flex-col gap-8'>
+    <main className='flex w-full max-w-[80ch] flex-col gap-8 hyphens-auto text-pretty break-words'>
       <h1 className='text-2xl'>Privacy Policy</h1>
 
       <section className='flex flex-col gap-4'>
@@ -215,7 +215,7 @@ const PrivacyPage = () => {
               href='https://www.dataprivacyframework.gov/s/participant-search/participant-detail?contact=true&id=a2zt0000000GnZKAA0&status=Active'
               target='_blank'
               rel='noopener noreferrer'
-              className='underline hover:text-neutral-400'
+              className='text-pretty underline hover:text-neutral-400'
             >
               https://www.dataprivacyframework.gov/s/participant-search/participant-detail?contact=true&id=a2zt0000000GnZKAA0&status=Active
             </a>
