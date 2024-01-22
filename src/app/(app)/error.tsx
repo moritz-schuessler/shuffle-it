@@ -15,8 +15,8 @@ export default function Error({ error }: Props) {
   }, [error]);
 
   return (
-    <div>
+    <main className='flex h-full flex-col justify-between'>
       <h2>Something went wrong!</h2>
-    </div>
+    </main>
   );
 }

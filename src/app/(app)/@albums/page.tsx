@@ -33,19 +33,19 @@ const Albums = () => {
   }, [fetchNextPage, inView]);
 
   if (status === 'pending') {
-    return <main className='h-full overflow-scroll'>Loading...</main>;
+    return <div className='h-full overflow-scroll'>Loading...</div>;
   }
 
   if (status === 'error') {
     signIn('spotify');
-    return <main className='h-full overflow-scroll'>{error.message}</main>;
+    return <div className='h-full overflow-scroll'>{error.message}</div>;
   }
 
   const albums = data?.pages.flatMap((page) => page.items);
 
   return (
     <div
-      className='grid grid-cols-auto gap-8 overflow-scroll p-8'
+      className='grid h-full grid-cols-auto gap-4 overflow-scroll xl:gap-8'
       ref={rootRef.current}
     >
       {albums.map((album, i) => {

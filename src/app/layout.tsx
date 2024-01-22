@@ -21,7 +21,7 @@ const RootLayout = async ({ children }: Props) => {
   return (
     <html lang='en' className='bg-dark text-light'>
       <body
-        className={`${inter.className} flex h-dvh flex-col justify-between divide-y divide-neutral-800 overflow-hidden overscroll-none`}
+        className={`${inter.className} flex h-dvh flex-col justify-between divide-y divide-neutral-800 overscroll-none first:*:p-4 xl:first:*:px-8`}
       >
         <Navbar />
         {children}

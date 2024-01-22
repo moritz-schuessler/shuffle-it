@@ -1,6 +1,6 @@
 const PrivacyPage = () => {
   return (
-    <main className='flex max-w-[80ch] flex-col gap-8 overflow-scroll'>
+    <main className='flex max-w-[80ch] flex-col gap-8'>
       <h1 className='text-2xl'>Privacy Policy</h1>
 
       <section className='flex flex-col gap-4'>
