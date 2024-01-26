@@ -1,6 +1,7 @@
 import { ReactNode } from 'react';
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
+import { Toaster } from 'sonner';
 
 import '@/globals.css';
 import Navbar from '@/components/navbar';
@@ -25,6 +26,18 @@ const RootLayout = async ({ children }: Props) => {
       >
         <Navbar />
         {children}
+        <Toaster
+          theme='dark'
+          position='bottom-center'
+          richColors
+          className='toaster group'
+          toastOptions={{
+            classNames: {
+              toast:
+                'group toast group-[.toaster]:bg-neutral-950 group-[.toaster]:border-neutral-600',
+            },
+          }}
+        />
       </body>
     </html>
   );

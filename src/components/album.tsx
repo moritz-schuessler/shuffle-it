@@ -2,6 +2,8 @@ import Image from 'next/image';
 
 import usePlayback from '@/hooks/use-playback';
 import Button from '@/components/ui/button';
+import { toast } from 'sonner';
+import { AlbumToast } from '@/components/toast-variants';
 
 interface Props {
   album: Album;
@@ -11,14 +13,23 @@ interface Props {
 const Album = ({ album, access_token }: Props) => {
   const mutation = usePlayback();
 
+  const handleClick = () => {
+    mutation.mutate(
+      { access_token, uri: album.uri },
+      {
+        onSuccess: () => {
+          toast(<AlbumToast album={album} />);
+        },
+      },
+    );
+  };
+
   return (
     <Button
       variant='secondary'
       rounded='md'
       padding='none'
-      onClick={() => {
-        return mutation.mutate({ access_token, uri: album.uri });
-      }}
+      onClick={handleClick}
       disabled={mutation.status === 'pending'}
       className='flex flex-row gap-4 p-2 sm:flex-col sm:p-4'
     >

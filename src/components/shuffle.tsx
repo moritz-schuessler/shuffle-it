@@ -7,6 +7,9 @@ import { useAtomValue } from 'jotai';
 import Button from '@/components/ui/button';
 import usePlayback from '@/hooks/use-playback';
 import totalSavedAlbumsAtom from '@/lib/atoms/total-saved-albums-atom';
+import { toast } from 'sonner';
+import { AlbumToast } from '@/components/toast-variants';
+import { log } from 'node:util';
 
 const Shuffle = () => {
   const [isPending, setIsPending] = useState(false);
@@ -33,8 +36,17 @@ const Shuffle = () => {
     const data: Albums = await response.json();
     const album = data.items[0].album;
 
-    mutation.mutate({ access_token: session!.access_token!, uri: album.uri });
-    setIsPending(false);
+    mutation.mutate(
+      { access_token: session!.access_token!, uri: album.uri },
+      {
+        onSuccess: () => {
+          toast(<AlbumToast album={album} />);
+        },
+        onSettled: () => {
+          setIsPending(false);
+        },
+      },
+    );
   };
 
   return (
