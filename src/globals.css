@@ -3,6 +3,6 @@
 @tailwind utilities;
 
 button {
-  all: unset;
-  cursor: pointer;
+    all: unset;
+    cursor: pointer;
 }
