@@ -14,7 +14,7 @@ const config: Config = {
         dark: 'hsl(0, 0%, 3.9%)',
       },
       gridTemplateColumns: {
-        auto: 'repeat(auto-fill, minmax(300px, 1fr))',
+        auto: 'repeat(auto-fill, minmax(250px, 1fr))',
       },
       keyframes: {
         slideDown: {
