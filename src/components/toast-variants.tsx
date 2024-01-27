@@ -2,7 +2,7 @@ import Image from 'next/image';
 
 const AlbumToast = ({ album }: { album: Album }) => {
   return (
-    <div className='flex items-center gap-4'>
+    <div className='flex min-w-0 items-center gap-4'>
       <div className='flex aspect-square w-12 shrink'>
         <Image
           src={album.images[0].url}
