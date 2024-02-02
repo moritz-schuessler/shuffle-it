@@ -22,7 +22,7 @@ const AccordionItem = forwardRef<
   <AccordionPrimitive.Item
     className={classNames(
       className,
-      'overflow-hidden border-b border-neutral-600',
+      'overflow-hidden border-b border-gray-100',
     )}
     ref={forwardedRef}
     {...props}

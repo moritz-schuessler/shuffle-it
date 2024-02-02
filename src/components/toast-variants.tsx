@@ -15,7 +15,7 @@ const AlbumToast = ({ album }: { album: Album }) => {
       </div>
       <div className='flex flex-col overflow-hidden'>
         <div className='truncate'>{album.name}</div>
-        <div className='truncate text-neutral-400'>
+        <div className='truncate text-gray-300'>
           {album.artists.map((artist) => artist.name).join(', ')}
         </div>
       </div>
