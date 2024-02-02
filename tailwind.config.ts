@@ -18,6 +18,10 @@ const config: Config = {
       },
       white: 'rgb(250, 250, 250)',
     },
+    screens: {
+      mobile: { max: '1023px' },
+      big: { min: '2000px' },
+    },
     extend: {
       gridTemplateColumns: {
         auto: 'repeat(auto-fill, minmax(250px, 1fr))',

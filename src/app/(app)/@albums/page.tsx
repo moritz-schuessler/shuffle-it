@@ -45,7 +45,7 @@ const Albums = () => {
 
   return (
     <div
-      className='grid h-full grid-cols-auto gap-4 overflow-scroll xl:gap-8'
+      className='mobile:gap-4 grid h-full grid-cols-auto gap-8 overflow-scroll'
       ref={rootRef.current}
     >
       {albums.map((album, i) => {
