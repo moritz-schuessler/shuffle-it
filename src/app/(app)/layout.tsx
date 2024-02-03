@@ -16,12 +16,12 @@ const AppLayout = async ({ children, albums, signin }: Props) => {
 
   return (
     <Providers>
-      <div className='mobile:flex-col-reverse flex h-full flex-row justify-center overflow-hidden *:w-full'>
-        <div className='mobile:gap-4 mobile:last:*:pb-4 big:max-w-[90ch] mobile:first:*:px-8 mobile:first:*:pt-4 flex flex-col justify-between gap-8 *:px-4 first:*:pt-8 last:*:pb-8'>
+      <div className='mobile:flex-col-reverse flex h-full flex-row justify-center overflow-hidden *:w-full '>
+        <div className='mobile:gap-4 big:max-w-[90ch] flex flex-col justify-between gap-8 *:px-[var(--window-padding-x)] first:*:pt-[var(--window-padding-y)] last:*:pb-[var(--window-padding-y)]'>
           {children}
           <Footer />
         </div>
-        <aside className='mobile:*:p-4 h-full overflow-scroll *:p-8'>
+        <aside className='h-full overflow-scroll *:px-[var(--window-padding-x)] first:*:pt-[var(--window-padding-y)] last:*:pb-[var(--window-padding-y)]'>
           {session && albums}
           {!session && signin}
         </aside>
