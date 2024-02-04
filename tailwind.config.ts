@@ -8,11 +8,21 @@ const config: Config = {
     './src/app/**/*.{js,ts,jsx,tsx,mdx}',
   ],
   theme: {
-    extend: {
-      colors: {
-        light: 'hsl(0, 0%, 98%)',
-        dark: 'hsl(0, 0%, 3.9%)',
+    colors: {
+      black: 'rgb(5, 5, 5)',
+      gray: {
+        100: 'rgb(45, 45, 45)',
+        200: 'rgb(30, 30, 30)',
+        300: 'rgb(145, 145, 145)',
+        400: 'rgb(206, 206, 206)',
       },
+      white: 'rgb(250, 250, 250)',
+    },
+    screens: {
+      mobile: { max: '1023px' },
+      big: { min: '2000px' },
+    },
+    extend: {
       gridTemplateColumns: {
         auto: 'repeat(auto-fill, minmax(250px, 1fr))',
       },

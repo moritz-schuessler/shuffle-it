@@ -7,7 +7,7 @@ const Navbar = async () => {
   const session = await auth();
 
   return (
-    <header className='flex items-center justify-between'>
+    <header className='flex items-center justify-between px-[var(--window-padding-x)] py-[var(--window-padding-y)] text-lg'>
       <Button variant='ghost' asChild>
         <Link href={'/'}>
           <h1>Shuffle-it</h1>

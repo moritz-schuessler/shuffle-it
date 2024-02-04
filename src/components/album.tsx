@@ -31,9 +31,9 @@ const Album = ({ album, access_token }: Props) => {
       padding='none'
       onClick={handleClick}
       disabled={mutation.status === 'pending'}
-      className='flex flex-row gap-4 p-2 sm:flex-col sm:p-4'
+      className='mobile:flex-row mobile:p-2 flex flex-col gap-4 p-4'
     >
-      <div className='flex aspect-square w-12 shrink-0 sm:w-full sm:grow'>
+      <div className='mobile:grow-0 mobile:w-12 flex aspect-square shrink-0 grow'>
         <Image
           src={album.images[0].url}
           alt={`Album Cover of ${album.name}`}
@@ -45,7 +45,7 @@ const Album = ({ album, access_token }: Props) => {
       </div>
       <div className='flex flex-col overflow-hidden'>
         <div className='truncate'>{album.name}</div>
-        <div className='truncate text-neutral-400'>
+        <div className='truncate text-gray-300'>
           {album.artists.map((artist) => artist.name).join(', ')}
         </div>
       </div>

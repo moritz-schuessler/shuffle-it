@@ -15,7 +15,7 @@ const Home = async () => {
   }
 
   return (
-    <main className='flex h-full flex-col justify-between gap-4'>
+    <>
       <div className='flex flex-col'>{session && <Shuffle />}</div>
       <Accordion type='single' collapsible>
         <AccordionItem value='item-1'>
@@ -46,7 +46,7 @@ const Home = async () => {
           </AccordionContent>
         </AccordionItem>
       </Accordion>
-    </main>
+    </>
   );
 };
 
