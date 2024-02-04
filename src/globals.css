@@ -2,6 +2,17 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+    --window-padding-x: 2rem;
+    --window-padding-y: 1rem;
+}
+
+@media screen(mobile) {
+    :root {
+        --window-padding-x: 1rem;
+    }
+}
+
 button {
     all: unset;
     cursor: pointer;

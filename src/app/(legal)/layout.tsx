@@ -7,10 +7,10 @@ interface Props {
 
 const LegalLayout = ({ children }: Props) => {
   return (
-    <div className='flex h-full flex-col items-center gap-4 overflow-hidden *:px-4 first:*:pt-4 last:*:pb-4 xl:gap-8 xl:*:px-8 xl:first:*:pt-8 xl:last:*:pb-8'>
-      <div className='flex w-full justify-center overflow-scroll'>
+    <div className='mobile:gap-4 flex flex-col items-center gap-8 overflow-hidden *:px-[var(--window-padding-x)] first:*:pt-[var(--window-padding-y)] last:*:pb-[var(--window-padding-y)]'>
+      <main className='flex w-full justify-center overflow-scroll hyphens-auto text-pretty break-words'>
         {children}
-      </div>
+      </main>
       <Footer />
     </div>
   );

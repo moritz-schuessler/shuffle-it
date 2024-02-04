@@ -20,9 +20,9 @@ const metadata: Metadata = {
 
 const RootLayout = async ({ children }: Props) => {
   return (
-    <html lang='en' className='bg-dark text-light'>
+    <html lang='en' className='bg-black text-white'>
       <body
-        className={`${inter.className} flex h-dvh flex-col justify-between divide-y divide-neutral-800 overscroll-none first:*:p-4 xl:first:*:px-8`}
+        className={`${inter.className} flex h-dvh flex-col justify-between divide-y divide-gray-100 overscroll-none`}
       >
         <Navbar />
         {children}
@@ -34,7 +34,7 @@ const RootLayout = async ({ children }: Props) => {
           toastOptions={{
             classNames: {
               toast:
-                'group toast group-[.toaster]:bg-neutral-950 group-[.toaster]:border-neutral-600',
+                'group toast group-[.toaster]:bg-black group-[.toaster]:border-gray-100',
             },
           }}
         />

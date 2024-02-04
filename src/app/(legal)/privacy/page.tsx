@@ -1,6 +1,6 @@
 const PrivacyPage = () => {
   return (
-    <main className='flex w-full max-w-[80ch] flex-col gap-8 hyphens-auto text-pretty break-words'>
+    <div className='flex max-w-[80ch] flex-col gap-8'>
       <h1 className='text-2xl'>Privacy Policy</h1>
 
       <section className='flex flex-col gap-4'>
@@ -536,7 +536,7 @@ const PrivacyPage = () => {
           </p>
         </div>
       </section>
-    </main>
+    </div>
   );
 };
 

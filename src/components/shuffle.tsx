@@ -9,7 +9,6 @@ import usePlayback from '@/hooks/use-playback';
 import totalSavedAlbumsAtom from '@/lib/atoms/total-saved-albums-atom';
 import { toast } from 'sonner';
 import { AlbumToast } from '@/components/toast-variants';
-import { log } from 'node:util';
 
 const Shuffle = () => {
   const [isPending, setIsPending] = useState(false);
