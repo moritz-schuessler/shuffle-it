@@ -6,7 +6,7 @@ import SpotifyIcon from '@/assets/icons/spotify-icon';
 
 const Footer = () => {
   return (
-    <footer className='flex w-full items-center justify-center gap-4'>
+    <footer className='flex items-center justify-center gap-4'>
       <Button variant='ghost' asChild>
         <Link href={'/privacy'}>Privacy</Link>
       </Button>
