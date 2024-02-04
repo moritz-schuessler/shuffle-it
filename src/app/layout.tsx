@@ -1,6 +1,7 @@
 import { ReactNode } from 'react';
 import type { Metadata } from 'next';
-import { Inter } from 'next/font/google';
+import { GeistSans } from 'geist/font/sans';
+
 import { Toaster } from 'sonner';
 
 import '@/globals.css';
@@ -9,8 +10,6 @@ import Navbar from '@/components/navbar';
 interface Props {
   children: ReactNode;
 }
-
-const inter = Inter({ subsets: ['latin'] });
 
 const metadata: Metadata = {
   title: 'Shuffle-it',
@@ -22,7 +21,7 @@ const RootLayout = async ({ children }: Props) => {
   return (
     <html lang='en' className='bg-black text-white'>
       <body
-        className={`${inter.className} flex h-dvh flex-col justify-between divide-y divide-gray-100 overscroll-none`}
+        className={`${GeistSans.className} flex h-dvh flex-col justify-between divide-y divide-gray-100 overscroll-none`}
       >
         <Navbar />
         {children}
