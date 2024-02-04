@@ -33,44 +33,42 @@ const Albums = () => {
   }, [fetchNextPage, inView]);
 
   if (status === 'pending') {
-    return <>Loading...</>;
+    return 'Loading...';
   }
 
   if (status === 'error') {
     signIn('spotify');
-    return <>{error.message}</>;
+    return error.message;
   }
 
   const albums = data?.pages.flatMap((page) => page.items);
 
   return (
-    <>
-      <div
-        className='mobile:gap-4 grid grid-cols-auto gap-8'
-        ref={rootRef.current}
-      >
-        {albums.map((album, i) => {
-          if (albums?.length === i + 1 && hasNextPage) {
-            return (
-              <div key={album.album.id} className='flex flex-col' ref={ref}>
-                <Album
-                  album={album.album}
-                  access_token={session!.access_token!}
-                />
-              </div>
-            );
-          }
+    <div
+      className='mobile:gap-4 grid grid-cols-auto gap-8'
+      ref={rootRef.current}
+    >
+      {albums.map((album, i) => {
+        if (albums?.length === i + 1 && hasNextPage) {
           return (
-            <Album
-              key={album.album.id}
-              album={album.album}
-              access_token={session!.access_token!}
-            />
+            <div key={album.album.id} className='flex flex-col' ref={ref}>
+              <Album
+                album={album.album}
+                access_token={session!.access_token!}
+              />
+            </div>
           );
-        })}
-        {hasNextPage || isFetchingNextPage ? <div>Loading...</div> : null}
-      </div>
-    </>
+        }
+        return (
+          <Album
+            key={album.album.id}
+            album={album.album}
+            access_token={session!.access_token!}
+          />
+        );
+      })}
+      {hasNextPage || isFetchingNextPage ? <div>Loading...</div> : null}
+    </div>
   );
 };
 

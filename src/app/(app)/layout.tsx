@@ -23,7 +23,7 @@ const AppLayout = async ({ children, albums, signin }: Props) => {
           </main>
           <Footer />
         </div>
-        <aside className='overflow-scroll *:px-[var(--window-padding-x)] first:*:pt-[var(--window-padding-y)] last:*:pb-[var(--window-padding-y)]'>
+        <aside className='h-full overflow-scroll px-[var(--window-padding-x)] py-[var(--window-padding-y)]'>
           {session && albums}
           {!session && signin}
         </aside>
