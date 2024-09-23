@@ -1,74 +1,16 @@
-'use client';
+import AlbumLibrary from '@/app/(app)/@albums/album-library';
 
-import { useEffect, useRef } from 'react';
-import { signIn, useSession } from 'next-auth/react';
-import { useInView } from 'react-intersection-observer';
+const Albums = ({ searchParams }: { searchParams: { library: string } }) => {
+  const library = searchParams.library;
 
-import useAlbums from '@/hooks/use-albums';
-import Album from '@/components/album';
-
-const Albums = () => {
-  const { data: session } = useSession();
-
-  const {
-    data,
-    error,
-    status,
-    fetchNextPage,
-    hasNextPage,
-    isFetchingNextPage,
-  } = useAlbums();
-
-  const rootRef = useRef(null);
-  const { ref, inView } = useInView({
-    threshold: 0,
-    rootMargin: '100%',
-    root: rootRef.current,
-    triggerOnce: false,
-  });
-  useEffect(() => {
-    if (inView) {
-      fetchNextPage();
-    }
-  }, [fetchNextPage, inView]);
-
-  if (status === 'pending') {
-    return 'Loading...';
+  if (library === undefined) {
+    return;
   }
-
-  if (status === 'error') {
-    signIn('spotify');
-    return error.message;
-  }
-
-  const albums = data?.pages.flatMap((page) => page.items);
 
   return (
-    <div
-      className='mobile:gap-4 grid grid-cols-auto gap-8'
-      ref={rootRef.current}
-    >
-      {albums.map((album, i) => {
-        if (albums?.length === i + 1 && hasNextPage) {
-          return (
-            <div key={album.album.id} className='flex flex-col' ref={ref}>
-              <Album
-                album={album.album}
-                access_token={session!.access_token!}
-              />
-            </div>
-          );
-        }
-        return (
-          <Album
-            key={album.album.id}
-            album={album.album}
-            access_token={session!.access_token!}
-          />
-        );
-      })}
-      {hasNextPage || isFetchingNextPage ? <div>Loading...</div> : null}
-    </div>
+    <aside className='h-full w-full overflow-scroll px-[var(--window-padding-x)] py-[var(--window-padding-y)]'>
+      {<AlbumLibrary />}
+    </aside>
   );
 };
 
