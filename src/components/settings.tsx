@@ -1,17 +1,23 @@
 'use client';
 
 import { useSearchParams } from 'next/navigation';
-import Button from '@/components/ui/button';
-import Link from 'next/link';
+import Toggle from '@/components/ui/toggle';
+import { useRouter } from 'next/navigation';
 
 const Settings = () => {
-  const showLibrary = useSearchParams().get('library');
+  const router = useRouter();
+
+  const showLibrary = useSearchParams().get('library') !== null;
 
   return (
     <>
-      <Button asChild>
-        <Link href={`?${showLibrary === null ? 'library' : ''}`}>Library</Link>
-      </Button>
+      <Toggle
+        pressed={showLibrary}
+        onPressedChange={() => router.push(`?${showLibrary ? '' : 'library'}`)}
+      >
+        {showLibrary && 'Hide Library'}
+        {!showLibrary && 'Show Library'}
+      </Toggle>
     </>
   );
 };
