@@ -15,8 +15,12 @@ const Navbar = async () => {
         </Link>
       </Button>
       <nav className='flex gap-4'>
-        <Settings />
-        {session && <SignOutButton>Sign out</SignOutButton>}
+        {session && (
+          <>
+            <Settings />
+            <SignOutButton>Sign out</SignOutButton>
+          </>
+        )}
       </nav>
     </header>
   );
