@@ -6,6 +6,7 @@ import { Toaster } from 'sonner';
 
 import '@/globals.css';
 import Navbar from '@/components/navbar';
+import Footer from '@/components/footer';
 
 interface Props {
   children: ReactNode;
@@ -21,10 +22,11 @@ const RootLayout = async ({ children }: Props) => {
   return (
     <html lang='en' className='bg-black text-white'>
       <body
-        className={`${GeistSans.className} flex h-dvh flex-col justify-between divide-y divide-gray-100 overscroll-none`}
+        className={`${GeistSans.className} flex h-dvh flex-col gap-4 overscroll-none p-4`}
       >
         <Navbar />
         {children}
+        <Footer />
         <Toaster
           theme='dark'
           position='bottom-center'

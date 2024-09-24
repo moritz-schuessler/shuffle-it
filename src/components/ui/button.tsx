@@ -20,7 +20,7 @@ const buttonVariants = cva(
         md: 'rounded-md',
       },
       padding: {
-        default: 'px-4 py-2',
+        default: 'px-2 py-2',
         none: '',
       },
     },

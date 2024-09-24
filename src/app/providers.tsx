@@ -3,14 +3,11 @@
 import { ReactNode } from 'react';
 import { SessionProvider } from 'next-auth/react';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { Provider as JotaiProvider } from 'jotai';
 
 const Providers = ({ children }: { children: ReactNode }) => {
   return (
     <AuthProvider>
-      <ReactQueryProvider>
-        <JotaiProvider>{children}</JotaiProvider>
-      </ReactQueryProvider>
+      <ReactQueryProvider>{children}</ReactQueryProvider>
     </AuthProvider>
   );
 };

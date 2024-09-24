@@ -2,25 +2,25 @@
 
 import { useState } from 'react';
 import { useSession } from 'next-auth/react';
-import { useAtomValue } from 'jotai';
 
 import Button from '@/components/ui/button';
 import usePlayback from '@/hooks/use-playback';
-import totalSavedAlbumsAtom from '@/lib/atoms/total-saved-albums-atom';
+import useTotalSavedAlbums from '@/hooks/use-total-saved-albums';
 import { toast } from 'sonner';
 import { AlbumToast } from '@/components/toast-variants';
 
 const Shuffle = () => {
   const [isPending, setIsPending] = useState(false);
   const { data: session } = useSession();
-  const totalSavedAlbums = useAtomValue(totalSavedAlbumsAtom);
+
+  const totalSavedAlbums = useTotalSavedAlbums();
 
   const mutation = usePlayback();
 
   const handleClick = async () => {
     setIsPending(true);
 
-    const offset = Math.floor(Math.random() * totalSavedAlbums);
+    const offset = Math.floor(Math.random() * totalSavedAlbums!);
 
     const response = await fetch(
       `https://api.spotify.com/v1/me/albums?offset=${offset}&limit=1&locale=*`,

@@ -1,74 +1,41 @@
-'use client';
+import AlbumLibrary from '@/app/(app)/@albums/album-library';
+import Button from '@/components/ui/button';
+import Link from 'next/link';
 
-import { useEffect, useRef } from 'react';
-import { signIn, useSession } from 'next-auth/react';
-import { useInView } from 'react-intersection-observer';
+import { ArchiveIcon } from '@radix-ui/react-icons';
 
-import useAlbums from '@/hooks/use-albums';
-import Album from '@/components/album';
+const Albums = ({ searchParams }: { searchParams: { library: string } }) => {
+  const library = searchParams.library !== undefined;
 
-const Albums = () => {
-  const { data: session } = useSession();
-
-  const {
-    data,
-    error,
-    status,
-    fetchNextPage,
-    hasNextPage,
-    isFetchingNextPage,
-  } = useAlbums();
-
-  const rootRef = useRef(null);
-  const { ref, inView } = useInView({
-    threshold: 0,
-    rootMargin: '100%',
-    root: rootRef.current,
-    triggerOnce: false,
-  });
-  useEffect(() => {
-    if (inView) {
-      fetchNextPage();
-    }
-  }, [fetchNextPage, inView]);
-
-  if (status === 'pending') {
-    return 'Loading...';
+  if (!library) {
+    return (
+      <aside className='h-full'>
+        <Button
+          variant='secondary'
+          className='flex h-full flex-col items-center gap-2 mobile:h-fit mobile:flex-row mobile:items-center mobile:justify-center'
+          asChild
+        >
+          <Link href='?library'>
+            <ArchiveIcon className='size-6 mobile:size-5' />
+            <div className='[writing-mode:vertical-lr] mobile:[writing-mode:horizontal-tb]'>
+              Show Library
+            </div>
+          </Link>
+        </Button>
+      </aside>
+    );
   }
-
-  if (status === 'error') {
-    signIn('spotify');
-    return error.message;
-  }
-
-  const albums = data?.pages.flatMap((page) => page.items);
 
   return (
-    <div
-      className='mobile:gap-4 grid grid-cols-auto gap-8'
-      ref={rootRef.current}
-    >
-      {albums.map((album, i) => {
-        if (albums?.length === i + 1 && hasNextPage) {
-          return (
-            <div key={album.album.id} className='flex flex-col' ref={ref}>
-              <Album
-                album={album.album}
-                access_token={session!.access_token!}
-              />
-            </div>
-          );
-        }
-        return (
-          <Album
-            key={album.album.id}
-            album={album.album}
-            access_token={session!.access_token!}
-          />
-        );
-      })}
-      {hasNextPage || isFetchingNextPage ? <div>Loading...</div> : null}
-    </div>
+    <aside className='flex h-full w-full flex-col gap-2 overflow-scroll rounded-md bg-gray-200 p-2'>
+      <div className='flex w-full justify-between'>
+        <div className='flex items-center p-2'>Album Library</div>
+        <Button variant='ghost' className='flex h-full flex-col gap-4' asChild>
+          <Link href='?'>Hide Library</Link>
+        </Button>
+      </div>
+      <AlbumLibrary />
+    </aside>
   );
 };
 
