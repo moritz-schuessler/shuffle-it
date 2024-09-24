@@ -1,7 +1,8 @@
 import AlbumLibrary from '@/app/(app)/@albums/album-library';
 import Button from '@/components/ui/button';
 import Link from 'next/link';
-import LibraryIcon from '@/assets/icons/library-icon';
+
+import { ArchiveIcon } from '@radix-ui/react-icons';
 
 const Albums = ({ searchParams }: { searchParams: { library: string } }) => {
   const library = searchParams.library !== undefined;
@@ -11,11 +12,11 @@ const Albums = ({ searchParams }: { searchParams: { library: string } }) => {
       <aside className='h-full'>
         <Button
           variant='secondary'
-          className='flex h-full flex-col gap-2 mobile:h-fit mobile:flex-row mobile:items-center mobile:justify-center'
+          className='flex h-full flex-col items-center gap-2 mobile:h-fit mobile:flex-row mobile:items-center mobile:justify-center'
           asChild
         >
           <Link href='?library'>
-            <LibraryIcon />
+            <ArchiveIcon className='size-6 mobile:size-5' />
             <div className='[writing-mode:vertical-lr] mobile:[writing-mode:horizontal-tb]'>
               Show Library
             </div>
