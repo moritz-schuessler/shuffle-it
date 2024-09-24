@@ -43,10 +43,7 @@ const AlbumLibrary = () => {
   const albums = data?.pages.flatMap((page) => page.items);
 
   return (
-    <div
-      className='grid w-full grid-cols-auto gap-8 mobile:gap-4'
-      ref={rootRef.current}
-    >
+    <div className='grid w-full grid-cols-auto gap-4' ref={rootRef.current}>
       {albums.map((album, i) => {
         if (albums?.length === i + 1 && hasNextPage) {
           return (

@@ -31,9 +31,9 @@ const Album = ({ album, access_token }: Props) => {
       padding='none'
       onClick={handleClick}
       disabled={mutation.status === 'pending'}
-      className='mobile:flex-row mobile:p-2 flex flex-col gap-4 p-4'
+      className='flex flex-col gap-2 p-2 mobile:flex-row'
     >
-      <div className='mobile:grow-0 mobile:w-12 flex aspect-square shrink-0 grow'>
+      <div className='flex aspect-square shrink-0 grow mobile:w-12 mobile:grow-0'>
         <Image
           src={album.images[0].url}
           alt={`Album Cover of ${album.name}`}

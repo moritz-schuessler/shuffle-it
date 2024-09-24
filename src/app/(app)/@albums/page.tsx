@@ -6,7 +6,7 @@ import LibraryIcon from '@/assets/icons/library-icon';
 const Albums = ({ searchParams }: { searchParams: { library: string } }) => {
   const library = searchParams.library !== undefined;
 
-  if (library) {
+  if (!library) {
     return (
       <aside className='h-full px-[var(--window-padding-x)] py-[var(--window-padding-y)]'>
         <Button
@@ -14,11 +14,9 @@ const Albums = ({ searchParams }: { searchParams: { library: string } }) => {
           className='flex h-full flex-col gap-4'
           asChild
         >
-          <Link href={`?${library ? '' : 'library'}`}>
+          <Link href='?library'>
             <LibraryIcon />
-            <span className='rotate-180 [writing-mode:vertical-lr]'>
-              Show Library
-            </span>
+            <div className='[writing-mode:vertical-lr]'>Show Library</div>
           </Link>
         </Button>
       </aside>
@@ -26,8 +24,20 @@ const Albums = ({ searchParams }: { searchParams: { library: string } }) => {
   }
 
   return (
-    <aside className='h-full w-full overflow-scroll px-[var(--window-padding-x)] py-[var(--window-padding-y)]'>
-      {<AlbumLibrary />}
+    <aside className='h-full w-full px-[var(--window-padding-x)] py-[var(--window-padding-y)]'>
+      <div className='flex h-full flex-col gap-2 overflow-scroll rounded-md bg-gray-200 p-2'>
+        <div className='flex w-full justify-between'>
+          <div className='flex items-center p-2'>Album Library</div>
+          <Button
+            variant='ghost'
+            className='flex h-full flex-col gap-4'
+            asChild
+          >
+            <Link href='?'>Hide Library</Link>
+          </Button>
+        </div>
+        <AlbumLibrary />
+      </div>
     </aside>
   );
 };
