@@ -8,15 +8,17 @@ const Albums = ({ searchParams }: { searchParams: { library: string } }) => {
 
   if (!library) {
     return (
-      <aside className='h-full px-[var(--window-padding-x)] py-[var(--window-padding-y)]'>
+      <aside className='h-full'>
         <Button
           variant='secondary'
-          className='flex h-full flex-col gap-4'
+          className='flex h-full flex-col gap-2 mobile:h-fit mobile:flex-row mobile:items-center mobile:justify-center'
           asChild
         >
           <Link href='?library'>
             <LibraryIcon />
-            <div className='[writing-mode:vertical-lr]'>Show Library</div>
+            <div className='[writing-mode:vertical-lr] mobile:[writing-mode:horizontal-tb]'>
+              Show Library
+            </div>
           </Link>
         </Button>
       </aside>
@@ -24,20 +26,14 @@ const Albums = ({ searchParams }: { searchParams: { library: string } }) => {
   }
 
   return (
-    <aside className='h-full w-full px-[var(--window-padding-x)] py-[var(--window-padding-y)]'>
-      <div className='flex h-full flex-col gap-2 overflow-scroll rounded-md bg-gray-200 p-2'>
-        <div className='flex w-full justify-between'>
-          <div className='flex items-center p-2'>Album Library</div>
-          <Button
-            variant='ghost'
-            className='flex h-full flex-col gap-4'
-            asChild
-          >
-            <Link href='?'>Hide Library</Link>
-          </Button>
-        </div>
-        <AlbumLibrary />
+    <aside className='flex h-full w-full flex-col gap-2 overflow-scroll rounded-md bg-gray-200 p-2'>
+      <div className='flex w-full justify-between'>
+        <div className='flex items-center p-2'>Album Library</div>
+        <Button variant='ghost' className='flex h-full flex-col gap-4' asChild>
+          <Link href='?'>Hide Library</Link>
+        </Button>
       </div>
+      <AlbumLibrary />
     </aside>
   );
 };

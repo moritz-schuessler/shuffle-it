@@ -22,7 +22,7 @@ const RootLayout = async ({ children }: Props) => {
   return (
     <html lang='en' className='bg-black text-white'>
       <body
-        className={`${GeistSans.className} flex h-dvh flex-col justify-between divide-y divide-gray-100 overscroll-none`}
+        className={`${GeistSans.className} flex h-dvh flex-col gap-4 overscroll-none p-4`}
       >
         <Navbar />
         {children}
