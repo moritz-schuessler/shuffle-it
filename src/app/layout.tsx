@@ -6,6 +6,7 @@ import { Toaster } from 'sonner';
 
 import '@/globals.css';
 import Navbar from '@/components/navbar';
+import Footer from '@/components/footer';
 
 interface Props {
   children: ReactNode;
@@ -25,6 +26,7 @@ const RootLayout = async ({ children }: Props) => {
       >
         <Navbar />
         {children}
+        <Footer />
         <Toaster
           theme='dark'
           position='bottom-center'

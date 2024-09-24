@@ -2,7 +2,6 @@ import { ReactNode } from 'react';
 
 import '@/globals.css';
 import Providers from '@/app/providers';
-import Footer from '@/components/footer';
 import auth from '@/lib/auth/auth';
 
 interface Props {
@@ -21,7 +20,6 @@ const AppLayout = async ({ children, albums, signin }: Props) => {
           <main className='flex h-full flex-col justify-between gap-4'>
             {children}
           </main>
-          <Footer />
         </div>
         {session && albums}
         {!session && signin}
