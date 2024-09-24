@@ -49,14 +49,16 @@ const Shuffle = () => {
   };
 
   return (
-    <Button
-      variant='secondary'
-      onClick={handleClick}
-      className='flex items-center justify-center'
-      disabled={!totalSavedAlbums || isPending}
-    >
-      {!isPending ? 'Shuffle' : 'Shuffling...'}
-    </Button>
+    <main className='flex h-full w-full flex-col justify-between gap-2 mobile:h-fit'>
+      <Button
+        variant='secondary'
+        onClick={handleClick}
+        className='flex items-center justify-center'
+        disabled={!totalSavedAlbums || isPending}
+      >
+        {!isPending ? 'Shuffle' : 'Shuffling...'}
+      </Button>
+    </main>
   );
 };
 
