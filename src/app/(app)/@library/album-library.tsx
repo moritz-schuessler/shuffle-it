@@ -1,7 +1,7 @@
 'use client';
 
 import { signIn, useSession } from 'next-auth/react';
-import useAlbums from '@/hooks/use-albums';
+import useLibrary from '@/hooks/use-library';
 import { useEffect, useRef } from 'react';
 import { useInView } from 'react-intersection-observer';
 import Album from '@/components/album';
@@ -16,7 +16,7 @@ const AlbumLibrary = () => {
     fetchNextPage,
     hasNextPage,
     isFetchingNextPage,
-  } = useAlbums();
+  } = useLibrary();
 
   const rootRef = useRef(null);
   const { ref, inView } = useInView({

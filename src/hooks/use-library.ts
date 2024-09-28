@@ -3,7 +3,7 @@ import { useInfiniteQuery } from '@tanstack/react-query';
 
 import getAlbums from '@/lib/spotify/get-albums';
 
-const useAlbums = () => {
+const useLibrary = () => {
   const { status } = useSession();
 
   return useInfiniteQuery({
@@ -22,4 +22,4 @@ const useAlbums = () => {
   });
 };
 
-export default useAlbums;
+export default useLibrary;
