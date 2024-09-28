@@ -1,7 +1,6 @@
 import { ReactNode } from 'react';
 
 import '@/globals.css';
-import Providers from '@/app/providers';
 import auth from '@/lib/auth/auth';
 
 interface Props {
