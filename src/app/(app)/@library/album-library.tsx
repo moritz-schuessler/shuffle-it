@@ -48,20 +48,11 @@ const AlbumLibrary = () => {
         if (albums?.length === i + 1 && hasNextPage) {
           return (
             <div key={album.album.id} className='flex flex-col' ref={ref}>
-              <Album
-                album={album.album}
-                access_token={session!.access_token!}
-              />
+              <Album album={album.album} />
             </div>
           );
         }
-        return (
-          <Album
-            key={album.album.id}
-            album={album.album}
-            access_token={session!.access_token!}
-          />
-        );
+        return <Album key={album.album.id} album={album.album} />;
       })}
       {hasNextPage || isFetchingNextPage ? <div>Loading...</div> : null}
     </div>

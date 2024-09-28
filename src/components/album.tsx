@@ -5,10 +5,9 @@ import Button from '@/components/ui/button';
 
 interface Props {
   album: Album;
-  access_token: string;
 }
 
-const Album = ({ album, access_token }: Props) => {
+const Album = ({ album }: Props) => {
   const mutation = usePlayback();
 
   const handleClick = () => {
