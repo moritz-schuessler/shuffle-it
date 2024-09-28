@@ -1,40 +1,15 @@
-import { useInfiniteQuery } from '@tanstack/react-query';
 import { useSession } from 'next-auth/react';
+import { useInfiniteQuery } from '@tanstack/react-query';
 
-const getAlbums = async (
-  access_token: string,
-  expires_at: number,
-  { pageParam }: { pageParam: { offset: number; limit: number } },
-) => {
-  if (Date.now() >= expires_at) {
-    throw new Error('Access Token is invalid');
-  }
-
-  const data = await fetch(
-    `https://api.spotify.com/v1/me/albums?offset=${pageParam.offset}&limit=${pageParam.limit}&locale=*`,
-    {
-      method: 'GET',
-      headers: {
-        Authorization: `Bearer ${access_token}`,
-      },
-    },
-  );
-
-  if (!data) {
-    throw new Error();
-  }
-
-  return (await data.json()) as Albums;
-};
+import getAlbums from '@/lib/spotify/get-albums';
 
 const useAlbums = () => {
-  const { data: session } = useSession();
+  const { status } = useSession();
 
   return useInfiniteQuery({
-    queryKey: ['albums', session?.access_token!, session?.expires_at!],
-    queryFn: ({ pageParam }) =>
-      getAlbums(session?.access_token!, session?.expires_at!, { pageParam }),
-    enabled: !!session?.access_token,
+    queryKey: ['albums'],
+    queryFn: ({ pageParam }) => getAlbums(pageParam.offset, pageParam.limit),
+    enabled: status === 'authenticated',
     initialPageParam: { offset: 0, limit: 20 },
     getNextPageParam: (lastPage) => {
       if (lastPage.next) {
