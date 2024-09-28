@@ -20,7 +20,7 @@ const Shuffle = () => {
       <div className='flex h-full w-full flex-col gap-2 overflow-scroll mobile:h-fit'>
         <AlbumQueue />
         <Button
-          variant='secondary'
+          variant='dashed'
           onClick={() => queueMutation.mutate()}
           className='flex items-center justify-center'
         >
@@ -28,7 +28,6 @@ const Shuffle = () => {
         </Button>
       </div>
       <Button
-        variant='secondary'
         onClick={() => playbackMutation.playQueue()}
         className='flex items-center justify-center'
       >

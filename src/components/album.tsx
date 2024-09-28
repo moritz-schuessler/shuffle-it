@@ -18,9 +18,6 @@ const Album = ({ album }: Props) => {
 
   return (
     <Button
-      variant='secondary'
-      rounded='md'
-      padding='none'
       onClick={handleClick}
       className='flex flex-col gap-2 p-2 mobile:flex-row'
     >

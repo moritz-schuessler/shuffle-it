@@ -11,7 +11,6 @@ const Albums = ({ searchParams }: { searchParams: { library: string } }) => {
     return (
       <aside className='h-full mobile:h-fit'>
         <Button
-          variant='secondary'
           className='flex h-full flex-col items-center gap-2 mobile:h-fit mobile:flex-row mobile:items-center mobile:justify-center'
           asChild
         >
