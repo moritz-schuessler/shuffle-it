@@ -1,18 +1,9 @@
-import {
-  useMutation,
-  useMutationState,
-  useQueryClient,
-} from '@tanstack/react-query';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 
 import putPlayback from '@/lib/spotify/put-playback';
 
 const usePlayback = () => {
   const queryClient = useQueryClient();
-
-  const queue = useMutationState({
-    filters: { mutationKey: ['queue'] },
-    select: (mutation) => mutation.state.data as Album,
-  });
 
   const mutation = useMutation({
     mutationFn: ({ uris }: { uris: string[] }) => {
@@ -25,6 +16,8 @@ const usePlayback = () => {
 
   const playQueue = (uris: string[] = []) => {
     if (uris.length === 0) {
+      const queue = queryClient.getQueryData(['queue']) as Album[];
+
       uris = queue
         .flatMap((album) => album?.tracks.items)
         .flatMap((tracks) => tracks?.uri);
