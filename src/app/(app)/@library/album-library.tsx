@@ -1,14 +1,12 @@
 'use client';
 
-import { signIn, useSession } from 'next-auth/react';
-import useAlbums from '@/hooks/use-albums';
+import { signIn } from 'next-auth/react';
+import useLibrary from '@/hooks/use-library';
 import { useEffect, useRef } from 'react';
 import { useInView } from 'react-intersection-observer';
 import Album from '@/components/album';
 
 const AlbumLibrary = () => {
-  const { data: session } = useSession();
-
   const {
     data,
     error,
@@ -16,7 +14,7 @@ const AlbumLibrary = () => {
     fetchNextPage,
     hasNextPage,
     isFetchingNextPage,
-  } = useAlbums();
+  } = useLibrary();
 
   const rootRef = useRef(null);
   const { ref, inView } = useInView({
@@ -48,20 +46,11 @@ const AlbumLibrary = () => {
         if (albums?.length === i + 1 && hasNextPage) {
           return (
             <div key={album.album.id} className='flex flex-col' ref={ref}>
-              <Album
-                album={album.album}
-                access_token={session!.access_token!}
-              />
+              <Album album={album.album} />
             </div>
           );
         }
-        return (
-          <Album
-            key={album.album.id}
-            album={album.album}
-            access_token={session!.access_token!}
-          />
-        );
+        return <Album key={album.album.id} album={album.album} />;
       })}
       {hasNextPage || isFetchingNextPage ? <div>Loading...</div> : null}
     </div>

@@ -1,36 +1,25 @@
 import Image from 'next/image';
 
-import usePlayback from '@/hooks/use-playback';
 import Button from '@/components/ui/button';
-import { toast } from 'sonner';
-import { AlbumToast } from '@/components/toast-variants';
+import { useQueryClient } from '@tanstack/react-query';
 
 interface Props {
   album: Album;
-  access_token: string;
 }
 
-const Album = ({ album, access_token }: Props) => {
-  const mutation = usePlayback();
+const Album = ({ album }: Props) => {
+  const queryClient = useQueryClient();
 
   const handleClick = () => {
-    mutation.mutate(
-      { access_token, uri: album.uri },
-      {
-        onSuccess: () => {
-          toast(<AlbumToast album={album} />);
-        },
-      },
-    );
+    queryClient.setQueryData(['queue'], (oldData: Album[]) => [
+      ...oldData,
+      album,
+    ]);
   };
 
   return (
     <Button
-      variant='secondary'
-      rounded='md'
-      padding='none'
       onClick={handleClick}
-      disabled={mutation.status === 'pending'}
       className='flex flex-col gap-2 p-2 mobile:flex-row'
     >
       <div className='flex aspect-square shrink-0 grow mobile:w-12 mobile:grow-0'>

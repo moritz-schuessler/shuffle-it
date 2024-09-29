@@ -1,26 +1,32 @@
 import { ReactNode } from 'react';
 
 import '@/globals.css';
-import Providers from '@/app/providers';
 import auth from '@/lib/auth/auth';
 
 interface Props {
   children: ReactNode;
-  albums: ReactNode;
+  shuffle: ReactNode;
+  library: ReactNode;
   signin: ReactNode;
 }
 
-const AppLayout = async ({ children, albums, signin }: Props) => {
+const AppLayout = async ({ children, shuffle, library, signin }: Props) => {
   const session = await auth();
 
-  return (
-    <Providers>
-      <div className='flex h-full gap-4 overflow-hidden mobile:flex-col-reverse'>
-        {children}
-        {session && albums}
-        {!session && signin}
+  if (!session) {
+    return (
+      <div className='flex h-full justify-between gap-4 overflow-hidden mobile:flex-col-reverse'>
+        {signin}
       </div>
-    </Providers>
+    );
+  }
+
+  return (
+    <div className='flex h-full justify-between gap-4 overflow-hidden mobile:flex-col'>
+      {children}
+      {shuffle}
+      {library}
+    </div>
   );
 };
 

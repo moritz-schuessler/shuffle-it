@@ -1,29 +1,32 @@
-import { useMutation } from '@tanstack/react-query';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 
-const putPlayback = (access_token: string, uri: string) => {
-  return fetch('https://api.spotify.com/v1/me/player/play', {
-    method: 'PUT',
-    headers: {
-      Authorization: `Bearer ${access_token}`,
-    },
-    body: JSON.stringify({
-      context_uri: uri,
-    }),
-  });
-};
+import putPlayback from '@/lib/spotify/put-playback';
 
 const usePlayback = () => {
-  return useMutation({
-    mutationFn: ({
-      access_token,
-      uri,
-    }: {
-      access_token: string;
-      uri: string;
-    }) => {
-      return putPlayback(access_token, uri);
+  const queryClient = useQueryClient();
+
+  const mutation = useMutation({
+    mutationFn: ({ uris }: { uris: string[] }) => {
+      return putPlayback(uris);
+    },
+    onSuccess: () => {
+      queryClient.resetQueries({ queryKey: ['queue'] });
     },
   });
+
+  const playQueue = (uris: string[] = []) => {
+    if (uris.length === 0) {
+      const queue = queryClient.getQueryData(['queue']) as Album[];
+
+      uris = queue
+        .flatMap((album) => album?.tracks.items)
+        .flatMap((tracks) => tracks?.uri);
+    }
+
+    mutation.mutate({ uris });
+  };
+
+  return { isPending: mutation.isPending, playQueue };
 };
 
 export default usePlayback;

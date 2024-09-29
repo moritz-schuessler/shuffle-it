@@ -5,29 +5,18 @@ import { Slot } from '@radix-ui/react-slot';
 import { cva, VariantProps } from 'class-variance-authority';
 
 const buttonVariants = cva(
-  [
-    'transition duration-75 rounded-md disabled:bg-opacity-60 disabled:opacity-80',
-  ],
+  ['transition duration-75 rounded-md px-2 py-2 rounded-md'],
   {
     variants: {
       variant: {
-        default: 'bg-white text-black enabled:hover:bg-gray-400',
-        secondary: 'bg-gray-200 enabled:hover:bg-gray-100',
+        default: 'bg-gray-200 hover:bg-gray-100',
+        secondary: 'bg-white text-black hover:bg-gray-400',
         ghost: 'hover:bg-gray-100',
-      },
-      rounded: {
-        none: 'rounded-none',
-        md: 'rounded-md',
-      },
-      padding: {
-        default: 'px-2 py-2',
-        none: '',
+        dashed: 'border-dashed border-2 border-gray-200 hover:border-gray-100',
       },
     },
     defaultVariants: {
       variant: 'default',
-      rounded: 'md',
-      padding: 'default',
     },
   },
 );
@@ -38,22 +27,10 @@ interface Props
   asChild?: boolean;
 }
 
-const Button = ({
-  className,
-  variant,
-  rounded,
-  padding,
-  asChild = false,
-  ...props
-}: Props) => {
+const Button = ({ className, variant, asChild = false, ...props }: Props) => {
   const Comp = asChild ? Slot : 'button';
 
-  return (
-    <Comp
-      className={buttonVariants({ variant, rounded, padding, className })}
-      {...props}
-    />
-  );
+  return <Comp className={buttonVariants({ variant, className })} {...props} />;
 };
 
 export default Button;
