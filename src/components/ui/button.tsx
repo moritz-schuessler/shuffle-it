@@ -5,13 +5,12 @@ import { Slot } from '@radix-ui/react-slot';
 import { cva, VariantProps } from 'class-variance-authority';
 
 const buttonVariants = cva(
-  [
-    'transition duration-75 rounded-md disabled:bg-opacity-60 disabled:opacity-80 px-2 py-2 rounded-md',
-  ],
+  ['transition duration-75 rounded-md px-2 py-2 rounded-md'],
   {
     variants: {
       variant: {
-        default: 'bg-gray-200 enabled:hover:bg-gray-100',
+        default: 'bg-gray-200 hover:bg-gray-100',
+        secondary: 'bg-white text-black hover:bg-gray-400',
         ghost: 'hover:bg-gray-100',
         dashed: 'border-dashed border-2 border-gray-200 hover:border-gray-100',
       },
