@@ -1,19 +1,20 @@
 import Image from 'next/image';
 
-import usePlayback from '@/hooks/use-playback';
 import Button from '@/components/ui/button';
+import { useQueryClient } from '@tanstack/react-query';
 
 interface Props {
   album: Album;
 }
 
 const Album = ({ album }: Props) => {
-  const mutation = usePlayback();
+  const queryClient = useQueryClient();
 
   const handleClick = () => {
-    const uris = album.tracks.items.flatMap((track) => track?.uri);
-
-    mutation.playQueue(uris);
+    queryClient.setQueryData(['queue'], (oldData: Album[]) => [
+      ...oldData,
+      album,
+    ]);
   };
 
   return (
