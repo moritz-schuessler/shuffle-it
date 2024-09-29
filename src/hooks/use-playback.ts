@@ -19,7 +19,7 @@ const usePlayback = () => {
       return putPlayback(uris);
     },
     onSuccess: () => {
-      queryClient.getMutationCache().clear();
+      queryClient.resetQueries({ queryKey: ['queue'] });
     },
   });
 

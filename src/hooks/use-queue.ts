@@ -22,7 +22,17 @@ const useQueue = () => {
 
       return response.items[0].album;
     },
-    gcTime: Infinity,
+    onSuccess: (data) => {
+      console.log(data);
+
+      queryClient.setQueryData(['queue'], (oldData: Album[]) => {
+        if (!oldData) {
+          return [data];
+        }
+
+        return [...oldData, data];
+      });
+    },
   });
 };
 

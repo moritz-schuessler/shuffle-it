@@ -1,11 +1,9 @@
-import { useMutationState } from '@tanstack/react-query';
+import { useQueryClient } from '@tanstack/react-query';
 import Image from 'next/image';
 
 const AlbumQueue = () => {
-  const data = useMutationState({
-    filters: { mutationKey: ['queue'] },
-    select: (mutation) => mutation.state.data as Album,
-  });
+  const queryClient = useQueryClient();
+  const data = queryClient.getQueryData(['queue']) as Album[];
 
   return (
     <>
