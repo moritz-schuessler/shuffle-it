@@ -26,8 +26,8 @@ const Albums = ({ searchParams }: { searchParams: { library: string } }) => {
   }
 
   return (
-    <aside className='flex h-full w-full flex-col gap-2 overflow-scroll rounded-md bg-gray-200 p-2'>
-      <div className='flex w-full justify-between'>
+    <aside className='flex h-full w-full flex-col divide-y-2 divide-gray-100 rounded-md bg-gray-200'>
+      <div className='flex w-full justify-between p-2'>
         <div className='flex items-center p-2'>Album Library</div>
         <Button variant='ghost' className='flex h-full flex-col gap-4' asChild>
           <Link href='?'>Hide Library</Link>
