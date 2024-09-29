@@ -1,14 +1,12 @@
 'use client';
 
-import { signIn, useSession } from 'next-auth/react';
+import { signIn } from 'next-auth/react';
 import useLibrary from '@/hooks/use-library';
 import { useEffect, useRef } from 'react';
 import { useInView } from 'react-intersection-observer';
 import Album from '@/components/album';
 
 const AlbumLibrary = () => {
-  const { data: session } = useSession();
-
   const {
     data,
     error,
