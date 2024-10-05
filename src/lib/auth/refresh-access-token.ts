@@ -3,7 +3,7 @@ import { JWT } from 'next-auth/jwt';
 const refreshAccessToken = async (token: JWT) => {
   const response = await fetch('https://accounts.spotify.com/api/token', {
     headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-    body: JSON.stringify({
+    body: new URLSearchParams({
       client_id: process.env.SPOTIFY_ID!,
       client_secret: process.env.SPOTIFY_SECRET!,
       grant_type: 'refresh_token',
