@@ -23,24 +23,24 @@ const RootLayout = async ({ children }: Props) => {
   return (
     <Providers>
       <html lang='en' className='bg-black text-white'>
-        <body
-          className={`${GeistSans.className} flex h-dvh flex-col gap-4 overscroll-none p-4`}
-        >
-          <Navbar />
-          {children}
-          <Footer />
-          <Toaster
-            theme='dark'
-            position='bottom-center'
-            richColors
-            className='toaster group'
-            toastOptions={{
-              classNames: {
-                toast:
-                  'group toast group-[.toaster]:bg-black group-[.toaster]:border-gray-100',
-              },
-            }}
-          />
+        <body className={`${GeistSans.className}`}>
+          <div className=' flex h-dvh flex-col gap-4 overscroll-none p-4'>
+            <Navbar />
+            {children}
+            <Footer />
+            <Toaster
+              theme='dark'
+              position='bottom-center'
+              richColors
+              className='toaster group'
+              toastOptions={{
+                classNames: {
+                  toast:
+                    'group toast group-[.toaster]:bg-black group-[.toaster]:border-gray-100',
+                },
+              }}
+            />
+          </div>
         </body>
       </html>
     </Providers>

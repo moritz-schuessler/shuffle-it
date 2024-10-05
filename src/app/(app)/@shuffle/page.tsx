@@ -6,6 +6,7 @@ import { PlusIcon } from '@radix-ui/react-icons';
 import useQueue from '@/hooks/use-queue';
 import usePlayback from '@/hooks/use-playback';
 import AlbumQueue from '@/app/(app)/@shuffle/album-queue';
+import ActiveDevice from '@/app/(app)/@shuffle/active-device';
 
 const Shuffle = () => {
   const queueMutation = useQueue();
@@ -27,12 +28,15 @@ const Shuffle = () => {
           <PlusIcon />
         </Button>
       </div>
-      <Button
-        onClick={() => playbackMutation.playQueue()}
-        className='flex items-center justify-center'
-      >
-        Play Queue
-      </Button>
+      <div className='flex justify-between gap-2'>
+        <Button
+          onClick={() => playbackMutation.playQueue()}
+          className='flex w-full items-center justify-center'
+        >
+          Play Queue
+        </Button>
+        <ActiveDevice />
+      </div>
     </main>
   );
 };
