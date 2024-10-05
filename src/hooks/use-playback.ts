@@ -14,14 +14,11 @@ const usePlayback = () => {
     },
   });
 
-  const playQueue = (uris: string[] = []) => {
-    if (uris.length === 0) {
-      const queue = queryClient.getQueryData(['queue']) as Album[];
-
-      uris = queue
-        .flatMap((album) => album?.tracks.items)
-        .flatMap((tracks) => tracks?.uri);
-    }
+  const playQueue = () => {
+    const queue = queryClient.getQueryData(['queue']) as Album[];
+    const uris = queue
+      .flatMap((album) => album?.tracks.items)
+      .flatMap((tracks) => tracks?.uri);
 
     mutation.mutate({ uris });
   };
