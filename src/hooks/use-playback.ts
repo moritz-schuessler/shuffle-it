@@ -6,9 +6,7 @@ const usePlayback = () => {
   const queryClient = useQueryClient();
 
   const mutation = useMutation({
-    mutationFn: ({ uris }: { uris: string[] }) => {
-      const device = queryClient.getQueryData(['active-device']) as string;
-
+    mutationFn: ({ device, uris }: { device: string; uris: string[] }) => {
       return putPlayback(uris, device);
     },
     onSuccess: () => {
@@ -16,13 +14,15 @@ const usePlayback = () => {
     },
   });
 
-  const playQueue = () => {
+  const playQueue = (formData: FormData) => {
     const queue = queryClient.getQueryData(['queue']) as Album[];
     const uris = queue
       .flatMap((album) => album?.tracks.items)
       .flatMap((tracks) => tracks?.uri);
 
-    mutation.mutate({ uris });
+    const device = formData.get('active-device')!.toString();
+
+    mutation.mutate({ device, uris });
   };
 
   return { isPending: mutation.isPending, playQueue };

@@ -28,15 +28,18 @@ const Shuffle = () => {
           <PlusIcon />
         </Button>
       </div>
-      <div className='flex justify-between gap-2'>
+      <form
+        action={playbackMutation.playQueue}
+        className='flex justify-between gap-2'
+      >
         <Button
-          onClick={() => playbackMutation.playQueue()}
+          type='submit'
           className='flex w-full items-center justify-center'
         >
           Play Queue
         </Button>
         <ActiveDevice />
-      </div>
+      </form>
     </main>
   );
 };

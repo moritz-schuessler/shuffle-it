@@ -22,6 +22,8 @@ const ActiveDevice = () => {
         queryClient.setQueryData(['active-device'], () => newActive);
         queryClient.invalidateQueries({ queryKey: ['active-device'] });
       }}
+      name='active-device'
+      required
       disabled={isFetching}
     >
       {devices!.map((device) => (
