@@ -18,12 +18,10 @@ const useDevices = () => {
       ['selected-device'],
       () => response.data?.find((device) => device.is_active)?.id,
     );
-    queryClient.invalidateQueries({ queryKey: ['selected-device'] });
   }
 
   if (response.data.length === 1) {
     queryClient.setQueryData(['selected-device'], () => response.data[0].id);
-    queryClient.invalidateQueries({ queryKey: ['selected-device'] });
   }
 
   return response;

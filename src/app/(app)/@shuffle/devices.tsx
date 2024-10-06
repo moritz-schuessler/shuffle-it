@@ -18,7 +18,6 @@ const Devices = () => {
       {...(selectedDevice ? { value: selectedDevice } : null)}
       onValueChange={(newActive) => {
         queryClient.setQueryData(['selected-device'], () => newActive);
-        queryClient.invalidateQueries({ queryKey: ['selected-device'] });
       }}
       name='selected-device'
       required
