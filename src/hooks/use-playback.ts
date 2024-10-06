@@ -6,24 +6,23 @@ const usePlayback = () => {
   const queryClient = useQueryClient();
 
   const mutation = useMutation({
-    mutationFn: ({ uris }: { uris: string[] }) => {
-      return putPlayback(uris);
+    mutationFn: ({ device, uris }: { device: string; uris: string[] }) => {
+      return putPlayback(uris, device);
     },
     onSuccess: () => {
       queryClient.resetQueries({ queryKey: ['queue'] });
     },
   });
 
-  const playQueue = (uris: string[] = []) => {
-    if (uris.length === 0) {
-      const queue = queryClient.getQueryData(['queue']) as Album[];
+  const playQueue = (formData: FormData) => {
+    const queue = queryClient.getQueryData(['queue']) as Album[];
+    const uris = queue
+      .flatMap((album) => album?.tracks.items)
+      .flatMap((tracks) => tracks?.uri);
 
-      uris = queue
-        .flatMap((album) => album?.tracks.items)
-        .flatMap((tracks) => tracks?.uri);
-    }
+    const device = formData.get('selected-device')!.toString();
 
-    mutation.mutate({ uris });
+    mutation.mutate({ device, uris });
   };
 
   return { isPending: mutation.isPending, playQueue };

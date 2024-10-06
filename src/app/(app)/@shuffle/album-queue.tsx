@@ -48,7 +48,6 @@ const AlbumQueue = () => {
                     queryClient.setQueryData(['queue'], (oldData: Album[]) => [
                       ...oldData.filter((value, i) => i !== index),
                     ]);
-                    queryClient.invalidateQueries({ queryKey: ['queue'] });
                   }}
                 >
                   <Cross1Icon aria-label='Remove Album from Queue' />
