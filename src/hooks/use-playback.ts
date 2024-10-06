@@ -7,7 +7,9 @@ const usePlayback = () => {
 
   const mutation = useMutation({
     mutationFn: ({ uris }: { uris: string[] }) => {
-      return putPlayback(uris);
+      const device = queryClient.getQueryData(['active-device']) as string;
+
+      return putPlayback(uris, device);
     },
     onSuccess: () => {
       queryClient.resetQueries({ queryKey: ['queue'] });
