@@ -6,7 +6,7 @@ import { PlusIcon } from '@radix-ui/react-icons';
 import useQueue from '@/hooks/use-queue';
 import usePlayback from '@/hooks/use-playback';
 import AlbumQueue from '@/app/(app)/@shuffle/album-queue';
-import ActiveDevice from '@/app/(app)/@shuffle/active-device';
+import Devices from '@/app/(app)/@shuffle/devices';
 
 const Shuffle = () => {
   const queueMutation = useQueue();
@@ -38,7 +38,7 @@ const Shuffle = () => {
         >
           Play Queue
         </Button>
-        <ActiveDevice />
+        <Devices />
       </form>
     </main>
   );

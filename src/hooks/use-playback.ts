@@ -20,7 +20,7 @@ const usePlayback = () => {
       .flatMap((album) => album?.tracks.items)
       .flatMap((tracks) => tracks?.uri);
 
-    const device = formData.get('active-device')!.toString();
+    const device = formData.get('selected-device')!.toString();
 
     mutation.mutate({ device, uris });
   };

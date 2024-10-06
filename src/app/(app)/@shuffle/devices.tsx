@@ -1,28 +1,26 @@
 'use client';
 
-import { useQuery, useQueryClient } from '@tanstack/react-query';
+import { useQueryClient } from '@tanstack/react-query';
 
 import { Select, SelectItem } from '@/components/ui/select';
 import useDevices from '@/hooks/use-devices';
+import useSelectedDevice from '@/hooks/use-selected-device';
 
-const ActiveDevice = () => {
+const Devices = () => {
   const queryClient = useQueryClient();
 
   const { data: devices, isFetching } = useDevices();
-  const { data: activeDevice } = useQuery({
-    queryKey: ['active-device'],
-    initialData: null,
-  });
+  const { data: selectedDevice } = useSelectedDevice();
 
   return (
     <Select
       placeholder='Choose a Device...'
-      {...(activeDevice ? { value: activeDevice } : null)}
+      {...(selectedDevice ? { value: selectedDevice } : null)}
       onValueChange={(newActive) => {
-        queryClient.setQueryData(['active-device'], () => newActive);
-        queryClient.invalidateQueries({ queryKey: ['active-device'] });
+        queryClient.setQueryData(['selected-device'], () => newActive);
+        queryClient.invalidateQueries({ queryKey: ['selected-device'] });
       }}
-      name='active-device'
+      name='selected-device'
       required
       disabled={isFetching}
     >
@@ -35,4 +33,4 @@ const ActiveDevice = () => {
   );
 };
 
-export default ActiveDevice;
+export default Devices;
