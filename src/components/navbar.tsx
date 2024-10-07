@@ -1,7 +1,7 @@
-import { SignOutButton } from '@/components/auth/auth-buttons';
-import auth from '@/lib/auth/auth';
-import Button from '@/components/ui/button';
 import Link from 'next/link';
+
+import { auth, signOut } from '@/auth';
+import Button from '@/components/ui/button';
 
 const Navbar = async () => {
   const session = await auth();
@@ -14,7 +14,17 @@ const Navbar = async () => {
         </Link>
       </Button>
       <nav className='flex gap-4'>
-        {session && <SignOutButton>Sign out</SignOutButton>}
+        {session && (
+          <form
+            className='flex flex-col gap-4'
+            action={async () => {
+              'use server';
+              await signOut();
+            }}
+          >
+            <Button type='submit'>Signout</Button>
+          </form>
+        )}
       </nav>
     </header>
   );

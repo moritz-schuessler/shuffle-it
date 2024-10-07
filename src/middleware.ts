@@ -1,15 +1,12 @@
-import { NextResponse } from 'next/server';
-import type { NextRequest } from 'next/server';
+import { auth } from '@/auth';
 
-const routes = ['/', '/privacy'];
+const appRoutes = ['/', '/privacy'];
 
-export const middleware = (request: NextRequest) => {
-  console.log(request.nextUrl.pathname);
-  if (routes.includes(request.nextUrl.pathname)) {
-    return NextResponse.next();
+export default auth((request) => {
+  if (!appRoutes.includes(request.nextUrl.pathname)) {
+    return Response.redirect(new URL('/', request.nextUrl.origin));
   }
-  return NextResponse.redirect(new URL('/', request.url));
-};
+});
 
 export const config = {
   matcher: ['/((?!api|_next/static|_next/image|favicon.ico).*)'],
