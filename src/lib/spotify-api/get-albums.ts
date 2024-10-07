@@ -17,7 +17,7 @@ const getAlbums = async (
     throw new Error();
   }
 
-  return (await response.json()) as Albums;
+  return (await response.json()) as AlbumResponse;
 };
 
 export default getAlbums;

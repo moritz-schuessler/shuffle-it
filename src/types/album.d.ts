@@ -1,4 +1,4 @@
-interface Albums {
+interface AlbumResponse {
   href: string;
   limit: number;
   next: string;
