@@ -1,22 +1,14 @@
-import { getSession } from 'next-auth/react';
-
-const getAlbums = async (offset: number, limit: number) => {
-  const session = await getSession();
-
-  if (!session) {
-    throw new Error('No Session');
-  }
-
-  if (Date.now() >= session.expires_at) {
-    throw new Error('Access Token is invalid');
-  }
-
+const getAlbums = async (
+  access_token: string,
+  offset: number,
+  limit: number,
+) => {
   const response = await fetch(
     `https://api.spotify.com/v1/me/albums?offset=${offset}&limit=${limit}&locale=*`,
     {
       method: 'GET',
       headers: {
-        Authorization: `Bearer ${session.access_token}`,
+        Authorization: `Bearer ${access_token}`,
       },
     },
   );

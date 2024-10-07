@@ -1,13 +1,14 @@
 import { useQuery, useQueryClient } from '@tanstack/react-query';
 
 import { getDevices } from '@/lib/spotify-api';
+import { getSession } from 'next-auth/react';
 
 const useDevices = () => {
   const queryClient = useQueryClient();
 
   const response = useQuery({
     queryKey: ['devices'],
-    queryFn: () => getDevices(),
+    queryFn: () => queryFunction(),
     initialData: [],
   });
 
@@ -25,6 +26,20 @@ const useDevices = () => {
   }
 
   return response;
+};
+
+const queryFunction = async () => {
+  const session = await getSession();
+
+  if (!session) {
+    throw new Error('No Session');
+  }
+
+  if (Date.now() >= session.expires_at) {
+    throw new Error('Access Token is invalid');
+  }
+
+  return (await getDevices(session.access_token)).devices;
 };
 
 export default useDevices;

@@ -1,20 +1,8 @@
-import { getSession } from 'next-auth/react';
-
-const getDevices = async () => {
-  const session = await getSession();
-
-  if (!session) {
-    throw new Error('No Session');
-  }
-
-  if (Date.now() >= session.expires_at) {
-    throw new Error('Access Token is invalid');
-  }
-
+const getDevices = async (access_token: string) => {
   const response = await fetch(`https://api.spotify.com/v1/me/player/devices`, {
     method: 'GET',
     headers: {
-      Authorization: `Bearer ${session.access_token}`,
+      Authorization: `Bearer ${access_token}`,
     },
   });
 
@@ -22,9 +10,7 @@ const getDevices = async () => {
     throw new Error();
   }
 
-  const devicesResponse = (await response.json()) as DevicesResponse;
-
-  return devicesResponse.devices;
+  return (await response.json()) as DevicesResponse;
 };
 
 export default getDevices;

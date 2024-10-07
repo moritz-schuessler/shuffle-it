@@ -1,14 +1,14 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 
 import { putPlayback } from '@/lib/spotify-api';
+import { getSession } from 'next-auth/react';
 
 const usePlayback = () => {
   const queryClient = useQueryClient();
 
   const mutation = useMutation({
-    mutationFn: ({ device, uris }: { device: string; uris: string[] }) => {
-      return putPlayback(uris, device);
-    },
+    mutationFn: ({ device, uris }: { device: string; uris: string[] }) =>
+      mutationFunction(device, uris),
     onSuccess: () => {
       queryClient.resetQueries({ queryKey: ['queue'] });
     },
@@ -26,6 +26,20 @@ const usePlayback = () => {
   };
 
   return { isPending: mutation.isPending, playQueue };
+};
+
+const mutationFunction = async (device: string, uris: string[]) => {
+  const session = await getSession();
+
+  if (!session) {
+    throw new Error('No Session');
+  }
+
+  if (Date.now() >= session.expires_at) {
+    throw new Error('Access Token is invalid');
+  }
+
+  putPlayback(session.access_token, uris, device);
 };
 
 export default usePlayback;
