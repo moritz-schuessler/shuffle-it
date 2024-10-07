@@ -1,7 +1,7 @@
 import { useSession } from 'next-auth/react';
 import { useInfiniteQuery } from '@tanstack/react-query';
 
-import getAlbums from '@/lib/spotify/get-albums';
+import { getAlbums } from '@/lib/spotify-api';
 
 const useLibrary = () => {
   const { status } = useSession();

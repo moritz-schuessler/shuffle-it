@@ -1,6 +1,6 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 
-import getAlbums from '@/lib/spotify/get-albums';
+import { getAlbums } from '@/lib/spotify-api';
 
 const useQueue = () => {
   const queryClient = useQueryClient();

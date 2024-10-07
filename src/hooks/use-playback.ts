@@ -1,6 +1,6 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 
-import putPlayback from '@/lib/spotify/put-playback';
+import { putPlayback } from '@/lib/spotify-api';
 
 const usePlayback = () => {
   const queryClient = useQueryClient();

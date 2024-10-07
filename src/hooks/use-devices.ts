@@ -1,6 +1,6 @@
 import { useQuery, useQueryClient } from '@tanstack/react-query';
 
-import getDevices from '@/lib/spotify/get-devices';
+import { getDevices } from '@/lib/spotify-api';
 
 const useDevices = () => {
   const queryClient = useQueryClient();
