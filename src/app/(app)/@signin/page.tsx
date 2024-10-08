@@ -1,7 +1,6 @@
-import { signIn } from '@/auth';
-import Description from '@/app/(app)/@signin/description';
-import Button from '@/components/ui/button';
+import { SignInButton } from '@/components/auth/auth-buttons';
 import SpotifyIcon from '@/assets/icons/spotify-icon';
+import Description from '@/app/(app)/@signin/description';
 
 const SignIn = async () => {
   return (
@@ -17,22 +16,10 @@ const SignIn = async () => {
               To use this app, sign in with your Spotify account{' '}
             </p>
           </div>
-          <form
-            className='flex w-1/2 max-w-lg items-center justify-center'
-            action={async () => {
-              'use server';
-              await signIn('spotify');
-            }}
-          >
-            <Button
-              type='submit'
-              variant='secondary'
-              className='flex w-full items-center justify-center gap-2'
-            >
-              <SpotifyIcon color='black' />
-              Spotify
-            </Button>
-          </form>
+          <SignInButton className='flex w-1/2 max-w-lg items-center justify-center gap-2'>
+            <SpotifyIcon color='black' />
+            Spotify
+          </SignInButton>
         </div>
       </main>
     </>
