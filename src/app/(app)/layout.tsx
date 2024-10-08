@@ -1,7 +1,7 @@
 import { ReactNode } from 'react';
 
 import '@/globals.css';
-import { auth } from '@/auth';
+import auth from '@/lib/auth/auth';
 
 interface Props {
   children: ReactNode;
