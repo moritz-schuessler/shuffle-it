@@ -28,19 +28,13 @@ const RootLayout = async ({ children }: Props) => {
             <Navbar />
             {children}
             <Footer />
-            <Toaster
-              theme='dark'
-              position='bottom-center'
-              richColors
-              className='toaster group'
-              toastOptions={{
-                classNames: {
-                  toast:
-                    'group toast group-[.toaster]:bg-black group-[.toaster]:border-gray-100',
-                },
-              }}
-            />
           </div>
+          <Toaster
+            theme='dark'
+            position='bottom-center'
+            richColors
+            className='toaster group'
+          />
         </body>
       </html>
     </Providers>
