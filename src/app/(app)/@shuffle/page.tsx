@@ -18,7 +18,7 @@ const Shuffle = () => {
 
   return (
     <main className='overflow-none flex h-full w-full flex-col justify-between gap-2'>
-      <div className='flex h-full w-full flex-col gap-2 overflow-scroll mobile:h-fit'>
+      <div className='flex h-full w-full flex-col gap-2 overflow-scroll'>
         <AlbumQueue />
         <Button
           variant='dashed'

@@ -42,7 +42,7 @@ const AlbumLibrary = () => {
 
   return (
     <div
-      className='grid w-full grid-cols-auto gap-4 overflow-scroll p-2'
+      className='grid w-full grid-cols-[repeat(auto-fill,_minmax(250px,_1fr))] gap-4 overflow-scroll p-2'
       ref={rootRef.current}
     >
       {albums.map((album, i) => {

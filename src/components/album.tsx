@@ -20,9 +20,10 @@ const Album = ({ album }: Props) => {
   return (
     <Button
       onClick={handleClick}
-      className='flex flex-col gap-2 p-2 mobile:flex-row'
+      variant='ghost'
+      className='flex flex-col gap-2 p-2'
     >
-      <div className='flex aspect-square shrink-0 grow mobile:w-12 mobile:grow-0'>
+      <div className='flex aspect-square shrink-0 grow'>
         <Image
           src={album.images[0].url}
           alt={`Album Cover of ${album.name}`}
@@ -34,7 +35,7 @@ const Album = ({ album }: Props) => {
       </div>
       <div className='flex flex-col overflow-hidden'>
         <div className='truncate'>{album.name}</div>
-        <div className='truncate text-gray-300'>
+        <div className='text-foreground-200 truncate'>
           {album.artists.map((artist) => artist.name).join(', ')}
         </div>
       </div>

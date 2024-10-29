@@ -9,16 +9,11 @@ const Albums = ({ searchParams }: { searchParams: { library: string } }) => {
 
   if (!library) {
     return (
-      <aside className='h-full mobile:h-fit'>
-        <Button
-          className='flex h-full flex-col items-center gap-2 mobile:h-fit mobile:flex-row mobile:items-center mobile:justify-center'
-          asChild
-        >
+      <aside className='h-full'>
+        <Button className='flex h-full flex-col items-center gap-2' asChild>
           <Link href='?library'>
-            <ArchiveIcon className='size-6 mobile:size-5' />
-            <div className='[writing-mode:vertical-lr] mobile:[writing-mode:horizontal-tb]'>
-              Show Library
-            </div>
+            <ArchiveIcon className='size-6' />
+            <div className='[writing-mode:vertical-lr]'>Show Library</div>
           </Link>
         </Button>
       </aside>
@@ -26,7 +21,7 @@ const Albums = ({ searchParams }: { searchParams: { library: string } }) => {
   }
 
   return (
-    <aside className='flex h-full w-full flex-col divide-y-2 divide-gray-100 rounded-md bg-gray-200'>
+    <aside className='bg-background-200 divide-border flex h-full w-full flex-col divide-y-2 rounded-md'>
       <div className='flex w-full justify-between p-2'>
         <div className='flex items-center p-2'>Album Library</div>
         <Button variant='ghost' className='flex h-full flex-col gap-4' asChild>

@@ -21,7 +21,7 @@ const AlbumQueue = () => {
           return (
             <div
               key={index + album.id}
-              className='flex items-center justify-between rounded-md bg-gray-200 p-2'
+              className='bg-background-200 flex items-center justify-between rounded-md p-2'
             >
               <div className='flex gap-2'>
                 <div className='flex aspect-square w-12 grow-0'>
@@ -36,7 +36,7 @@ const AlbumQueue = () => {
                 </div>
                 <div className='flex flex-col'>
                   <span className='truncate'>{album.name}</span>
-                  <span className='truncate text-gray-300'>
+                  <span className='text-foreground-200 truncate'>
                     {album.artists.map((artist) => artist.name).join(', ')}
                   </span>
                 </div>

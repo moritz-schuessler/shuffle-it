@@ -22,7 +22,7 @@ const metadata: Metadata = {
 const RootLayout = async ({ children }: Props) => {
   return (
     <Providers>
-      <html lang='en' className='bg-black text-white'>
+      <html lang='en' className='bg-background-100 text-foreground-100'>
         <body className={`${GeistSans.className} overscroll-none`}>
           <div className=' flex h-dvh flex-col gap-4 p-4'>
             <Navbar />
