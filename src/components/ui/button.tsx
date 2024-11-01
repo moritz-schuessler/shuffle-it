@@ -9,10 +9,10 @@ const buttonVariants = cva(
   {
     variants: {
       variant: {
-        default: 'bg-gray-200 hover:bg-gray-100',
-        secondary: 'bg-white text-black hover:bg-gray-400',
-        ghost: 'hover:bg-gray-100',
-        dashed: 'border-dashed border-2 border-gray-200 hover:border-gray-100',
+        default: 'bg-button hover:bg-hover-100',
+        secondary: 'bg-white text-black hover:bg-hover-200 bg-button-secondary',
+        ghost: 'bg-button-ghost hover:bg-hover-100',
+        dashed: 'border-dashed border-2 border-border hover:border-hover-100',
       },
     },
     defaultVariants: {

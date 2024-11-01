@@ -22,25 +22,19 @@ const metadata: Metadata = {
 const RootLayout = async ({ children }: Props) => {
   return (
     <Providers>
-      <html lang='en' className='bg-black text-white'>
-        <body className={`${GeistSans.className}`}>
-          <div className=' flex h-dvh flex-col gap-4 overscroll-none p-4'>
+      <html lang='en' className='bg-background-100 text-foreground-100'>
+        <body className={`${GeistSans.className} overscroll-none`}>
+          <div className='p-default gap-default flex h-dvh flex-col'>
             <Navbar />
             {children}
             <Footer />
-            <Toaster
-              theme='dark'
-              position='bottom-center'
-              richColors
-              className='toaster group'
-              toastOptions={{
-                classNames: {
-                  toast:
-                    'group toast group-[.toaster]:bg-black group-[.toaster]:border-gray-100',
-                },
-              }}
-            />
           </div>
+          <Toaster
+            theme='dark'
+            position='bottom-center'
+            richColors
+            className='toaster group'
+          />
         </body>
       </html>
     </Providers>

@@ -1,8 +1,69 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import 'tailwindcss';
 
-button {
-    all: unset;
-    cursor: pointer;
+:root {
+  --theme-black: oklch(0% 0 0);
+
+  --theme-gray-100: oklch(10% 0 0);
+  --theme-gray-200: oklch(20% 0 0);
+  --theme-gray-300: oklch(30% 0 0);
+  --theme-gray-400: oklch(40% 0 0);
+  --theme-gray-500: oklch(50% 0 0);
+  --theme-gray-600: oklch(60% 0 0);
+  --theme-gray-700: oklch(70% 0 0);
+  --theme-gray-800: oklch(80% 0 0);
+  --theme-gray-900: oklch(90% 0 0);
+
+  --theme-white: oklch(100% 0 0);
+
+  --size-100: 1rem;
+
+  @media only screen and (max-width: 640px) {
+    --size-100: 0.5rem;
+  }
+}
+
+@theme {
+  --color-foreground-100: var(--theme-white);
+  --color-foreground-200: var(--theme-gray-600);
+
+  --color-background-100: var(--theme-gray-100);
+  --color-background-200: var(--theme-gray-200);
+
+  --color-border: var(--theme-gray-300);
+
+  --color-button: var(--theme-gray-200);
+  --color-button-secondary: var(--theme-white);
+  --color-button-ghost: inherit;
+
+  --color-hover-100: var(--theme-gray-400);
+  --color-hover-200: var(--theme-gray-900);
+
+  --padding-default: var(--size-100);
+  --padding-half: calc(var(--size-100) / 2);
+
+  --gap-default: var(--size-100);
+  --gap-half: calc(var(--size-100) / 2);
+
+  --animate-accordion-down: accordion-down 300ms cubic-bezier(0.87, 0, 0.13, 1);
+  --animate-accordion-up: accordion-up 300ms cubic-bezier(0.87, 0, 0.13, 1);
+
+  @keyframes accordion-down {
+    from {
+      height: 0;
+    }
+
+    to {
+      height: var(--radix-accordion-content-height);
+    }
+  }
+
+  @keyframes accordion-up {
+    from {
+      height: var(--radix-accordion-content-height);
+    }
+
+    to {
+      height: '0';
+    }
+  }
 }
