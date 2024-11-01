@@ -17,25 +17,22 @@ const Shuffle = () => {
   }
 
   return (
-    <main className='overflow-none flex h-full w-full flex-col justify-between gap-2'>
-      <div className='flex h-full w-full flex-col gap-2 overflow-scroll'>
+    <main className='gap-half flex h-full w-full flex-col justify-between overflow-scroll'>
+      <div className='gap-half flex h-full w-full flex-col overflow-scroll'>
         <AlbumQueue />
         <Button
           variant='dashed'
           onClick={() => queueMutation.mutate()}
-          className='flex items-center justify-center'
+          className='flex justify-center'
         >
           <PlusIcon />
         </Button>
       </div>
       <form
         action={playbackMutation.playQueue}
-        className='flex justify-between gap-2'
+        className='gap-half flex justify-between'
       >
-        <Button
-          type='submit'
-          className='flex w-full items-center justify-center'
-        >
+        <Button type='submit' className='flex w-full justify-center'>
           Play Queue
         </Button>
         <Devices />

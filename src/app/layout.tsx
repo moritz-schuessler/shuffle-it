@@ -24,7 +24,7 @@ const RootLayout = async ({ children }: Props) => {
     <Providers>
       <html lang='en' className='bg-background-100 text-foreground-100'>
         <body className={`${GeistSans.className} overscroll-none`}>
-          <div className=' flex h-dvh flex-col gap-4 p-4'>
+          <div className='p-default gap-default flex h-dvh flex-col'>
             <Navbar />
             {children}
             <Footer />

@@ -15,18 +15,20 @@ const AppLayout = async ({ children, shuffle, library, signin }: Props) => {
 
   if (!session) {
     return (
-      <div className='flex h-full justify-between gap-4 overflow-hidden'>
+      <div className='gap-default flex h-full justify-between overflow-hidden'>
         {signin}
       </div>
     );
   }
 
   return (
-    <div className='flex h-full justify-between gap-4 overflow-hidden'>
+    <>
       {children}
-      {shuffle}
-      {library}
-    </div>
+      <div className='gap-half flex h-full flex-col justify-between overflow-hidden sm:flex-row'>
+        {shuffle}
+        {library}
+      </div>
+    </>
   );
 };
 

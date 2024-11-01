@@ -14,6 +14,12 @@
   --theme-gray-900: oklch(90% 0 0);
 
   --theme-white: oklch(100% 0 0);
+
+  --size-100: 1rem;
+
+  @media only screen and (max-width: 640px) {
+    --size-100: 0.5rem;
+  }
 }
 
 @theme {
@@ -31,6 +37,12 @@
 
   --color-hover-100: var(--theme-gray-400);
   --color-hover-200: var(--theme-gray-900);
+
+  --padding-default: var(--size-100);
+  --padding-half: calc(var(--size-100) / 2);
+
+  --gap-default: var(--size-100);
+  --gap-half: calc(var(--size-100) / 2);
 
   --animate-accordion-down: accordion-down 300ms cubic-bezier(0.87, 0, 0.13, 1);
   --animate-accordion-up: accordion-up 300ms cubic-bezier(0.87, 0, 0.13, 1);

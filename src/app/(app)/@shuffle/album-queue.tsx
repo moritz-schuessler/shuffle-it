@@ -21,7 +21,7 @@ const AlbumQueue = () => {
           return (
             <div
               key={index + album.id}
-              className='bg-background-200 flex items-center justify-between rounded-md p-2'
+              className='bg-background-200 p-half flex items-center justify-between rounded-md'
             >
               <div className='flex gap-2'>
                 <div className='flex aspect-square w-12 grow-0'>

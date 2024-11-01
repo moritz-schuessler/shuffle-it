@@ -7,15 +7,11 @@ import SpotifyIcon from '@/assets/icons/spotify-icon';
 const Footer = () => {
   return (
     <footer className='flex items-center justify-between'>
-      <div className='flex gap-2'>
+      <div className='gap-half flex'>
         <Button variant='ghost'>
-          <Link
-            href={'https://moritzschuessler.dev/'}
-            target='_blank'
-            className='flex gap-2'
-          >
-            <div>moritzschuessler © {new Date().getFullYear()}</div>
-          </Link>{' '}
+          <Link href={'https://moritzschuessler.dev/'} target='_blank'>
+            moritzschuessler © {new Date().getFullYear()}
+          </Link>
         </Button>
         <Button variant='ghost' asChild>
           <Link href={'https://open.spotify.com/'} target='_blank'>
