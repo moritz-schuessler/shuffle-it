@@ -13,6 +13,7 @@ interface Props extends ButtonHTMLAttributes<HTMLButtonElement> {
 const SignInButton = ({ children, ...props }: Props) => {
   return (
     <Button
+      variant='secondary'
       onClick={() => signIn('spotify')}
       className={classNames(props.className)}
     >

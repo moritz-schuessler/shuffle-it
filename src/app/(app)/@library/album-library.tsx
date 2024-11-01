@@ -1,15 +1,12 @@
 'use client';
 
+import { signIn } from 'next-auth/react';
+import useLibrary from '@/hooks/use-library';
 import { useEffect, useRef } from 'react';
-import { signIn, useSession } from 'next-auth/react';
 import { useInView } from 'react-intersection-observer';
-
-import useAlbums from '@/hooks/use-albums';
 import Album from '@/components/album';
 
-const Albums = () => {
-  const { data: session } = useSession();
-
+const AlbumLibrary = () => {
   const {
     data,
     error,
@@ -17,7 +14,7 @@ const Albums = () => {
     fetchNextPage,
     hasNextPage,
     isFetchingNextPage,
-  } = useAlbums();
+  } = useLibrary();
 
   const rootRef = useRef(null);
   const { ref, inView } = useInView({
@@ -45,31 +42,22 @@ const Albums = () => {
 
   return (
     <div
-      className='mobile:gap-4 grid grid-cols-auto gap-8'
+      className='gap-default p-half grid w-full overflow-scroll sm:grid-cols-[repeat(auto-fill,_minmax(250px,_1fr))]'
       ref={rootRef.current}
     >
       {albums.map((album, i) => {
         if (albums?.length === i + 1 && hasNextPage) {
           return (
-            <div key={album.album.id} className='flex flex-col' ref={ref}>
-              <Album
-                album={album.album}
-                access_token={session!.access_token!}
-              />
+            <div key={album.album.id} ref={ref}>
+              <Album album={album.album} />
             </div>
           );
         }
-        return (
-          <Album
-            key={album.album.id}
-            album={album.album}
-            access_token={session!.access_token!}
-          />
-        );
+        return <Album key={album.album.id} album={album.album} />;
       })}
       {hasNextPage || isFetchingNextPage ? <div>Loading...</div> : null}
     </div>
   );
 };
 
-export default Albums;
+export default AlbumLibrary;

@@ -8,6 +8,7 @@ const scope: string = [
   'user-read-email',
   'user-library-read',
   'user-modify-playback-state',
+  'user-read-playback-state',
 ].join(' ');
 
 const authOptions: NextAuthOptions = {

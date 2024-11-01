@@ -6,6 +6,8 @@ import { Toaster } from 'sonner';
 
 import '@/globals.css';
 import Navbar from '@/components/navbar';
+import Footer from '@/components/footer';
+import Providers from '@/app/providers';
 
 interface Props {
   children: ReactNode;
@@ -19,26 +21,23 @@ const metadata: Metadata = {
 
 const RootLayout = async ({ children }: Props) => {
   return (
-    <html lang='en' className='bg-black text-white'>
-      <body
-        className={`${GeistSans.className} flex h-dvh flex-col justify-between divide-y divide-gray-100 overscroll-none`}
-      >
-        <Navbar />
-        {children}
-        <Toaster
-          theme='dark'
-          position='bottom-center'
-          richColors
-          className='toaster group'
-          toastOptions={{
-            classNames: {
-              toast:
-                'group toast group-[.toaster]:bg-black group-[.toaster]:border-gray-100',
-            },
-          }}
-        />
-      </body>
-    </html>
+    <Providers>
+      <html lang='en' className='bg-background-100 text-foreground-100'>
+        <body className={`${GeistSans.className} overscroll-none`}>
+          <div className='p-default gap-default flex h-dvh flex-col'>
+            <Navbar />
+            {children}
+            <Footer />
+          </div>
+          <Toaster
+            theme='dark'
+            position='bottom-center'
+            richColors
+            className='toaster group'
+          />
+        </body>
+      </html>
+    </Providers>
   );
 };
 

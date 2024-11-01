@@ -1,5 +1,4 @@
 import { JWT } from 'next-auth/jwt';
-import { URLSearchParams } from 'url';
 
 const refreshAccessToken = async (token: JWT) => {
   const response = await fetch('https://accounts.spotify.com/api/token', {

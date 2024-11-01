@@ -6,29 +6,29 @@ import SpotifyIcon from '@/assets/icons/spotify-icon';
 
 const Footer = () => {
   return (
-    <footer className='flex items-center justify-center gap-4'>
+    <footer className='flex items-center justify-between'>
+      <div className='gap-half flex'>
+        <Button variant='ghost'>
+          <Link href={'https://moritzschuessler.dev/'} target='_blank'>
+            moritzschuessler © {new Date().getFullYear()}
+          </Link>
+        </Button>
+        <Button variant='ghost' asChild>
+          <Link href={'https://open.spotify.com/'} target='_blank'>
+            <SpotifyIcon color='white' />
+          </Link>
+        </Button>
+        <Button variant='ghost' asChild>
+          <Link
+            href={'https://github.com/moritz-schuessler/shuffle-it'}
+            target='_blank'
+          >
+            <GithubIcon color='white' />
+          </Link>
+        </Button>
+      </div>
       <Button variant='ghost' asChild>
         <Link href={'/privacy'}>Privacy</Link>
-      </Button>
-      <Button variant='ghost' asChild>
-        <Link
-          href={'https://github.com/moritz-schuessler/shuffle-it'}
-          target='_blank'
-          className='flex gap-2'
-        >
-          <GithubIcon color='white' />
-          <div>Project</div>
-        </Link>
-      </Button>
-      <Button variant='ghost' asChild>
-        <Link
-          href={'https://open.spotify.com/'}
-          target='_blank'
-          className='flex gap-2'
-        >
-          <SpotifyIcon color='white' />
-          <div>Spotify</div>
-        </Link>
       </Button>
     </footer>
   );
