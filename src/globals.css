@@ -17,8 +17,16 @@
 
   --size-100: 1rem;
 
-  @media only screen and (max-width: 640px) {
+  --border-radius-100: 4px;
+  --border-radius-200: 8px;
+}
+
+@media only screen and (max-width: 640px) {
+  :root {
     --size-100: 0.5rem;
+
+    --border-radius-100: 2px;
+    --border-radius-200: 4px;
   }
 }
 
@@ -43,6 +51,9 @@
 
   --gap-default: var(--size-100);
   --gap-half: calc(var(--size-100) / 2);
+
+  --radius: var(--border-radius-100);
+  --radius-md: var(--border-radius-200);
 
   --animate-accordion-down: accordion-down 300ms cubic-bezier(0.87, 0, 0.13, 1);
   --animate-accordion-up: accordion-up 300ms cubic-bezier(0.87, 0, 0.13, 1);
