@@ -21,7 +21,7 @@ const Album = ({ album }: Props) => {
     <Button
       onClick={handleClick}
       variant='ghost'
-      className='gap-half p-half flex sm:flex-col '
+      className='gap-half p-half group flex overflow-hidden sm:flex-col'
     >
       <Image
         src={album.images[0].url}
@@ -31,9 +31,9 @@ const Album = ({ album }: Props) => {
         unoptimized
         className='aspect-square w-12 grow-0 rounded sm:w-full'
       />
-      <div className='flex flex-col items-start overflow-hidden'>
-        <div className='truncate'>{album.name}</div>
-        <div className='text-foreground-200 truncate'>
+      <div className='flex w-full flex-col overflow-hidden'>
+        <div className='w-full truncate'>{album.name}</div>
+        <div className='text-foreground-200 w-full truncate'>
           {album.artists.map((artist) => artist.name).join(', ')}
         </div>
       </div>
