@@ -55,7 +55,7 @@ const SelectItem = forwardRef<
   ComponentPropsWithoutRef<typeof SelectPrimitive.Item>
 >(({ children, className, ...props }, forwardedRef) => (
   <SelectPrimitive.Item
-    className='relative flex w-full cursor-default select-none items-center rounded-sm py-1.5 pl-8 pr-2 text-sm outline-none'
+    className='relative flex w-full cursor-default select-none items-center rounded-md py-1.5 pl-8 pr-2 text-sm outline-none'
     {...props}
     ref={forwardedRef}
   >

@@ -23,8 +23,8 @@ const AlbumQueue = () => {
               key={index + album.id}
               className='bg-background-200 p-half flex items-center justify-between rounded-md'
             >
-              <div className='flex gap-2'>
-                <div className='flex aspect-square w-12 grow-0'>
+              <div className='flex gap-2 overflow-hidden'>
+                <div className='flex aspect-square w-12 shrink-0 grow-0'>
                   <Image
                     src={album.images[0].url}
                     alt={`Album Cover of ${album.name}`}
@@ -34,14 +34,14 @@ const AlbumQueue = () => {
                     className='aspect-square grow rounded'
                   />
                 </div>
-                <div className='flex flex-col'>
+                <div className='flex flex-col overflow-hidden'>
                   <span className='truncate'>{album.name}</span>
                   <span className='text-foreground-200 truncate'>
                     {album.artists.map((artist) => artist.name).join(', ')}
                   </span>
                 </div>
               </div>
-              <div>
+              <div className='shrink-0'>
                 <Button
                   variant='ghost'
                   onClick={() => {
