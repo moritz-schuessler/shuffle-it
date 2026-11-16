@@ -25,7 +25,7 @@
     "sonner": "^1.5.0"
   },
   "devDependencies": {
-    "@tailwindcss/postcss": "^4.0.0-alpha.30",
+    "@tailwindcss/postcss": "^4.3.5",
     "@tanstack/eslint-plugin-query": "^5.107.1",
     "@types/node": "^22.20.5",
     "@types/react": "^18.3.31",
@@ -36,8 +36,8 @@
     "eslint-config-prettier": "^9.1.0",
     "postcss": "^8.5.33",
     "prettier": "^3.10.1",
-    "prettier-plugin-tailwindcss": "^0.5.14",
-    "tailwindcss": "^4.0.0-alpha.30",
+    "prettier-plugin-tailwindcss": "^0.8.1",
+    "tailwindcss": "^4.3.5",
     "typescript": "^5.9.3"
   }
 }
