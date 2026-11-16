@@ -1,4 +1,4 @@
-import { ComponentPropsWithoutRef, ElementRef, forwardRef } from 'react';
+import { ComponentPropsWithoutRef, ComponentRef, forwardRef } from 'react';
 
 import * as SelectPrimitive from '@radix-ui/react-select';
 
@@ -8,19 +8,20 @@ import {
   ChevronUpIcon,
 } from '@radix-ui/react-icons';
 
-interface SelectProps
-  extends ComponentPropsWithoutRef<typeof SelectPrimitive.Root> {
+interface SelectProps extends ComponentPropsWithoutRef<
+  typeof SelectPrimitive.Root
+> {
   placeholder?: string;
 }
 
 const Select = forwardRef<
-  ElementRef<typeof SelectPrimitive.Select>,
+  ComponentRef<typeof SelectPrimitive.Trigger>,
   SelectProps
 >(({ children, ...props }, forwardedRef) => (
   <SelectPrimitive.Root {...props}>
     <SelectPrimitive.Trigger
       ref={forwardedRef}
-      className='bg-button hover:bg-hover-100 flex min-w-max items-center justify-between gap-2 rounded-md px-3 py-2 text-white outline-none [&>span]:line-clamp-1'
+      className='flex min-w-max items-center justify-between gap-2 rounded-md bg-button px-3 py-2 text-white outline-hidden hover:bg-hover-100 [&>span]:line-clamp-1'
     >
       <SelectPrimitive.Value className='w-80' placeholder={props.placeholder} />
       <SelectPrimitive.Icon>
@@ -51,11 +52,11 @@ const Select = forwardRef<
 Select.displayName = 'Select';
 
 const SelectItem = forwardRef<
-  ElementRef<typeof SelectPrimitive.Item>,
+  ComponentRef<typeof SelectPrimitive.Item>,
   ComponentPropsWithoutRef<typeof SelectPrimitive.Item>
 >(({ children, className, ...props }, forwardedRef) => (
   <SelectPrimitive.Item
-    className='relative flex w-full cursor-default select-none items-center rounded-md py-1.5 pl-8 pr-2 text-sm outline-none'
+    className='relative flex w-full cursor-default items-center rounded-md py-1.5 pr-2 pl-8 text-sm outline-hidden select-none'
     {...props}
     ref={forwardedRef}
   >

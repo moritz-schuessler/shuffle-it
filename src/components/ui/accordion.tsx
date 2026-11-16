@@ -1,12 +1,12 @@
 'use client';
 
-import { ComponentPropsWithoutRef, ElementRef, forwardRef } from 'react';
+import { ComponentPropsWithoutRef, ComponentRef, forwardRef } from 'react';
 import * as AccordionPrimitive from '@radix-ui/react-accordion';
 import classNames from 'classnames';
 import { ChevronDownIcon } from '@radix-ui/react-icons';
 
 const Accordion = forwardRef<
-  ElementRef<typeof AccordionPrimitive.Root>,
+  ComponentRef<typeof AccordionPrimitive.Root>,
   ComponentPropsWithoutRef<typeof AccordionPrimitive.Root>
 >(({ children, className, ...props }, forwardedRef) => (
   <AccordionPrimitive.Root className={className} ref={forwardedRef} {...props}>
@@ -16,11 +16,11 @@ const Accordion = forwardRef<
 Accordion.displayName = 'Accordion';
 
 const AccordionItem = forwardRef<
-  ElementRef<typeof AccordionPrimitive.Item>,
+  ComponentRef<typeof AccordionPrimitive.Item>,
   ComponentPropsWithoutRef<typeof AccordionPrimitive.Item>
 >(({ children, className, ...props }, forwardedRef) => (
   <AccordionPrimitive.Item
-    className={classNames(className, 'border-border overflow-hidden border-b')}
+    className={classNames(className, 'overflow-hidden border-b border-border')}
     ref={forwardedRef}
     {...props}
   >
@@ -30,7 +30,7 @@ const AccordionItem = forwardRef<
 AccordionItem.displayName = 'AccordionItem';
 
 const AccordionTrigger = forwardRef<
-  ElementRef<typeof AccordionPrimitive.Trigger>,
+  ComponentRef<typeof AccordionPrimitive.Trigger>,
   ComponentPropsWithoutRef<typeof AccordionPrimitive.Trigger>
 >(({ children, className, ...props }, forwardedRef) => (
   <AccordionPrimitive.Header className='flex'>
@@ -53,13 +53,13 @@ const AccordionTrigger = forwardRef<
 AccordionTrigger.displayName = 'AccordionTrigger';
 
 const AccordionContent = forwardRef<
-  ElementRef<typeof AccordionPrimitive.Content>,
+  ComponentRef<typeof AccordionPrimitive.Content>,
   ComponentPropsWithoutRef<typeof AccordionPrimitive.Content>
 >(({ children, className, ...props }, forwardedRef) => (
   <AccordionPrimitive.Content
     className={classNames(
       className,
-      'data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down overflow-hidden',
+      'overflow-hidden data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down',
     )}
     {...props}
     ref={forwardedRef}

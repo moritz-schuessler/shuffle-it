@@ -19,7 +19,8 @@ const buttonVariants = cva(['transition duration-75 rounded-md px-2 py-2'], {
 });
 
 interface Props
-  extends ButtonHTMLAttributes<HTMLButtonElement>,
+  extends
+    ButtonHTMLAttributes<HTMLButtonElement>,
     VariantProps<typeof buttonVariants> {
   asChild?: boolean;
 }

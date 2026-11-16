@@ -9,10 +9,10 @@ const SignIn = async () => {
         <Description />
       </aside>
       <main className='h-full w-full overflow-scroll'>
-        <div className='bg-background-200 flex h-full flex-col items-center justify-center gap-6 rounded-md'>
+        <div className='flex h-full flex-col items-center justify-center gap-6 rounded-md bg-background-200'>
           <div className='flex flex-col items-center justify-center gap-2'>
             <h2 className='text-xl'>Sign in with Spotify</h2>
-            <p className='text-foreground-200 text-center'>
+            <p className='text-center text-foreground-200'>
               To use this app, sign in with your Spotify account{' '}
             </p>
           </div>

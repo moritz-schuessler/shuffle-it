@@ -17,8 +17,8 @@ const Shuffle = () => {
   }
 
   return (
-    <main className='gap-half flex h-full w-full flex-col justify-between overflow-scroll'>
-      <div className='gap-half flex h-full w-full flex-col overflow-scroll'>
+    <main className='flex h-full w-full flex-col justify-between gap-half overflow-scroll'>
+      <div className='flex h-full w-full flex-col gap-half overflow-scroll'>
         <AlbumQueue />
         <Button
           variant='dashed'
@@ -30,7 +30,7 @@ const Shuffle = () => {
       </div>
       <form
         action={playbackMutation.playQueue}
-        className='gap-half flex justify-between'
+        className='flex justify-between gap-half'
       >
         <Button type='submit' className='flex w-full justify-center'>
           Play Queue

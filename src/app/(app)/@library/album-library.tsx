@@ -2,7 +2,7 @@
 
 import { signIn } from 'next-auth/react';
 import useLibrary from '@/hooks/use-library';
-import { useEffect, useRef } from 'react';
+import { useEffect } from 'react';
 import { useInView } from 'react-intersection-observer';
 import Album from '@/components/album';
 
@@ -16,11 +16,9 @@ const AlbumLibrary = () => {
     isFetchingNextPage,
   } = useLibrary();
 
-  const rootRef = useRef(null);
   const { ref, inView } = useInView({
     threshold: 0,
     rootMargin: '100%',
-    root: rootRef.current,
     triggerOnce: false,
   });
   useEffect(() => {
@@ -41,10 +39,7 @@ const AlbumLibrary = () => {
   const albums = data?.pages.flatMap((page) => page.items);
 
   return (
-    <div
-      className='gap-default p-half grid w-full overflow-scroll sm:grid-cols-[repeat(auto-fill,_minmax(250px,_1fr))]'
-      ref={rootRef.current}
-    >
+    <div className='grid w-full gap-default overflow-scroll p-half sm:grid-cols-[repeat(auto-fill,_minmax(250px,_1fr))]'>
       {albums.map((album, i) => {
         if (albums?.length === i + 1 && hasNextPage) {
           return (
