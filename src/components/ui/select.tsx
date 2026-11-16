@@ -8,8 +8,9 @@ import {
   ChevronUpIcon,
 } from '@radix-ui/react-icons';
 
-interface SelectProps
-  extends ComponentPropsWithoutRef<typeof SelectPrimitive.Root> {
+interface SelectProps extends ComponentPropsWithoutRef<
+  typeof SelectPrimitive.Root
+> {
   placeholder?: string;
 }
 
