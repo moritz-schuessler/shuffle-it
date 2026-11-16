@@ -3,7 +3,7 @@ import type { NextRequest } from 'next/server';
 
 const routes = ['/', '/privacy'];
 
-export const middleware = (request: NextRequest) => {
+export const proxy = (request: NextRequest) => {
   console.log(request.nextUrl.pathname);
   if (routes.includes(request.nextUrl.pathname)) {
     return NextResponse.next();
