@@ -1,4 +1,4 @@
-import { ComponentPropsWithoutRef, ElementRef, forwardRef } from 'react';
+import { ComponentPropsWithoutRef, ComponentRef, forwardRef } from 'react';
 
 import * as SelectPrimitive from '@radix-ui/react-select';
 
@@ -15,7 +15,7 @@ interface SelectProps extends ComponentPropsWithoutRef<
 }
 
 const Select = forwardRef<
-  ElementRef<typeof SelectPrimitive.Select>,
+  ComponentRef<typeof SelectPrimitive.Trigger>,
   SelectProps
 >(({ children, ...props }, forwardedRef) => (
   <SelectPrimitive.Root {...props}>
@@ -52,7 +52,7 @@ const Select = forwardRef<
 Select.displayName = 'Select';
 
 const SelectItem = forwardRef<
-  ElementRef<typeof SelectPrimitive.Item>,
+  ComponentRef<typeof SelectPrimitive.Item>,
   ComponentPropsWithoutRef<typeof SelectPrimitive.Item>
 >(({ children, className, ...props }, forwardedRef) => (
   <SelectPrimitive.Item

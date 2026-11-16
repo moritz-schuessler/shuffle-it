@@ -4,8 +4,12 @@ import Link from 'next/link';
 
 import { ArchiveIcon } from '@radix-ui/react-icons';
 
-const Albums = ({ searchParams }: { searchParams: { library: string } }) => {
-  const library = searchParams.library !== undefined;
+const Albums = async ({
+  searchParams,
+}: {
+  searchParams: Promise<{ library?: string }>;
+}) => {
+  const library = (await searchParams).library !== undefined;
 
   if (!library) {
     return (
