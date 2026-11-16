@@ -20,7 +20,7 @@ const AccordionItem = forwardRef<
   ComponentPropsWithoutRef<typeof AccordionPrimitive.Item>
 >(({ children, className, ...props }, forwardedRef) => (
   <AccordionPrimitive.Item
-    className={classNames(className, 'border-border overflow-hidden border-b')}
+    className={classNames(className, 'overflow-hidden border-b border-border')}
     ref={forwardedRef}
     {...props}
   >
@@ -59,7 +59,7 @@ const AccordionContent = forwardRef<
   <AccordionPrimitive.Content
     className={classNames(
       className,
-      'data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down overflow-hidden',
+      'overflow-hidden data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down',
     )}
     {...props}
     ref={forwardedRef}

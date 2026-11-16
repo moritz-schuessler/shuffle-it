@@ -21,7 +21,7 @@ const Select = forwardRef<
   <SelectPrimitive.Root {...props}>
     <SelectPrimitive.Trigger
       ref={forwardedRef}
-      className='bg-button hover:bg-hover-100 flex min-w-max items-center justify-between gap-2 rounded-md px-3 py-2 text-white outline-hidden [&>span]:line-clamp-1'
+      className='flex min-w-max items-center justify-between gap-2 rounded-md bg-button px-3 py-2 text-white outline-hidden hover:bg-hover-100 [&>span]:line-clamp-1'
     >
       <SelectPrimitive.Value className='w-80' placeholder={props.placeholder} />
       <SelectPrimitive.Icon>
@@ -56,7 +56,7 @@ const SelectItem = forwardRef<
   ComponentPropsWithoutRef<typeof SelectPrimitive.Item>
 >(({ children, className, ...props }, forwardedRef) => (
   <SelectPrimitive.Item
-    className='relative flex w-full cursor-default select-none items-center rounded-md py-1.5 pl-8 pr-2 text-sm outline-hidden'
+    className='relative flex w-full cursor-default items-center rounded-md py-1.5 pr-2 pl-8 text-sm outline-hidden select-none'
     {...props}
     ref={forwardedRef}
   >

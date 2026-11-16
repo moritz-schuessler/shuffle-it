@@ -21,7 +21,7 @@ const AlbumQueue = () => {
           return (
             <div
               key={index + album.id}
-              className='bg-background-200 p-half flex items-center justify-between rounded-md'
+              className='flex items-center justify-between rounded-md bg-background-200 p-half'
             >
               <div className='flex gap-2 overflow-hidden'>
                 <div className='flex aspect-square w-12 shrink-0 grow-0'>
@@ -36,7 +36,7 @@ const AlbumQueue = () => {
                 </div>
                 <div className='flex flex-col overflow-hidden'>
                   <span className='truncate'>{album.name}</span>
-                  <span className='text-foreground-200 truncate'>
+                  <span className='truncate text-foreground-200'>
                     {album.artists.map((artist) => artist.name).join(', ')}
                   </span>
                 </div>
